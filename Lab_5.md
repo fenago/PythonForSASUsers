@@ -49,6 +49,7 @@ Many of the working examples I found, while mostly useful, used synthetic data w
 
 That is why you will find some errors in the examples below. By examining the pits I have fallen into, hopefully you can avoid them.
 
+```
 In [1]:
 import numpy as np
 import pandas as pd
@@ -56,6 +57,7 @@ from numpy.random import randn
 from pandas import Series, DataFrame, Index
 Consider the creation of the DataFrame df in the cell below.
 
+```
 In [2]:
 df = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3.], 
                     ['b', 'warm', 'medium', 4, 5, 7, 9],
@@ -65,6 +67,7 @@ df = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3.],
                     ['f', 'cold', 'slow', np.nan, 29, 33, 17]])
 In the 'df' DataFrame created above we did not specify a row index or column names resulting in the RangeIndex object used for row labels. Default column labels are created as well using another RangeIndex object.
 
+```
 In [3]:
 df
 
@@ -76,14 +79,20 @@ The .index attribute returns the DataFrame's index structure. We did not explici
 
 Return the row index.
 
+```
 In [4]:
 df.index
+```
+
 Out[4]:
 RangeIndex(start=0, stop=6, step=1)
 Return the column labels. Since no labels were specificed, a RangeIndex object is used to identify columns.
 
+```
 In [5]:
 df.columns
+```
+
 Out[5]:
 RangeIndex(start=0, stop=7, step=1)
 For observations SAS uses the automatic variable _N_ in the Data Step and FIRSTOBS and OBS in PROC step for its row indexing.
@@ -158,8 +167,11 @@ Details for the .iloc indexer are located here.
 
 .iloc[0] is useful since it returns the first scalar from a Series of the first column from a DataFrame.
 
+```
 In [6]:
 df.iloc[0]
+```
+
 Out[6]:
 0       a
 1    cold
@@ -186,6 +198,7 @@ The point= option on the SET statement behaves similarly to return the first row
     _N_=1 _ERROR_=0 iloc=1 id=a col1=cold col2=slow col3=. col4=2 col5=6 col6=3
 In the example below, you might expect three rows returned, rather than two. The range request for .iloc[] includes the start of the range and does not include the last item in the range value.
 
+```
 In [7]:
 df.iloc[2:4]
 
@@ -218,8 +231,11 @@ returns the last row in the DataFrame. This is analogous to the END= option for 
 
 The .iloc indexer is mainly used to locate first or last row in the DataFrame.
 
+```
 In [8]:
 df.iloc[-1]
+```
+
 Out[8]:
 0       f
 1    cold
@@ -231,6 +247,7 @@ Out[8]:
 Name: 5, dtype: object
 The .iloc indexer in cell #8 below returns rows 2 and 3 using (2:4) as the row selector and columns 0 to 6 using (0:6) as the column selctor.
 
+```
 In [9]:
 df.iloc[2:4, 0:6]
 
@@ -250,6 +267,7 @@ The analog SAS program for returning the same sub-set is below. FIRSTOBS=3 OBS=4
     _N_=2 _ERROR_=0 id=d col1=cool col2=  col3=. col4=. col5=17
 The .iloc idexer illustrating multi-row and multi-column requests. Note the double square brackets ([]) syntax.
 
+```
 In [10]:
 df.iloc[[1,3,5], [2, 4, 6]]
 
@@ -268,6 +286,7 @@ Similiar to the .iloc indexer you can select combinations of rows and columns. T
 
 Consider the DataFrame df2 created below in cell #10. It contains the new columns 'id' and 'date'.
 
+```
 In [11]:
 df2 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3., '08/01/16'], 
                     ['b', 'warm', 'medium', 4, 5, 7, 9, '03/15/16'],
@@ -282,6 +301,7 @@ print(df2)
 
 The print() method for a DataFrame returns the output without the cell outlines, however.
 
+```
 In [12]:
 df2
 
@@ -297,26 +317,35 @@ drop=False
 
 This is useful if you have multiple occasions setting and resetting the index. Otherwise, a re-read of the DataFrame is required. Below, use the set_index() method to set the index to the 'id' column.
 
+```
 In [13]:
 df2.set_index('id', inplace=True, drop=False)
 The .set_index attribute execution is silent when the inplace=argument value is utilized. Validate the index using the .index attribute.
 
+```
 In [14]:
 df2.index
+```
+
 Out[14]:
 Index(['a', 'b', 'c', 'd', 'e', 'f'], dtype='object', name='id')
 To reset the index, use the reset_index() method.
 
+```
 In [15]:
 df2 = df2.reset_index(drop=True)
 In order to have the remainder of the examples for the .loc indexer to work, we set the index again.
 
+```
 In [16]:
 df2.set_index('id', inplace=True, drop=False)
 Return the row labeled 'e'.
 
+```
 In [17]:
 df2.loc['e', ]
+```
+
 Out[17]:
 id             e
 col1        cool
@@ -329,6 +358,7 @@ date    07/04/16
 Name: e, dtype: object
 Return rows in the range of 'b' to 'f' inclusive. 'b':'f' denotes a row range. The absence of a column request is an implicit request for all of them.
 
+```
 In [18]:
 df2.loc['b':'f' ,]
 
@@ -336,6 +366,7 @@ df2.loc['b':'f' ,]
 
 Return the rows between range of 'd' to 'f' inclusive. 'col6' and 'col2' is a request for columns by label.
 
+```
 In [19]:
 df2.loc['d':'f',['col6','col2']]
 
@@ -343,8 +374,11 @@ df2.loc['d':'f',['col6','col2']]
 
 Return the 'date' column by label.
 
+```
 In [20]:
 df2.loc[: , 'date']
+```
+
 Out[20]:
 id
 a    08/01/16
@@ -356,18 +390,25 @@ f    01/01/16
 Name: date, dtype: object
 Change the DataFrame df2 index from 'id' to 'date'. The inplace=True argument does not make a copy of the DataFrame.
 
+```
 In [21]:
 df2.set_index('date', inplace=True)
 Validate the index.
 
+```
 In [22]:
 df2.index
+```
+
 Out[22]:
 Index(['08/01/16', '03/15/16', '04/30/16', '05/31/16', '07/04/16', '01/01/16'], dtype='object', name='date')
 Request a row by label.
 
+```
 In [23]:
 df2.loc['05/31/16']
+```
+
 Out[23]:
 id         d
 col1    None
@@ -379,6 +420,7 @@ col6      89
 Name: 05/31/16, dtype: object
 Request arbitrary rows. Notice the double square braces ([])
 
+```
 In [24]:
 df2.loc[['03/15/16', '07/04/16']]
 
@@ -386,6 +428,7 @@ df2.loc[['03/15/16', '07/04/16']]
 
 Request a range of rows.
 
+```
 In [25]:
 df2.loc['04/30/16':'07/04/16',['col2','col1']]
 
@@ -413,6 +456,7 @@ The remedy, shown below in cell #29 is to use the pd.to_datetime() method to con
 
 Converting string literals to datetime values is covered in the section, String Literal Mapped to datetime timestamp located here.
 
+```
 In [26]:
 df2.loc['01/01/16':'07/31/16']
 ---------------------------------------------------------------------------
@@ -502,32 +546,42 @@ pandas\hashtable.pyx in pandas.hashtable.PyObjectHashTable.get_item (pandas\hash
 KeyError: '07/31/16'
 Reset the index for the DataFrame 'df2' to the default RangeIndex object.
 
+```
 In [27]:
 df2.reset_index(inplace=True)
 Validate the index.
 
+```
 In [28]:
 df2.index
+```
+
 Out[28]:
 RangeIndex(start=0, stop=6, step=1)
 Cast the df2['date'] column from dtype='object' (strings) to dtype=datetime.
 
+```
 In [29]:
 df2['date'] = pd.to_datetime(df2.date)
 Set the df2['date'] column as the index.
 
+```
 In [30]:
 df2.set_index('date', inplace=True)
 Validate the index. Observe the dytpe is now datetime64--a datetime stamp. See Chapter 8--Date, Time, and Timedelta Objects for more details on datetime arithmetic, shifting time intervals, and determining durations.
 
+```
 In [31]:
 df2.index
+```
+
 Out[31]:
 DatetimeIndex(['2016-08-01', '2016-03-15', '2016-04-30', '2016-05-31',
                '2016-07-04', '2016-01-01'],
               dtype='datetime64[ns]', name='date', freq=None)
 With the 'ds2['date'] column values converted to a datetime values, re-do the statement in cell #26 above.
 
+```
 In [32]:
 df2.loc['02/01/16':'07/31/16']
 
@@ -562,6 +616,7 @@ df2['col2'] != 'fast'
 
 A Series is returned with the True/False values not equal to 'fast' for fd2['col2'] shown below. The df2['date'] column is returned since it remains as the index for the DataFrame. The second print() method displays this object as being derived from the class: Series.
 
+```
 In [33]:
 print(df2['col2'] != 'fast')
 print(type(df2['col2'] != 'fast'))
@@ -580,6 +635,7 @@ df2['col2'] != 'fast'
 
 to the .loc indexer to retrieve those rows with a boolean value of True. Also request 'col1' and 'col2', which a request by label.
 
+```
 In [34]:
 df2.loc[df2['col2'] != 'fast', 'col1':'col2']
 
@@ -587,6 +643,7 @@ df2.loc[df2['col2'] != 'fast', 'col1':'col2']
 
 You can combine any number of boolean operation together. Boolean value comparison operators are documented here.
 
+```
 In [35]:
 df2.loc[(df2.col3 >=  9) & (df2.col1 == 'cool'), ]
 
@@ -594,6 +651,7 @@ df2.loc[(df2.col3 >=  9) & (df2.col1 == 'cool'), ]
 
 The .isin() method returns a boolean vector similar to the behavior described in cell #34 above. In this example, the .isin list of elements evaluates True if the listed elements are found by the .loc indexer in 'col6'.
 
+```
 In [36]:
 df2.loc[df2.col6.isin([6, 9, 13])]
 
@@ -601,6 +659,7 @@ df2.loc[df2.col6.isin([6, 9, 13])]
 
 So far, the .loc indexers have resulted in an output stream. All of the indexers can be used to sub-set a DataFrame using assignment syntax shown in the cell #33 below.
 
+```
 In [37]:
 df3 = df2.loc[df2.col6.isin([6, 9, 13])]
 df3
@@ -611,6 +670,7 @@ Generally, in these types of sub-setting operations, the shape of the extracted 
 
 To return a DataFrame of the same shape as the original, use the where() method. Details for the pandas where() method is described here.
 
+```
 In [38]:
 print('Shape for df2 is', df2.shape)
 print('Shape for df3 is', df3.shape)
@@ -630,6 +690,7 @@ The example SAS program below uses the WHERE IN (list) syntax to subset a data s
     NOTE: Data set "WORK.df3" has 3 observation(s) and 8 variable(s)
 Notice how the SAS variable count and DataFrame column count differ by 1. That is because the DataFrame .shape() method does not include the index as part of its column count. By reseting the index, the SAS variable count and DataFrame columns count agree.
 
+```
 In [39]:
 df3.reset_index(inplace=True)
 print('Shape for df3 is', df3.shape)
@@ -641,8 +702,11 @@ The .loc indexer can also be used to do an in-place update of values.
 
 Find the values for df2['col2'] column before updating.
 
+```
 In [40]:
 df2.loc[: , 'col2']
+```
+
 Out[40]:
 date
 2016-08-01      slow
@@ -655,12 +719,16 @@ Name: col2, dtype: object
 
 ## Conditionaly Apply Values Based on Another Column Value
 
+```
 In [41]:
 df2.loc[df2['col6'] > 50, "col2"] = "VERY FAST"
 The values for df2['col2'] column after the update.
 
+```
 In [42]:
 df2.loc[: , 'col2']
+```
+
 Out[42]:
 date
 2016-08-01         slow
@@ -687,6 +755,7 @@ The .ix indexer is sometimes tricky to use. A good rule of thumb is if you are i
 
 Consider the creation of the DataFrame 'df4' constructed in the cell below. It is similar to DataFrame df2 created in cell #10 above. The differences are the addition of another column and columns being identified with labels as well as integers.
 
+```
 In [43]:
 df4 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3., 17, '08/01/16'], 
                     ['b', 'warm', 'medium', 4, 5, 7, 9, 21, '03/15/16'],
@@ -695,6 +764,7 @@ df4 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3., 17, '08/01/16'],
                     ['e', 'cool', 'medium', 16, 44, 21, 13, 99, '07/04/16'],
                     ['f', 'cold', 'slow', np.nan, 29, 33, 17, 11,'01/01/16']],
                     columns=['id', 'col1', 'col2', 'col3', 'col4', 4, 5, 6, 'date'])
+```
 In [44]:
 df4
 
@@ -702,10 +772,12 @@ df4
 
 Set the index to column df4['id'].
 
+```
 In [45]:
 df4.set_index('id', inplace=True)
 The .ix indexer allows slicing by labels and integer poitions along the index. And look closely at the results since the request for columns is based on the integer-position of the column. The column requestor of 6 is not a column label, but its position.
 
+```
 In [46]:
 df4.ix['b':'e', 6:8]
 
@@ -719,6 +791,7 @@ df4.ix['b':'e', 6:8]
 
 Finally, to appreciate the differences, consider the following DataFrame. Also notice the un-Pythonic style of using a semi-colon at the end of the DataFrame definition.
 
+```
 In [47]:
 df5 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3.], 
                     ['b', 'warm', 'medium', 4, 5, 7, 9],
@@ -733,6 +806,7 @@ df5
 
 The .iloc indexer returns the first two rows since it looks at positions.
 
+```
 In [48]:
 df5.iloc[:2]
 
@@ -740,6 +814,7 @@ df5.iloc[:2]
 
 The .loc indexer returns 3 rows since it looks at the labels.
 
+```
 In [49]:
 df5.loc[:2]
 
@@ -747,6 +822,7 @@ df5.loc[:2]
 
 The .ix indexer returns the same number of rows as the .loc indexer since its behavior is to first use labels before looking by position. Looking by position with an integer-based index can lead to unexpected results. This illustrated in cell #49 below.
 
+```
 In [50]:
 df5.ix[:2]
 
@@ -754,6 +830,7 @@ df5.ix[:2]
 
 For the next two examples, review the DataFrame df5 index structure in the cell below.
 
+```
 In [51]:
 df5.index
 
@@ -761,6 +838,7 @@ df5.index
 
 The .iloc example in the cell below returns the first row. That's because it is looking by position.
 
+```
 In [52]:
 df5.iloc[:1]
 
@@ -768,6 +846,7 @@ df5.iloc[:1]
 
 The .ix example in the cell below raises a KeyError since 1 is not found in the index.
 
+```
 In [53]:
 df5.ix[:1]
 ---------------------------------------------------------------------------
@@ -878,6 +957,7 @@ The synthetic examples above work (except the intentional errors of course) sinc
 
 Consider the DataFrame 'df5' created below. It is similar to DataFrame 'df2' in cell #10 above with the exception of the df5['id'] column containing non-unique values.
 
+```
 In [54]:
 df5 = pd.DataFrame([['b', 'cold','slow', np.nan, 2., 6., 3., '01/01/16'], 
                     ['c', 'warm', 'medium', 4, 5, 7, 9, '03/15/16'],
@@ -892,16 +972,21 @@ df5
 
 Set the index for DataFrame df5 to the df5['id'] column.
 
+```
 In [55]:
 df5.set_index('id', inplace=True)
 Validate the index for DataFrame df5.
 
+```
 In [56]:
 df5.index
+```
+
 Out[56]:
 Index(['b', 'c', 'a', 'd', 'c', 'e'], dtype='object', name='id')
 We can use the .loc indexer to request the rows in the range of 'b' through 'd'.
 
+```
 In [57]:
 df5.loc['b':'d', :]
 
@@ -914,6 +999,7 @@ This issue is described in sparse prose here.
 If we should want the row label range of 'b' to 'c' with all the columns we raise the error:
 
 "Cannot get right slice bound for non-unique label: 'c'"
+```
 In [58]:
 df5.loc['b':'c', :]
 ---------------------------------------------------------------------------
@@ -975,14 +1061,20 @@ What is going on here is the values in 'id' column are non-unique. To enable det
 
 Applied to the df5 DataFrame created in cell #54 above returns False.
 
+```
 In [59]:
 df5.index.is_monotonic_increasing
+```
+
 Out[59]:
 False
 The .is_monotonic_increasing attribute applied to the first DataFrame created above, 'df' returns true.
 
+```
 In [60]:
 df.index.is_monotonic_increasing
+```
+
 Out[60]:
 True
 While not spelled out in any documentation I found, the moral of the story is when using indices with non-unique values, be wary.
@@ -999,6 +1091,3 @@ Non-monotonic indexes require exact matches pandas 0.19.0 documentation
 
 Useful pandas Snippets by Becky Swegler, Computers are for People.
 
-## Navigation
-
-Return to Chapter List

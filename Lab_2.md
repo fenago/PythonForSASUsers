@@ -47,6 +47,7 @@ Python has four main data structures. There are:
 ## list
 A list contains an ordered collection of items. You determine the order. In Python, items in a list are separarated by commas and enclosed in square brackets. Lists are mutable, meaning you can add, remove, or alter items.
 
+```
 In [1]:
 a_list = ['ale', 'lager', 'stout', 'hefeweizen', 'stout']
 print('There are', len(a_list), 'items in "a_list"')
@@ -57,6 +58,7 @@ end=' '
 
 for the print() method suppresses the default new-line character (CR/LF).
 
+```
 In [2]:
 print("A list of beers include:")
 for i in a_list:
@@ -73,6 +75,7 @@ Chapter 05 -- Understanding Indexes" has more details.
 
 Python uses zero as its index start position, in contrast to SAS' _n_ which uses a start position of 1. Almost every example of SAS DO loops, by convention, use a start position of 1.
 
+```
 In [3]:
 print('Value for beer type is:', a_list[0])
 Value for beer type is: ale
@@ -94,12 +97,15 @@ Value for beer type is: ale
     13        ale lager stout hefeweizen stout
 The next two examples illustrate the .append() and .sort() attributes for a list. They produce no visible output, so use the print() method to view results.
 
+```
 In [4]:
 a_list.append('malt')
+```
 In [5]:
 a_list.sort(reverse=True)
 A for statement used to interate along the items in the list. For statements are documented here.
 
+```
 In [6]:
 print("A list of beers include:")
 for i in a_list:
@@ -108,11 +114,13 @@ A list of beers include:
 stout stout malt lager hefeweizen ale 
 The .count() attribute returns the number of items in an object. Here it is used to return the number of occurrences of a value by having the list element as an argument.
 
+```
 In [7]:
 print('a_list count for stout is:', a_list.count('stout'))
 a_list count for stout is: 2
 The example below illustrates Python's flexibility. Since nearly everything in Python is an object, you can have a list containing other lists. The built-in len() method provides a method to count the number of items in a list.
 
+```
 In [8]:
 b_list = ['ales', 23, a_list]
 print(b_list)
@@ -125,10 +133,12 @@ A tuple is similar to a list, but unlike lists, are immutable. Tuples are define
 
 A common use case for tuples is where Python statements or user-defined functions can assume that the items will not change, for example the names of the months.
 
+```
 In [9]:
 dishes = ('eggs', 'green ham', 'biscuits', 'grits', 'steak')
 print('The breakfast menu has:', len(dishes), 'items')
 The breakfast menu has: 5 items
+```
 In [10]:
 more_dishes = ('pancakes', 'cupcakes', 'twinkies', 'dishes')
 for i in more_dishes:
@@ -136,8 +146,11 @@ for i in more_dishes:
 pancakes cupcakes twinkies dishes 
 The tuple within a tuple remains one that is indexed
 
+```
 In [11]:
 len(more_dishes)
+```
+
 Out[11]:
 4
 
@@ -147,6 +160,7 @@ How to count all of the items in the tuple.
 2. subtract 1 since the 'tuple-within-a-tuple' item is not counted. 
 3. add the length of the tuple more_dishes starting at position [3]
 
+```
 In [12]:
 print('The number of items in more_dishes is:', len(more_dishes)-1+len(more_dishes[3]))
 The number of items in more_dishes is: 9
@@ -160,6 +174,7 @@ x = {key1: value1, key2: value2, key_n: value_n}
 
 Create a dictionary
 
+```
 In [13]:
 capital = {'Oregon' : 'Salem',
            'Washington' : 'Olympia',
@@ -170,24 +185,29 @@ print(type(capital))
 <class 'dict'>
 Print a dictionary value by key
 
+```
 In [14]:
 print('The capital of Nevada is', capital['Nevada'])
 The capital of Nevada is Carson City
 Add a key/value pair to the dictionary
 
+```
 In [15]:
 capital['Colorado'] = 'Denver'
 Printing key/value pairs. String formatting is covered in Chapter 03 -- Data Types and Formatting
 
+```
 In [16]:
 print('Number of value/pairs in the dictionary capital is {}:'.format(len(capital)))
 Number of value/pairs in the dictionary capital is 5:
 Delete a value.
 
+```
 In [17]:
 del capital['California']
 Many Python operations are silent unless an error is raised. Check the length of the dictionary following the delete operation.
 
+```
 In [18]:
 print('Number of value/pairs in the dictionary capital is {}:'.format(len(capital)))
 Number of value/pairs in the dictionary capital is 4:
@@ -207,6 +227,7 @@ The precedence order for sequence operations is found here.
 
 The example below does an item membership test for the a_list list object.
 
+```
 In [19]:
 item = 'ale'
 if (item in a_list):
@@ -216,6 +237,7 @@ else:
 found
 Item membership test in a tuple using the boolean and operator.
 
+```
 In [20]:
 item1 = 'eggs' 
 item2 = 'cupcakes'
@@ -226,6 +248,7 @@ else:
 found
 A for statement to iterate over the key value pairs in the 'capital' dictionary.
 
+```
 In [21]:
 for state, capital in capital.items():
     print('The capital of {} is {}'.format(state, capital))
@@ -235,13 +258,17 @@ The capital of Colorado is Denver
 The capital of Oregon is Salem
 if logic used for membership testing. The if/elif statements are documented here.
 
+```
 In [22]:
 if 'Nevada' in capital:
     print("Nevada's capital:", capital['Nevada'])
 Using the boolean not operator for membership test
 
+```
 In [23]:
 'California' not in capital
+```
+
 Out[23]:
 True
 
@@ -252,26 +279,33 @@ Another common use case is when the existence of an object is more important tha
 
 Membership test using the in operator for a set
 
+```
 In [24]:
 months1 = set(['January', 'February', 'March', 'April', 'May', 'June'])
 
 'Jan' in months1
+```
+
 Out[24]:
 False
 copy() method for sets
 
+```
 In [25]:
 months2 = months1.copy()
 The remove() method for sets to delete an item
 
+```
 In [26]:
 months1.remove('February')
 The add() method for adding an item to a set
 
+```
 In [27]:
 months2.add('July')
 The three examples above do not produce any visible output. The sets Month1 and Month2 are displayed below.
 
+```
 In [28]:
 print('The set months1 contains:', months1)
 print('The set months2 contains:', months2)
@@ -279,14 +313,20 @@ The set months1 contains: {'January', 'June', 'May', 'April', 'March'}
 The set months2 contains: {'June', 'March', 'May', 'April', 'July', 'January', 'February'}
 Now we can find the intersection of the sets 'months1' and 'months2'
 
+```
 In [29]:
 months1 & months2
+```
+
 Out[29]:
 {'April', 'January', 'June', 'March', 'May'}
 Test if the set months2 is a super-set of the set months1
 
+```
 In [30]:
 months2.issuperset(months1)
+```
+
 Out[30]:
 True
 
@@ -299,5 +339,3 @@ A Byte of Python ...is a free book on programming using the Python language. It 
 
 Python Numpy Tutorial An overview of Nympy by Justin Johnson.
 
-## Navigation
-Return to Chapter List

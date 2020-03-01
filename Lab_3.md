@@ -47,6 +47,7 @@ Below, x is an integer. y is a float
 
 Mathematical operations involving integers and floats produces a float. The type() method returns an object's type. Use the type() method to determine which object type is returned.
 
+```
 In [1]:
 x = 1
 y = 1.5
@@ -83,9 +84,12 @@ In the program below, the SAS variables x, y, and z are numeric. This example cr
     16            id name;
     17            var type;
 
+```
 In [2]:
 from IPython.display import Image
 Image(filename='Anaconda3\\output\\sas data types.JPG')
+```
+
 Out[2]:
 
 ![](.\images_3\1.jpg)
@@ -99,6 +103,7 @@ SAS does not have a boolean data type, so Data Step code is often constructed as
 
 SAS does have implied boolean test operators. An example is the END=
 
+```
 In [3]:
 print(type(True))
 print(bool(True))
@@ -106,6 +111,7 @@ print(bool(True))
 True
 Empty sets return False, Non-empty sets return True
 
+```
 In [4]:
 print(bool(''))                  
 print(bool('Arbitrary String'))
@@ -113,6 +119,7 @@ False
 True
 Boolean values for 0 and 1
 
+```
 In [5]:
 print(bool(0))
 print (bool(1))
@@ -120,10 +127,13 @@ False
 True
 Inequality comparison
 
+```
 In [6]:
 x = 2
 y = 3
 x != y
+```
+
 Out[6]:
 True
     /******************************************************/
@@ -141,10 +151,13 @@ True
     True
 String equality comparison. Note the case for the first letter in each string.
 
+```
 In [7]:
 s1 = 'String'
 s2 = 'string'
 s1 == s2
+```
+
 Out[7]:
 False
 SAS example for string equality test.
@@ -165,9 +178,12 @@ SAS example for string equality test.
     False
 in comparison with the boolean 'and' operator
 
+```
 In [8]:
 s3 = 'Longer String'
 'r' and "" in  s3
+```
+
 Out[8]:
 True
 SAS example with boolean 'and' operator. The SAS function FINDC is documented here.
@@ -188,10 +204,13 @@ SAS example with boolean 'and' operator. The SAS function FINDC is documented he
 True
 in comparison with boolean 'or' operator
 
+```
 In [9]:
 s4 = 'Skinny'
 s5 = 'hungry'
 'y' in  s4 or s5
+```
+
 Out[9]:
 True
 The SAS program below is another illustration of implied boolean logic. The FINDC function searches a string for the first occurrence of the specified characters, and returns the position of the first character found. It returns 0 if the characters are not found--effectively returning 'false'.
@@ -212,16 +231,22 @@ The SAS program below is another illustration of implied boolean logic. The FIND
     True
 is operator
 
+```
 In [10]:
 x1 = 4
 type(x1) is int and x1 <= 5
+```
+
 Out[10]:
 True
 It is a mathematical truth that .1 multiplied by 10 produces 1 (for base10 of course). Read the numerical precision section below to understand why the boolean equality test below returns False.
 
+```
 In [11]:
 x =  [.1] * 10
 x == 1
+```
+
 Out[11]:
 False
 
@@ -229,6 +254,7 @@ False
 
 Consider the issue of numerical precision and the use of the round() method below. This example does a boolean comparison between the product of (.1 * 10) and the integer value of 1. Due to how floats are represented internally the comparison is False. Using the round() method for the product makes the comparison true (assuming that is what you want to have happen).
 
+```
 In [12]:
 one = 1
 total = 0
@@ -280,6 +306,7 @@ Strings can be enclosed in single quotes (') or double quotes ("). In Python str
 
 String literal assignment and concatenation
 
+```
 In [13]:
 s5 = 'Hello'
 s6 = "World"
@@ -308,8 +335,11 @@ SAS analog example for string literal assignment and concatentation.
     HelloWorld
 The len() method finds the length of the concatenated string literals.
 
+```
 In [14]:
 len(s5) + len(s6)
+```
+
 Out[14]:
 10
 The SAS analog to finding the length of the concatenate string literals.
@@ -328,6 +358,7 @@ The SAS analog to finding the length of the concatenate string literals.
     10
 The upper() method applied to a string object
 
+```
 In [15]:
 print(s5 + " " + s6.upper())
 Hello WORLD
@@ -347,8 +378,11 @@ The SAS analog example using the UPCASE function documented here.
     Hello WORLD
 Python's help is quite extensive.
 
+```
 In [16]:
 dir(str)
+```
+
 Out[16]:
 ['__add__',
  '__class__',
@@ -428,6 +462,7 @@ Out[16]:
  'zfill']
 Python also supports a multi-line string literal that preserves spacing. It is also used to display help topics.
 
+```
 In [17]:
 s7 = '''Beautiful is better than ugly.
 Explicit is better than implicit.
@@ -447,6 +482,7 @@ Sparse is better than dense.
 Readability counts, and so on.
 The count method()
 
+```
 In [18]:
 print('Occurances of the letter "c":', s7.count('c'))
 Occurances of the letter "c": 6
@@ -480,9 +516,12 @@ At times, you may find it easier to refer to characters toward the end of the st
 
 String slicing with index at 0
 
+```
 In [19]:
 s = 'Hello World'
 s[0]
+```
+
 Out[19]:
 'H'
 The SAS analog example uses the SUBSTR (right of =) function documented here.
@@ -500,24 +539,34 @@ The SAS analog example uses the SUBSTR (right of =) function documented here.
     H
 No start position provide implies the start position of 0
 
+```
 In [20]:
 s[:5]
+```
+
 Out[20]:
 'Hello'
 Start at position 3 and go to the last character. Notice how the this range is not inclusive.
 
+```
 In [21]:
 s[3:-1]
+```
+
 Out[21]:
 'lo Worl'
 Start from the end of the string and read to the left.
 
+```
 In [22]:
 s[-11]
+```
+
 Out[22]:
 'H'
 The partition() method uses a separator, in our example, a whitespace and returns a 3 part tuple. 0 for the part before the separator, 1 for the separator itself, and 2 for part after the separator.
 
+```
 In [23]:
 if s7.startswith('Bea'):
     print(s7.partition(' ')[0])
@@ -545,6 +594,7 @@ The SAS analog example uses the SUBSTR and the SCAN function, documented here.
     Beautiful
 Backslashes (\) are used as string literal escape characters. The Python interpreter ignores the character follwing the backslash.
 
+```
 In [24]:
 q = 'Python\'s capabilities'
 print(q)
@@ -567,26 +617,38 @@ Python is a language that is undergoing continued development. Prior to Python 3
 
 The old-style syntax is not used here.
 
+```
 In [25]:
 "First argument: %s, second argument: %s" % ('Python', 'Formatting')
+```
+
 Out[25]:
 'First argument: Python, second argument: Formatting'
 Left-alignment, field width 30
 
+```
 In [26]:
 'Example of: {:<30}'.format("left aligned, width is 30")
+```
+
 Out[26]:
 'Example of: left aligned, width is 30     '
 Right-alignment, field width 40
 
+```
 In [27]:
 'Example of: {:>40}'.format("right aligned, width is 40")
+```
+
 Out[27]:
 'Example of:               right aligned, width is 40'
 Centered and filled
 
+```
 In [28]:
 'Example of: {:*^40}'.format('centered and fill characters')
+```
+
 Out[28]:
 'Example of: ******centered and fill characters******'
 
@@ -594,20 +656,29 @@ Out[28]:
 
 Newer-style syntax with arguments displayed in the order they appear in the list
 
+```
 In [29]:
 "First argument: {}, second argument: {}".format(20, 16)
+```
+
 Out[29]:
 'First argument: 20, second argument: 16'
 Arguments displayed in an order different than the way they appear in the list
 
+```
 In [30]:
 "Second Argument: {1}, first argument {0}".format(20, 16)
+```
+
 Out[30]:
 'Second Argument: 16, first argument 20'
 Converting values to different bases.
 
+```
 In [31]:
 "int: {0:d};  hex: {0:x};  oct: {0:o};  bin: {0:b}".format(99)
+```
+
 Out[31]:
 'int: 99;  hex: 63;  oct: 143;  bin: 1100011'
 The SAS analog for converting values to different bases.
@@ -625,14 +696,20 @@ The SAS analog for converting values to different bases.
     Original input: 99
 Formatting to handle ints
 
+```
 In [32]:
 'Integer 99 displayed as {:d}'.format(99)
+```
+
 Out[32]:
 'Integer 99 displayed as 99'
 Controlling field width for integers
 
+```
 In [33]:
 'Integer 99 displayed as {:04d}'.format(99)
+```
+
 Out[33]:
 'Integer 99 displayed as 0099'
     /******************************************************/
@@ -652,8 +729,11 @@ Out[33]:
     Original input: 99
 By default, only negative numbers are prefixed with a sign
 
+```
 In [34]:
 '{:=+3d}'.format((+99))
+```
+
 Out[34]:
 '+99'
 SAS users are familiar with user-written formats. The example displayed below uses a PICTURE statement with PROC FORMAT in order to a numeric preceeded by a plus-sign.
@@ -679,8 +759,11 @@ SAS users are familiar with user-written formats. The example displayed below us
 
 Formatting to handle floats
 
+```
 In [35]:
 "precision: {0:.1f} or {0:.4f}".format(3.14159265)
+```
+
 Out[35]:
 'precision: 3.1 or 3.1416'
 Analog SAS program used to control numeric formatting.
@@ -696,8 +779,11 @@ Analog SAS program used to control numeric formatting.
     precision:      3.1 or   3.1416
 Percentage format
 
+```
 In [36]:
 "6.33 as Percentage of 150: {0:6.2%}".format(6.33/150)
+```
+
 Out[36]:
 '6.33 as Percentage of 150:  4.22%'
     /******************************************************/
@@ -718,6 +804,7 @@ Notice the dates and times between the Python and SAS examples do not match sinc
 
 Python datetime objects
 
+```
 In [37]:
 from datetime import datetime, date, time
 now = datetime.now()
@@ -727,6 +814,7 @@ print(type(now))
 <class 'datetime.datetime'>
 Extrating dates and times
 
+```
 In [38]:
 now = datetime.now()
 
@@ -791,6 +879,7 @@ current datetime: Fri Dec  2 13:57:34 2016
     current datetime: Sun Oct 9 19:54:20 2016
 Create a date string.
 
+```
 In [39]:
 dt_str = '{:%Y-%m-%d %H:%M}'.format(datetime(2016, 10, 9, 8, 7))
 print('dt_str is:', dt_str)
@@ -833,5 +922,3 @@ SAS Variables in the SAS 9.2 Language Reference: Concepts, Second Edition
 
 Missing Values cited above.
 
-## Navigation
-Return to Chapter List

@@ -130,7 +130,7 @@ Coincidently, like SAS, Python will also honor a semi-colon as an end of stateme
 
 ### Line continuation symbol
 
-Should you find you have a line of code that needs to extend past the physical line (i.e. wrap), then use the backslash (\). This causes the Python interpreter to ignore the physical end-of-line terminator on the current line and continuing scanning for the next end-of-line terminator.
+Should you find you have a line of code that needs to extend past the physical line (i.e. wrap), then use the backslash (\\). This causes the Python interpreter to ignore the physical end-of-line terminator on the current line and continuing scanning for the next end-of-line terminator.
 
 ![](.\images_1\6.jpg)
 
@@ -141,7 +141,3 @@ Of course, the incorrect spelling of keywords is a source of error. Unlike SAS, 
 ![](.\images_1\7.jpg)
 
 Finally, a word about name choices. Names should be descriptive because more than likely you will be one who has to re-read and understand tomorrow the code you write today. As with any language, it is a good practice to avoid language keywords for object names.
-
-### Navigation
-
-Return to Chapter List

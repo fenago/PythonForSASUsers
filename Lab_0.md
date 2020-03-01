@@ -18,9 +18,12 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab1_Motivation`
 Click notebook `Chapter 00 -- Motivation.ipynb` in jupterLab UI and run jupyter notebook.
 
 ### Python for SAS Users
+```
 In [1]:
 from IPython.display import Image
 Image(filename='Anaconda3\\output\\frontispiece.JPG')
+```
+
 Out[1]:
 
 ![](.\images_0\1.jpg)
@@ -66,9 +69,12 @@ Hearing these comments and thinking back to my experiences while working for SAS
 
 To give a feel for the scope of this challenge, I created a hypothetical crossing of department by server by file formats easily encountered in a large enterprise today.
 
+```
 In [1]:
 from IPython.display import Image
 Image(filename='Anaconda3\\output\\product_format_os.JPG')
+```
+
 Out[1]:
 
 ![](.\images_0\2.jpg)
@@ -89,6 +95,3 @@ A claim to openness is only as good as the actions used to benefit the entire co
 
 ### Where to send Feedback
 If you have feedback, which is always appreciated, or have ideas for additions, improvements, or amendments, you can contact me at tr.betancourt at comcast dot net.
-
-### Navigation
-Return to Chapter List

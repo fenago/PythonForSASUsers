@@ -64,6 +64,7 @@ Indexes are covered in detail in Chapter 6, Understanding Indexes.
 
 To begin utilizing panda objects, or other objects, begin by importing libraies by name into our namespace. To avoid having to re-typing package name repeatedly, use the standard aliases of np for NumPy and pd for panda.
 
+```
 In [1]:
 import numpy as np
 import pandas as pd
@@ -77,6 +78,7 @@ A Series can be thought of as a one-dimensional array with labels. This structur
 
 Start by creating a Series of random values.
 
+```
 In [2]:
 s1 = Series(randn(10))
 print(s1.head(5))
@@ -114,6 +116,7 @@ Arrays in SAS are used primarily for iteratively processing like variables toget
     0.3941470125
 A Series can have a list of index labels.
 
+```
 In [3]:
 s2 = Series(randn(10), index=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
 print(s2.head(5))
@@ -125,6 +128,7 @@ e    2.111150
 dtype: float64
 The Series is indexed by integer value with the start position at 0.
 
+```
 In [4]:
 print(s2[0])
 1.05767568654
@@ -148,6 +152,7 @@ The SAS example uses a DO loop as the index subscript into the array.
     0.4322317772
 Return the first 3 elements in the Series.
 
+```
 In [5]:
 print(s2[:3])
 a    1.057676
@@ -174,8 +179,11 @@ dtype: float64
     0.7785986473
 The example has two operations. The s2.mean() method calculates mean followed by a boolen test less than this calculated mean.
 
+```
 In [6]:
 s2[s2 < s2.mean()]
+```
+
 Out[6]:
 c   -1.358674
 d   -1.661059
@@ -184,6 +192,7 @@ h   -0.841126
 dtype: float64
 Series and other objects have attributes using a dot (.) chaining-style syntax. .name is one a number of attributes for the Series object.
 
+```
 In [7]:
 s2.name='Arbitrary Name'
 print(s2.head(5))
@@ -212,6 +221,7 @@ Additional examples of reading various data inputs into a DataFrame are covered 
 
 Notice the backslash (\) to normalize the Window's path name.
 
+```
 In [8]:
 file_loc2 = "C:\Data\\uk_accidents.csv"
 df = pd.read_csv(file_loc2, low_memory=False)
@@ -234,6 +244,7 @@ Unlike SAS, the Python interpreter is mainly silent upon normal execution. When 
 
 The size, shape, and ndim attributes report respectively, number of cells, rows/columns, and number of dimensions are shown below.
 
+```
 In [9]:
 print(df.size, df.shape, df.ndim)
 7202952 (266776, 27) 2
@@ -242,6 +253,7 @@ print(df.size, df.shape, df.ndim)
 
 After reading a file, you often want to understand its content and structure. The DataFrame .info() method returns descriptions of the DataFrame's attributes. In SAS, this same information is generally found in the output from PROC CONTENTS.
 
+```
 In [10]:
 df.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -277,14 +289,20 @@ Date                            266776 non-null object
 dtypes: int64(25), object(2)
 memory usage: 55.0+ MB
 
+```
 In [11]:
 Image(filename='Anaconda3\\output\\contents1.JPG')
+```
+
 Out[11]:
 
 ![](.\images_4\2.jpg)
 
+```
 In [12]:
 Image(filename='Anaconda3\\output\\contents2.JPG')
+```
+
 Out[12]:
 
 ![](.\images_4\3.jpg)
@@ -299,6 +317,7 @@ df.tail(20)
 SAS uses the FIRSTOBS and OBS options with procedures to determine input observations. The SAS code to print the last 20 observations of the uk_accidents data set is:
 
 proc print data=uk_accidents (firstobs = 266756);
+```
 In [13]:
 df.head()
 
@@ -317,6 +336,7 @@ Scoping output by columns is shown in the cell below. The column list is analogo
 
 This example uses the slicing operator to request columns by labels. Slicers work along rows as well.
 
+```
 In [14]:
 df[['Sex_of_Driver', 'Time']].head(10)
 
@@ -340,11 +360,15 @@ Before analyzing data a common task is dealing with missing data. pandas uses tw
 
 Consider cells #15, #16, and #17 below. Cell #15 uses the Python None object to represent a missing value in the array. In turn, Python infers the data type for the array to be an object. Unfortuantely, the use of a Python None object with an aggregation function for arrays raises an error. Cell #17 addresses the error raised in cell #16.
 
+```
 In [15]:
 s1 = np.array([32, None, 17, 109, 201])
 s1
+```
+
 Out[15]:
 array([32, None, 17, 109, 201], dtype=object)
+```
 In [16]:
 s1.sum()
 ---------------------------------------------------------------------------
@@ -362,17 +386,23 @@ C:\Users\randy\Anaconda3\lib\site-packages\numpy\core\_methods.py in _sum(a, axi
 TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
 To aliviate the error raised above, use the np.nan (missing value indicator) in the array example below. Also notice how Python chose floating point (or up-casting) for the array compared to the same example two cells above.
 
+```
 In [17]:
 s1 = np.array([32, np.nan, 17, 109, 201])
 print(s1)
 s1.dtype
 [  32.   nan   17.  109.  201.]
+```
+
 Out[17]:
 dtype('float64')
 Not all arithmetic operations using NaN's will result in a NaN.
 
+```
 In [18]:
 s1.mean()
+```
+
 Out[18]:
 nan
 Contrast the Python program in the cell above for calculating the mean of the array elements with the SAS example below. SAS excludes the missing value and utilizes the remaining array elements to calculate a mean.
@@ -401,6 +431,7 @@ A typical SAS-programming approach to address the missing data analysis is to wr
 
 This can be along the lines of the example in cell #19 below. df.columns returns the sequence of column names in the DataFrame.
 
+```
 In [19]:
 for col_name in df.columns:
     print (col_name, end="---->")
@@ -440,8 +471,11 @@ Case-in-point is illustrated below. It chains the .sum() attribute to the .isnul
 
 The .isnull() method returns True for missing values. By chaining the .sum() method to the .isnull() method it produces a count of the missing values for each columns.
 
+```
 In [20]:
 df.isnull().sum()
+```
+
 Out[20]:
 Accident_Severity                0
 Number_of_Vehicles               0
@@ -493,6 +527,7 @@ Only a portion of the SAS output is shown since separate output is produced for 
     35          format _NUMERIC_ missfmt.;
     36          tables _NUMERIC_ / missing missprint nocum nopercent;
 
+```
 In [21]:
 Image(filename='Anaconda3\\output\\freq.JPG')
 
@@ -500,6 +535,7 @@ Image(filename='Anaconda3\\output\\freq.JPG')
 
 Another method for detecting missing values is to search column-wise by using the axis=1 parameter to the chained attributes .isnull().any(). The operation is then performed along columns.
 
+```
 In [22]:
 null_data = df[df.isnull().any(axis=1)]
 null_data.head()
@@ -512,6 +548,7 @@ null_data.head()
 
 The code below is used to render multiple objects side-by-side. It is from Essential Tools for Working With Data, by Jake VanderPlas found here . It displays the 'before' and 'after' effects of changes to objects together.
 
+```
 In [23]:
 class display(object):
     """Display HTML representation of multiple objects"""
@@ -530,6 +567,7 @@ class display(object):
                            for a in self.args)
 To illustrate the .fillna() method, consider the following to create a DataFrame.
 
+```
 In [24]:
 df2 = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.], 
                     ['warm', 'medium', 4, 5, 7, 9],
@@ -543,15 +581,19 @@ display("df2")
 
 ![](.\images_4\9.jpg)
 
+```
 In [25]:
 df_tf = df2.isnull()
 display("df2", "df_tf")
 
 ![](.\images_4\10.jpg)
 
+```
 In [26]:
 df3 = df2.dropna()
 display("df2", "df3")
+```
+
 Out[26]:
 df2
 
@@ -569,6 +611,7 @@ b	warm	medium	4.0	5.0	7.0	9.0
 e	cool	medium	16.0	44.0	21.0	13.0
 The .dropna() method also works along a column axis. axis = 1 or axis = 'columns' is equivalent.
 
+```
 In [27]:
 df4 = df2.dropna(axis='columns')
 display("df2", "df4")
@@ -577,6 +620,7 @@ display("df2", "df4")
 
 Clearly this drops a fair amount of 'good' data. The thresh parameter allows you to specify a minimum of non-null values to be kept for the row or column. In this case, row 'd' is dropped because it contains only 3 non-null values.
 
+```
 In [28]:
 df5 = df2.dropna(thresh=5)
 display("df2", "df5")
@@ -585,6 +629,7 @@ display("df2", "df5")
 
 Rather than dropping rows and columns, missing values can be imputed or replaced. The .fillna() method returns either a Series or a DataFrame with null values replaced. The example below replaces all NaN's with zero.
 
+```
 In [29]:
 df6 = df2.fillna(0)
 display("df2", "df6")
@@ -593,6 +638,7 @@ display("df2", "df6")
 
 As you can see from the example in cell #28 above, the .fillna() method is applied to all DataFrame cells. We may not wish to have missing values in df['col2'] replaced with zeros since they are strings. The method is applied to a list of target columns using the .loc method. The details for .loc method are discussed in Chapter 05--Understanding Indexes .
 
+```
 In [30]:
 df7 = df2[['col3', 'col4', 'col5', 'col6']].fillna(0)
 display("df2", "df7")
@@ -601,6 +647,7 @@ display("df2", "df7")
 
 An imputation method based on the mean value of df['col6'] is shown below. The .fillna() method finds and then replaces all occurences of NaN with this calculated value.
 
+```
 In [31]:
 df8 = df2[["col3", "col4", "col5"]].fillna(df2.col6.mean())
 display("df2", "df8")
@@ -652,6 +699,7 @@ SAS/Stat has PROC MI for imputation of missing values with a range of methods de
     33         end;
 The .fillna(method='ffill') is a 'forward' fill method. NaN's are replaced by the adjacent cell above traversing 'down' the columns. Cell #32 below constrasts the DataFrame df2, created in cell #24 above with the DataFrame df9 created with the 'forward' fill method.
 
+```
 In [32]:
 df9 = df2.fillna(method='ffill')
 display("df2", "df9")
@@ -660,6 +708,7 @@ display("df2", "df9")
 
 Simalarly, the .fillna(bfill) is a 'backwards' fill method. NaN's are replaced by the adjecent cell traversing 'up' the columns. Cell #32 constrasts the DataFrame df2, created in cell #23 above with the DataFrame df10 created with the 'backward' fill method.
 
+```
 In [33]:
 df10 = df2.fillna(method='bfill')
 display("df2", "df10")
@@ -668,6 +717,7 @@ display("df2", "df10")
 
 Cell #34 contrasts DataFrame df9 created in cell #32 using the 'forward' fill method with DataFrame df10 created in cell #33 with the 'backward' fill method.
 
+```
 In [34]:
 display("df9", "df10")
 
@@ -675,6 +725,7 @@ display("df9", "df10")
 
 Before dropping the missing rows, calculate the portion of records lost in the accidents DataFrame, df created above.
 
+```
 In [35]:
 print("{} records in the DataFrame will be dropped.".format(df.Time.isnull().sum()))
 print('The portion of records dropped is {0:6.3%}'.format(df.Time.isnull().sum() / (len(df) - df.Time.isnull().sum())))
@@ -682,6 +733,7 @@ print('The portion of records dropped is {0:6.3%}'.format(df.Time.isnull().sum()
 The portion of records dropped is 0.009%
 The .dropna() method is silent except in the case of errors. We can verify the DataFrame's shape after the method is applied.
 
+```
 In [36]:
 print(df.shape)
 df = df.dropna()
@@ -707,5 +759,3 @@ Cheat Sheet: The pandas DataFrame Object by Mark Graph and located at the Univer
 
 Working with missing data pandas 0.19.0 documentation.
 
-## Navigation
-Return to Chapter List

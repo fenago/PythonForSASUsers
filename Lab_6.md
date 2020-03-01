@@ -33,6 +33,7 @@ stack() and unstack() methods
 
 Resources
 
+```
 In [1]:
 import pandas as pd
 import numpy as np
@@ -48,6 +49,7 @@ The tickets = assignment constructs the DataFrame from the constituents.
 
 ## MultiIndexing
 
+```
 In [2]:
 index = pd.MultiIndex.from_product([[2012, 2013, 2014, 2015], ['1', '2', '3']],
                                    names=['year', 'month'])
@@ -58,8 +60,11 @@ data = np.round(np.random.randn(12, 6),2)
 data = abs(np.floor_divide(data[:] * 100, 5))
 
 tickets = pd.DataFrame(data, index=index, columns=columns).sort_index().sort_index(axis=1)
+```
 In [3]:
 index
+```
+
 Out[3]:
 MultiIndex(levels=[[2012, 2013, 2014, 2015], ['1', '2', '3']],
            labels=[[0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3], [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]],
@@ -68,21 +73,28 @@ Notice how the MultiIndex displayed above contains multiple levels of indexing, 
 
 In SAS, the terminology is 'month' nested within 'year'. Said another way, 'month' is the inner-most level of the index.
 
+```
 In [4]:
 tickets.columns
+```
+
 Out[4]:
 MultiIndex(levels=[['city', 'rural', 'suburbs'], ['day', 'night']],
            labels=[[0, 0, 1, 1, 2, 2], [0, 1, 0, 1, 0, 1]],
            names=['area', 'when'])
 Similiarly, the indexing for columns contains multiple levels, with the name 'area' labeling the outer levels 'city', 'rural', and 'suburbs'. 'when' is the name for the inner levels 'day' and 'night'.
 
+```
 In [5]:
 tickets
 
 ![](.\images_6\1.jpg)
 
+```
 In [6]:
 tickets.shape
+```
+
 Out[6]:
 (12, 6)
 Another SAS-like way to think of a MultiIndex is nested group-by's illustrated in cell below with PROC SORT. The resulting SAS data set tickets is 'tall' and 'skinny' with one observation for each of the nested levels.
@@ -119,6 +131,7 @@ A SAS analog of the tickets Dataframe is rendered using PROC TABULATE. Unlike th
     27          class area nd year month;
     28             table year * month ,
     29                   area=' ' * nd=' ' * sum=' ' * tickets=' ';
+```
 In [7]:
 Image(filename='Anaconda3\\output\\tabulate.JPG')
 
@@ -130,6 +143,7 @@ The tickets DataFrame is essentially four-dimensional with area nested within wh
 
 Select all rows by the 'rural' level.
 
+```
 In [8]:
 tickets['rural']
 
@@ -137,8 +151,11 @@ tickets['rural']
 
 Select all rows for tickets issued in the city at night.
 
+```
 In [9]:
 tickets['city', 'night']
+```
+
 Out[9]:
 year  month
 2012  1        18.0
@@ -164,6 +181,7 @@ Another method to select rows and columns nested inside a hierarchical index is 
 
 The DataFrame xs() method uses the level argument to select data for rows and columns. The example in the cell below selects the 1st month for each year.
 
+```
 In [10]:
 tickets.xs(('1'), level='month')
 
@@ -171,6 +189,7 @@ tickets.xs(('1'), level='month')
 
 Likewise, you can request just the rows for 2013.
 
+```
 In [11]:
 tickets.xs((2013), level='year')
 
@@ -178,6 +197,7 @@ tickets.xs((2013), level='year')
 
 Selections can use multiple keys. In this case, 2013 and month '1'.
 
+```
 In [12]:
 tickets.xs((2013, '1'), level=('year', 'month'))
 
@@ -185,6 +205,7 @@ tickets.xs((2013, '1'), level=('year', 'month'))
 
 The .xs method also works for columns with the optional axis=1 (for columns) argument. In this case, the column 'night' in each of the 3 areas is selected.
 
+```
 In [13]:
 tickets.xs(('night'), level='when', axis=1)
 
@@ -195,6 +216,7 @@ Chapter 5, Understanding Indexes covers the .loc indexer which can also be used 
 
 The colon (:) to the left of the comma (,) selects all rows. The selection to the right of the comma (,) requests the levels 'city' and 'suburbs' from 'area'.
 
+```
 In [14]:
 tickets.loc[:,['city', 'suburbs']]
 
@@ -202,6 +224,7 @@ tickets.loc[:,['city', 'suburbs']]
 
 Below is a an example of partial slicing.
 
+```
 In [15]:
 tickets.loc[2013:2014, ['city', 'suburbs']]
 
@@ -209,6 +232,7 @@ tickets.loc[2013:2014, ['city', 'suburbs']]
 
 The example below illustrates slicing with a range of values by providing tuples containing both the row slice ( 2nd month, 2013 to 3rd month 2014) and the column slice ('rural' 'day' to 'suburbs' 'day').
 
+```
 In [16]:
 tickets.loc[(2013, '2') : (2014, '3'), ('rural', 'day') : ('suburbs', 'day')]
 
@@ -216,11 +240,13 @@ tickets.loc[(2013, '2') : (2014, '3'), ('rural', 'day') : ('suburbs', 'day')]
 
 The example below illustrates the .loc() indexer using multiple keys for row and column slices.
 
+```
 In [17]:
 tickets.loc[(2013, '3'): (2014, '1')]
 
 ![](.\images_6\11.jpg)
 
+```
 In [18]:
 tickets.loc[(2013, '3'): (2014, '1'), "city"]
 
@@ -232,6 +258,7 @@ Using boolean operators with the .loc indexer permits boolean evaluations across
 
 The mask object returns the boolean value True which is applied to the column MultiIndex 'night' as the inner-most index level within 'city'. Notice the shape of the DataFrame is defined by just those rows in the 'night' within 'city' column construct that evaluate True.
 
+```
 In [19]:
 idx = pd.IndexSlice
 mask = tickets[('city','night')]>25
@@ -241,6 +268,7 @@ tickets.loc[idx[mask,:,]]
 
 The example in the cell below applies the boolean 'mask2' to all values in the DataFrame
 
+```
 In [20]:
 mask2 = tickets[('rural', 'day')]>15
 tickets.loc[idx[mask2, 'city':'rurual']]
@@ -249,6 +277,7 @@ tickets.loc[idx[mask2, 'city':'rurual']]
 
 The example below applies boolean 'mask2' and also scopes the column request.
 
+```
 In [21]:
 tickets.loc[idx[mask2, 'rural']]
 
@@ -262,20 +291,25 @@ The .stack() attribute pivots columns into rows. The .unstack() attribute pivots
 
 The .unstack() attribute used without any arguments in this case pivots the 'month' rows to the inner-most index level of the columns. 'month' was the inner-most index level for rows. Also notice how we assigned the 'unstacked' DataFrame to create the new one, df_u.
 
+```
 In [22]:
 df_u = tickets.unstack()
 df_u
 
 ![](.\images_6\16.jpg)
 
+```
 In [23]:
 df_u.columns
+```
+
 Out[23]:
 MultiIndex(levels=[['city', 'rural', 'suburbs'], ['day', 'night'], ['1', '2', '3']],
            labels=[[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1], [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]],
            names=['area', 'when', 'month'])
 The .stack() attribute performs the reverse operation of the .unstack() attribute. The .stack() attribute takes the inner most index level of the columns level and pivots them to the inner-most index level of the rows. In this case the new DataFrame is called df_s.
 
+```
 In [24]:
 df_s = tickets.stack()
 df_s
@@ -284,16 +318,21 @@ df_s
 
 DataFrames containing MultiIndexes can 'stack' and 'unstack' multiple levels at a time.
 
+```
 In [25]:
 df_like_sas = pd.DataFrame(tickets.stack(level=['when', 'area']))
 We can 'stack' the original tickets DataFrame by the levels 'when' and 'area' from the column MultiIndex to create a new DataFrame shaped similiarly to the SAS data set tickets.
 
+```
 In [26]:
 df_like_sas.shape
+```
+
 Out[26]:
 (72, 1)
 Display the first 12 rows.
 
+```
 In [27]:
 df_like_sas.head(12)
 
@@ -309,6 +348,3 @@ Reshaping by stacking and unstacking from the pandas 0.19.0 documentation.
 
 MultiIndex / Advanced Indexing from the pandas 0.19.0 documentation.
 
-## Navigation
-
-Return to Chapter List

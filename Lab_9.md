@@ -37,6 +37,7 @@ Resources
 
 Chapter 8, Understanding Date Time and TimeDelta objects provided a short introduction to Python's built-in datetime capabilities. In this chapter we illustrate pandas time series and date handling.
 
+```
 In [1]:
 from datetime import date, time, datetime, timedelta
 import numpy as np
@@ -49,10 +50,14 @@ from IPython.display import Image
 
 The pd.date_range() method generates a DateTime Index which is applied to a panda Series or DataFrame to provide datetime interval indexing. We will see examples of its construction methods. And later we will utilize indexers taking advange of the Date TimeIndex.
 
+```
 In [2]:
 rng = pd.date_range('1/1/2016', periods=30, freq='D')
+```
 In [3]:
 rng
+```
+
 Out[3]:
 DatetimeIndex(['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04',
                '2016-01-05', '2016-01-06', '2016-01-07', '2016-01-08',
@@ -65,8 +70,11 @@ DatetimeIndex(['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04',
               dtype='datetime64[ns]', freq='D')
 Print the first 10 dates in the DateTimeIndex
 
+```
 In [4]:
 rng[:10]
+```
+
 Out[4]:
 DatetimeIndex(['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04',
                '2016-01-05', '2016-01-06', '2016-01-07', '2016-01-08',
@@ -74,12 +82,15 @@ DatetimeIndex(['2016-01-01', '2016-01-02', '2016-01-03', '2016-01-04',
               dtype='datetime64[ns]', freq='D')
 Assemble a Series by using strings and integers for columns. Map the year, month, and day value into a date timestamp using the pd.to_datetime() method. Details for the pd.datetime() method are found here.
 
+```
 In [5]:
 df = pd.DataFrame({'year': ['2014', '2015', '2016'],
                    'month': [1, 2, 3],
                    'day': [1,2,3,]})
 df1 = pd.to_datetime(df)
 df1
+```
+
 Out[5]:
 0   2014-01-01
 1   2015-02-02
@@ -87,18 +98,25 @@ Out[5]:
 dtype: datetime64[ns]
 Construct the Series 'b_rng' containing only business days using the pd.bdate() method and supplying start and end date.
 
+```
 In [6]:
 start = datetime(2016, 1, 1)
 end = datetime(2016, 12, 31)
 b_rng = pd.bdate_range(start,end)
 The Series implicitly creates a DatetimeIndex object.
 
+```
 In [7]:
 type(b_rng)
+```
+
 Out[7]:
 pandas.tseries.index.DatetimeIndex
+```
 In [8]:
 b_rng
+```
+
 Out[8]:
 DatetimeIndex(['2016-01-01', '2016-01-04', '2016-01-05', '2016-01-06',
                '2016-01-07', '2016-01-08', '2016-01-11', '2016-01-12',
@@ -110,10 +128,13 @@ DatetimeIndex(['2016-01-01', '2016-01-04', '2016-01-05', '2016-01-06',
               dtype='datetime64[ns]', length=261, freq='B')
 Create a Series containing the last business day of the month for 2016.
 
+```
 In [9]:
 rng = pd.date_range(start, end, freq='BM')
 ts = pd.Series(np.random.randn(len(rng)), index=rng)
 ts.index
+```
+
 Out[9]:
 DatetimeIndex(['2016-01-29', '2016-02-29', '2016-03-31', '2016-04-29',
                '2016-05-31', '2016-06-30', '2016-07-29', '2016-08-31',
@@ -121,16 +142,22 @@ DatetimeIndex(['2016-01-29', '2016-02-29', '2016-03-31', '2016-04-29',
               dtype='datetime64[ns]', freq='BM')
 Returns the first 5 last business day of the month for 2016.
 
+```
 In [10]:
 ts[:5].index
+```
+
 Out[10]:
 DatetimeIndex(['2016-01-29', '2016-02-29', '2016-03-31', '2016-04-29',
                '2016-05-31'],
               dtype='datetime64[ns]', freq='BM')
 Returns the last business day of every other month in 2016.
 
+```
 In [11]:
 ts[::2]
+```
+
 Out[11]:
 2016-01-29    1.246634
 2016-03-31    0.702623
@@ -170,10 +197,12 @@ Part 2, rows 3082 to 96,243 are more granular with a quarterly frequency interva
 Part 1 of .csv File to Construct the 'df_us' DataFrame
 Start with a test read of the entire .csv file. The pd.read_csv method has the one required arguement, the input file name to create the DataFrame 'df_all'.
 
+```
 In [12]:
 df_all = pd.read_csv("C:\Data\\HPI_master.csv")
 Inspect the first 5 rows to determine if the read_csv() method is giving the expected results.
 
+```
 In [13]:
 df_all.head()
 
@@ -187,16 +216,21 @@ Sometimes, you may need to create your own date-parser, analogous to building a 
 
 The nrows= argument value is set to 3080.
 
+```
 In [14]:
 df_us = pd.read_csv("C:\Data\\HPI_master.csv",
                  parse_dates={'date_idx': [6,7]},
                  nrows=3080)
+```
 In [15]:
 df_us.shape
+```
+
 Out[15]:
 (3080, 9)
 Validate column names and their data types. Confirm the date parser constructed the column 'date_idx' as a datetime object.
 
+```
 In [16]:
 df_us.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -215,8 +249,11 @@ dtypes: datetime64[ns](1), float64(2), object(6)
 memory usage: 216.6+ KB
 Check for missing values.
 
+```
 In [17]:
 df_us.isnull().any()
+```
+
 Out[17]:
 date_idx      False
 hpi_type      False
@@ -230,12 +267,16 @@ index_sa      False
 dtype: bool
 Set the 'date_idx' column as the index on the DataFrame.
 
+```
 In [18]:
 df_us.set_index("date_idx", inplace=True, drop=False)
 Indexing on the datetime column 'date' creates a 'datetime-aware' DateTimeIndex.
 
+```
 In [19]:
 df_us.index
+```
+
 Out[19]:
 DatetimeIndex(['1991-01-01', '1991-02-01', '1991-03-01', '1991-04-01',
                '1991-05-01', '1991-06-01', '1991-07-01', '1991-08-01',
@@ -247,6 +288,7 @@ DatetimeIndex(['1991-01-01', '1991-02-01', '1991-03-01', '1991-04-01',
               dtype='datetime64[ns]', name='date_idx', length=3080, freq=None)
 Get the earlies and lastest date values in the 'df_us' DataFrame.
 
+```
 In [20]:
 print('Earliest date is:', df_us.date_idx.min())
 print('Latest date is:', df_us.date_idx.max())
@@ -256,8 +298,11 @@ We see from the list of columns returned from the .info() attribute above we hav
 
 Recall that dtype 'O' (not zero) indicates string values for a Series or DataFrame column.
 
+```
 In [21]:
 df_us.describe(include=['O'])
+```
+
 Out[21]:
 hpi_type	hpi_flavor	frequency	level	place_name	place_id
 count	3080	3080	3080	3080	3080	3080
@@ -266,8 +311,11 @@ top	traditional	purchase-only	monthly	USA or Census Division	New England Divisio
 freq	3080	3080	3080	3080	308	308
 The 'place_name' column has 10 unique levels or values. We can examine these values with the .unique() attribute.
 
+```
 In [22]:
 df_us.place_name.unique()
+```
+
 Out[22]:
 array(['East North Central Division', 'East South Central Division',
        'Middle Atlantic Division', 'Mountain Division',
@@ -276,11 +324,13 @@ array(['East North Central Division', 'East South Central Division',
        'West South Central Division', 'United States'], dtype=object)
 Continue by setting an index on the column 'place_name'. Construct the 'df_us_plot' DataFrame with rows for 'place_name' equal to 'United States'. The .loc indexer allows row slicing which is covered in detail here.
 
+```
 In [23]:
 df_us.set_index('place_name', inplace=True, drop=False)
 df_us_plot = df_us.loc['United States']
 Time series data lends itself well to plotting. The bokeh package is used to plot the non-seasonal home price index for the entire U.S. using the 'df_us_plot' DataFrame created above
 
+```
 In [24]:
 import bokeh.charts
 import bokeh.charts.utils
@@ -294,6 +344,7 @@ bokeh.io.output_notebook()
 Loading BokehJS ...
 Plot the monthly aggregate home index values for the U.S. using the earliest and latest dates from the 'df_us_plot' DataFrame.
 
+```
 In [25]:
 p = bokeh.charts.Line(df_us_plot, x='date_idx', y='index_nsa', color='firebrick', 
                       title="Monthly Aggregate Home Price Values in the U.S.")
@@ -306,8 +357,10 @@ During the Great Recession of 2008-2010, home prices across the U.S. declined dr
 
 Create the DataFrame 'df_us_3' to select the rows with the values indicated below.
 
+```
 In [26]:
 df_us_3 = df_us.loc[['West South Central Division', 'United States', 'Pacific Division']]
+```
 In [27]:
 df_us_3.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -326,6 +379,7 @@ dtypes: datetime64[ns](1), float64(2), object(6)
 memory usage: 72.2+ KB
 Plot the 3 regions using the U.S. home price index for comparison. Rather than specify a color value for color=, specifying a column label produces multiple plots based on the the levels.
 
+```
 In [28]:
 p = bokeh.charts.Line(df_us_3, x='date_idx', y='index_nsa', color='place_name', 
                       title="Monthly Home Price in West South Central and Pacific Division compared to U.S.",
@@ -337,6 +391,7 @@ Use to 'skiprows=' argument to begin reading at row 3082. We use a tuple to spec
 
 Beginning with row 3082 the values for the field 'index_sa' are missing. Begin the read at row 3082 until end of file. And since the default is to key off column names, supply column labels with a<a href= "http://nbviewer.jupyter.org/github/RandyBetancourt/PythonForSASUsers/blob/master/Chapter%2002%20--%20Data%20Structures.ipynb#tuple"> tuple</a> of names. The usecols= argument uses a tuple of integers to indicate which fields are to be read from the .csv file. Header=None is to prevent the reader from building column names at row position nrows-1, which in our case contains data values.
 
+```
 In [29]:
 df_states = pd.read_csv("C:\Data\\HPI_master.csv",                 
             skiprows=3082,
@@ -348,19 +403,25 @@ The columns 'yr' and 'period' are read as string values and need to be converted
 1. Concatenating 'yr' with 'Q' with 'period' to form a date string 
 2. The date string is passed to the pd.to_datetime function creating the dateime column 'date_idx'
 1. String concatenation operation to form YYYYq.
+```
 In [30]:
 df_states["date_str"] = df_states['yr'].map(str) + 'Q' + df_states['period'].map(str)
 Display the 'date_str' value using the iloc indexer which returns row and column location by integer positions.
 
+```
 In [31]:
 df_states.iloc[0,-1]
+```
+
 Out[31]:
 '1986Q4'
 2. Convert the 'date_str' column into a panda datetime column called 'date_idx'. 
+```
 In [32]:
 df_states['date_idx'] = pd.to_datetime(df_states['date_str'])
 Inspect the first 5 records in the 'df_states' DataFrame.
 
+```
 In [33]:
 df_states.head()
 
@@ -368,8 +429,11 @@ df_states.head()
 
 Return the number of rows and columns in the DataFrame.
 
+```
 In [34]:
 df_states.shape
+```
+
 Out[34]:
 (96244, 11)
 The following SAS Data Step reads the same .csv file using FIRSTOBS= to begin reading from the arbitary row position 3082.
@@ -399,6 +463,7 @@ The following SAS Data Step reads the same .csv file using FIRSTOBS= to begin re
                    index_nsa ;
 Display the first 5 rows of the SAS data set df_states. In the SAS code example below the 'yr' and 'period' variables are combined to create the SAS datetime variable 'date_idx'.
 
+```
 In [35]:
 Image(filename='Anaconda3\\output\\df_states_output.JPG')
 
@@ -406,6 +471,7 @@ Image(filename='Anaconda3\\output\\df_states_output.JPG')
 
 Inspect values for the categorical columns.
 
+```
 In [36]:
 df_states.describe(include=['O'])
 
@@ -415,8 +481,11 @@ df_states.describe(include=['O'])
 
 Get unique values for column 'level'
 
+```
 In [37]:
 df_states.level.unique()
+```
+
 Out[37]:
 array(['MSA', 'State', 'USA or Census Division', 'Puerto Rico'], dtype=object)
 PROC SQL used to obtain unique values from the variable 'level'.
@@ -429,6 +498,7 @@ PROC SQL used to obtain unique values from the variable 'level'.
     58          from df_states;
     59       quit;
 
+```
 In [38]:
 Image(filename='Anaconda3\\output\\level_unique_values.JPG')
 
@@ -436,12 +506,16 @@ Image(filename='Anaconda3\\output\\level_unique_values.JPG')
 
 Start by creating a list called 'lvls' using the .select_dtypes() attribute to include columns with dtype value 'O' selecting columns with string values.
 
+```
 In [39]:
 lvls = list(df_states.select_dtypes(include=['O']).columns)
 Inspect the 'lvls' list.
 
+```
 In [40]:
 lvls
+```
+
 Out[40]:
 ['hpi_type',
  'hpi_flavor',
@@ -452,6 +526,7 @@ Out[40]:
  'date_str']
 If we had a long list of columns needing to determine unique values the approach above becomes tedious; an iterative approach is called for using the for statement shown below.
 
+```
 In [41]:
 for item in lvls[:4]:
    print(item, 'levels are:', df_states[item].unique())
@@ -463,17 +538,22 @@ Using the levels for the categorial columns displayed above, filter the 'df_stat
 
 Create a boolean mask for the filtering criteria.
 
+```
 In [42]:
 mask = (df_states['hpi_type'] == 'traditional') & (df_states['hpi_flavor'] == 'purchase-only') & \
        (df_states['level'] == 'State')
 Apply the mask. Notice the 'df_states' DataFrame is updated in place with this assignment. The original 'df_states' DataFrame had 96244 rows.
 
+```
 In [43]:
 df_states = df_states.loc[mask]
 The .shape attribute returns the new row and column count for the 'df_states' DataFrame.
 
+```
 In [44]:
 df_states.shape
+```
+
 Out[44]:
 (5202, 11)
 
@@ -481,8 +561,10 @@ Out[44]:
 
 Index the column 'index_nsa' in order to find the maximum and minimum for the 'df_states' DataFrame.
 
+```
 In [45]:
 df_states.set_index('index_nsa', inplace=True, drop=False)
+```
 In [46]:
 print('Max value for index_nsa:', df_states['index_nsa'].max())
 print('Min value for index_nsa:', df_states['index_nsa'].min())
@@ -500,6 +582,7 @@ PROC SQL for finding min and max for the variable 'index_nsa'.
 41         where hpi_type ='traditional' and  hpi_flavor = 'purchase-only' and
 42          level = 'State';
 43      quit;
+```
 In [47]:
 Image(filename='Anaconda3\\output\\max_min_index_nsa.JPG')
 
@@ -519,10 +602,12 @@ Keep in mind that the 'df_states' DataFrame has already been filtered previously
 
 Create the boolean mask for the filtering criteria.
 
+```
 In [48]:
 mask1 = (df_states['date_idx'] >= '2016-01-01') & (df_states['date_idx'] <= '2016-12-31')
 Apply the mask using the .loc indexer
 
+```
 In [49]:
 df_2016 = df_states.loc[mask1]
 
@@ -530,8 +615,11 @@ df_2016 = df_states.loc[mask1]
 
 Use the .idxmin() method to return the minimum 'index_nsa' value.
 
+```
 In [50]:
 df_2016.ix[df_2016['index_nsa'].idxmin()]
+```
+
 Out[50]:
 hpi_type              traditional
 hpi_flavor          purchase-only
@@ -548,8 +636,11 @@ Name: 165.81, dtype: object
 Return a Row using a Maximum Value
 Use the .idxmax() attribute to return the row with the maximum 'index_nsa' value.
 
+```
 In [51]:
 df_2016.ix[df_2016['index_nsa'].idxmax()]
+```
+
 Out[51]:
 hpi_type               traditional
 hpi_flavor           purchase-only
@@ -567,6 +658,7 @@ The .min and .max attribute return minimum and maximum respectively. The .idxmin
 
 The .min() and .max attributes return a scalar.
 
+```
 In [52]:
 print("2016 minimum value for 'index_nsa':", df_2016.index_nsa.min())
 print("2016 maximum value for 'index_nsa':", df_2016.index_nsa.max())
@@ -593,6 +685,7 @@ The Data Step below is continued from the SAS Data Step example above used to re
     21               level = 'State' and
     22               date_idx between '01Jan2016'd and '31Dec2016'd;
     23      quit;
+```
 In [53]:
 Image(filename='Anaconda3\\output\\2016_min_max.JPG')
 
@@ -621,8 +714,11 @@ In order to answer the 3rd question above, we need to conduct the following:
 6. Plot the resulting 'DataFrame'
 Start by examining the quarterly date values from the 'df_states' DataFrame...
 
+```
 In [54]:
 df_states.iloc[0:4, -1]
+```
+
 Out[54]:
 index_nsa
 100.00   1991-01-01
@@ -632,8 +728,11 @@ index_nsa
 Name: date_idx, dtype: datetime64[ns]
 ...and compare with the monthly date values from the 'df_us' DataFrame.
 
+```
 In [55]:
 df_us.iloc[0:4, 7]
+```
+
 Out[55]:
 place_name
 East North Central Division    100.00
@@ -642,6 +741,7 @@ East North Central Division    101.40
 East North Central Division    101.79
 Name: index_nsa, dtype: float64
 1. Set the index for 'df_us' DataFrame to the column 'date_idx'
+```
 In [56]:
 df_us.set_index('date_idx', inplace=True, drop=False)
 2. Resample the 'df_us' DataFrame aggregating from monthly to quarterly using mean values
@@ -651,44 +751,54 @@ The .resample() method is a time-based needs a link to groupby operation, follow
 
 In order to align the monthly date values found in the 'df_us' DataFrame, with the quarterly date values in the 'df_states' DataFrame, use the 'QS' date offset. 'QS' sets the date value frequency to quarterly with year ending in December. The resulting DataFrame is called 'df_us_qtr'.
 
+```
 In [57]:
 df_us_qtr = df_us.resample('QS').mean()
 3. Create a column in the 'df_us' labeled 'place_name' with the value "U.S. Aggregate".
+```
 In [58]:
 df_us_qtr['place_name'] = 'U.S. Aggregate'
 4. Extract rows for the lowest and highest home values using the df_us_qtr['place_name'] column
 Set the index to the column 'place_name' and extract the rows using the .loc indexer.
 
+```
 In [59]:
 df_states.set_index('place_name', inplace=True, drop=False)
 Create a boolean mask using the logical OR operator ( | ).
 
+```
 In [60]:
 mask = (df_states['place_name'] == 'Connecticut') | (df_states['place_name'] == 'District of Columbia')
 Apply the mask using the .loc indexer to create the 'hi_lo' DataFrame.
 
+```
 In [61]:
 hi_lo = df_states.loc[mask]
 Reset the index since the 'hi_lo' DataFrame will be concatenated (merged) with the resampled 'us_df' DataFrame.
 
+```
 In [62]:
 hi_lo.reset_index(drop=True, inplace=True)
 5. Merge (concatenate) the resampled 'df_us' DataFrame with the high & low value rows from the extract operation
 Reset the index, since the 'df_us_qtr' DataFrame will be merged with the 'hi_lo' DataFrame created above.
 
+```
 In [63]:
 df_us_qtr.reset_index(inplace=True)
 Create a list of DataFrames to be included in the concatenation operation.
 
+```
 In [64]:
 frames = [df_us_qtr, hi_lo]
 Create the DataFrame 'plot_hi_low' concatenating values for the lowest home prices (Connecticut), with the highest ('District of Columbia') together with the U.S. aggregate. This is accomplished using the needs a link to concat operation.
 
+```
 In [65]:
 plot_hi_low = pd.concat(frames)
 
 ## Plotting with bokeh
 
+```
 In [66]:
 p = bokeh.charts.Line(plot_hi_low, x='date_idx', y='index_nsa',  color='place_name', 
                      title= "Comparison of lowest & highest home values with U.S. aggregate index value")
@@ -708,10 +818,13 @@ Since 2011, the aggregate U.S. home price index has been growing faster than tha
 
 Drop the values for 'District of Columbia' to compare the lowest home prices with the 'U.S. Aggregate' home price index. Notice the automatic re-scaling of the Y-axis.
 
+```
 In [67]:
 mask = (plot_hi_low['place_name'] != 'District of Columbia')
+```
 In [68]:
 plt_lo_us = plot_hi_low.loc[mask]
+```
 In [69]:
 p = bokeh.charts.Line(plt_lo_us, x='date_idx', y='index_nsa', color='place_name',  
                       title="Comparison of lowest & U.S. Aggregate home values")
@@ -730,6 +843,3 @@ Chapter 10, Time Series, "Python for Data Analysis, by Wes McKinney, located her
 
 SAS 9.4 Language Reference: Concepts, 5th ed., Dates, Times, and Intervals
 
-## Navigation
-
-Return to Chapter List

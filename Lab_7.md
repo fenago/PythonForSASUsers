@@ -47,6 +47,7 @@ Resources
 
 The usual pre-amble to get packages loaded into the namespace.
 
+```
 In [1]:
 import numpy as np
 import pandas as pd
@@ -55,6 +56,7 @@ from pandas import Series, DataFrame, Index
 from IPython.display import Image
 The display method() defined below is from the Python Data Science Handbook, by Jake VanderPlas, available here . It is used to render DataFrames side-by-side for comparisons.
 
+```
 In [2]:
 class display(object):
     """Display HTML representation of multiple objects"""
@@ -127,6 +129,7 @@ Observations not matching in both input data sets are included and their values 
     NOTE: 8 observations were read from "WORK.left"
     NOTE: 6 observations were read from "WORK.right"
     NOTE: Data set "WORK.merge_both" has 9 observation(s) and 5 variable(s)
+```
 In [3]:
 Image(filename='Anaconda3\\output\\default_match_merge.JPG')
 
@@ -134,6 +137,7 @@ Image(filename='Anaconda3\\output\\default_match_merge.JPG')
 
 Construct the DataFrames 'left' containing demographic information for employees and 'right' containing salary information. They are replicates of the SAS data sets 'left' and 'right' used with the SAS program above.
 
+```
 In [4]:
 left = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', 'Benito, Gisela', 'Rudelich, Herbert', \
                               'Sirignano, Emily', 'Morrison, Michael', 'Morrison, Michael', 'Onieda, Jacqueline'],
@@ -145,6 +149,7 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
                       'id':           ['929-75-0218', '446-93-2122', \
                                        '228-88-9649', '029-46-9261', '442-21-8075', '321-82-5771'], 
                       'salary':      [27500, 33900, 28000, 35000, 5000, 80000]})
+```
 In [5]:
 display("left", "right")
 
@@ -211,6 +216,7 @@ An INNER JOIN selects only those rows whose key values are found in both tables.
     41        from left, right
     42        where left.name = right.name;
 
+```
 In [6]:
 Image(filename='Anaconda3\\output\\inner_join.JPG')
 
@@ -222,8 +228,10 @@ The panda 'how' argument for the merge() method specifies which keys are to be i
 
 Use the how='inner' argument for an INNER JOIN. This retrieves the intersection of key values from the 'left' and 'right' DataFrames.
 
+```
 In [7]:
 both = pd.merge(left, right, on='name', how='inner', sort=True)
+```
 In [8]:
 both
 
@@ -263,6 +271,7 @@ The COALESCE function coerces the 'name' variable into a single column. The 'nam
 
 To produce the output above a second SELECT statement is used to display the single 'name' column in the output.
 
+```
 In [9]:
 Image(filename='Anaconda3\\output\\right_outer.JPG')
 
@@ -270,8 +279,10 @@ Image(filename='Anaconda3\\output\\right_outer.JPG')
 
 For panda use the how='right' argument for a Right Outer Join. This returns only those key values found in the 'right' DataFrame with corresponding matches found the 'left' DataFrame.
 
+```
 In [10]:
 r_outer = pd.merge(left, right, how='right', sort=True)
+```
 In [11]:
 r_outer
 
@@ -304,6 +315,7 @@ PROC SQL Left Outer Join example. See the SAS SQL Right Outer Join example above
     36        on left.name = right.name;
     37       
     38        quit;
+```
 In [12]:
 Image(filename='Anaconda3\\output\\left_outer.JPG')
 
@@ -311,9 +323,11 @@ Image(filename='Anaconda3\\output\\left_outer.JPG')
 
 For panda use the how='left' argument for a LEFT OUTER JOIN. This returns only those key values found in the 'left' DataFrame with corresponding matches found the 'right' DataFrame.
 
+```
 In [13]:
 l_outer = pd.merge(left, right, how='left', sort=True)
 
+```
 In [14]:
 l_outer
 
@@ -345,14 +359,17 @@ PROC SQL Full Outer Join exanple. This is the default behavior for the SORT/MERG
     13           on left.old_name = right.old_name;
     14       
     15       select * from sas_merge;
+```
 In [15]:
 Image(filename='Anaconda3\\output\\full_outer_join.JPG')
 
 ![](.\images_7\9.jpg)
 
+```
 In [16]:
 merge_both = pd.merge(left, right, on='name', how='outer', sort=True)
 
+```
 In [17]:
 merge_both
 
@@ -405,6 +422,7 @@ Start with the SAS Data Step for no matched keys in either the 'left' or 'right'
     50      if (l=0 or r=0);
     51      
     52      title1 "if (L=0 or R=0)";
+```
 In [18]:
 Image(filename='Anaconda3\\output\\nomatch.JPG')
 
@@ -420,10 +438,12 @@ By applying a boolean filter in conjunction with these values, we can replicate 
 
 Construct the 'nomatch' DataFrame with an Outer Join using the ['name'] column as the join key for both.
 
+```
 In [19]:
 nomatch = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
 The 'nomatch' DataFrame displays the nomatch['in= '] column values. These values are tested with boolean comparisons for the WHERE processing.
 
+```
 In [20]:
 nomatch
 
@@ -431,6 +451,7 @@ nomatch
 
 Using boolean logic and the logical 'or' (|) comparison, select those rows with the value 'left_only' and 'right_only'.
 
+```
 In [21]:
 nomatch[(nomatch['in='] == 'left_only') | (nomatch['in='] == 'right_only')]
 
@@ -438,6 +459,7 @@ nomatch[(nomatch['in='] == 'left_only') | (nomatch['in='] == 'right_only')]
 
 Brievity allows:
 
+```
 In [22]:
 nomatch[nomatch["in="] != 'both']
 
@@ -457,6 +479,7 @@ Locate the key value rows in the 'right' data set which have no corresponding ma
     16      
     17      if (l=0 and r=1);
     18
+```
 In [23]:
 Image(filename='Anaconda3\\output\\nomatch_in_right.JPG')
 
@@ -464,10 +487,12 @@ Image(filename='Anaconda3\\output\\nomatch_in_right.JPG')
 
 Locate the rows in the 'right' DataFrame which have no corresonding key value matches in the 'left' DataFrame.
 
+```
 In [24]:
 nomatch_r = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
 Display 'nonatch_r' DataFrame as the result of an Outer Join.
 
+```
 In [25]:
 nomatch_r
 
@@ -475,6 +500,7 @@ nomatch_r
 
 Use a boolean comparison to find key value rows contributed by the 'right' DataFrame. In other words, key values in the 'right' DataFrame not found in the 'left' DataFrame.
 
+```
 In [26]:
 nomatch_r[nomatch_r['in='] == 'right_only']
 
@@ -482,6 +508,7 @@ nomatch_r[nomatch_r['in='] == 'right_only']
 
 The non-matching key value rows from the 'right' DataFrame can also be sub-setted from the 'nomatch' DataFrame created above with:
 
+```
 In [27]:
 nomatch[nomatch['in='] == 'right_only']
 
@@ -501,6 +528,7 @@ Locate the key value rows in the 'left' data set having no corresonding match in
     100      
     101      if (l=1 and r=0);
     102
+```
 In [28]:
 Image(filename='Anaconda3\\output\\nomatch_in_left.JPG')
 
@@ -508,10 +536,12 @@ Image(filename='Anaconda3\\output\\nomatch_in_left.JPG')
 
 Locate the key value rows in the 'left' DataFrame which have no corresonding matches in the 'right' DataFrame.
 
+```
 In [29]:
 nomatch_l = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
 Display 'nonatch_r' DataFrame as the result of an Outer Join.
 
+```
 In [30]:
 nomatch_l
 
@@ -519,6 +549,7 @@ nomatch_l
 
 Use a boolean comparison to find key values rows contributed by the 'left' DataFrame only. In other words key values in the 'left' DataFrame not found in the 'right' DataFrame.
 
+```
 In [31]:
 nomatch_l[nomatch_l['in='] == 'left_only']
 
@@ -528,6 +559,7 @@ nomatch_l[nomatch_l['in='] == 'left_only']
 
 Construct the DataFrames with duplicate ['name'] column values in each.
 
+```
 In [32]:
 left = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', 'Benito, Gisela', 'Rudelich, Herbert', \
                               'Sirignano, Emily', 'Morrison, Michael', 'Morrison, Michael', 'Onieda, Jacqueline'],
@@ -541,6 +573,7 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
                                        '228-88-9649', '029-46-9261', '442-21-8075', '321-82-5771', \
                                        '222-33-4444', '222-33-4444'], 
                       'salary':      [27500, 33900, 28000, 35000, 5000, 80000, 75000, 75000]})
+```
 In [33]:
 display("left", "right")
 
@@ -548,10 +581,12 @@ display("left", "right")
 
 Construct the 'm2m' DataFrame with an Outer Join using the 'left' and 'right' DataFrames on the ['name']' column.
 
+```
 In [34]:
 m2m = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
 Display the 'm2m' DataFrame.
 
+```
 In [35]:
 m2m
 
@@ -572,6 +607,7 @@ The PROC SQL illustrating a many-to-many Outer Join.
     13          on left.old_name = right.old_name;
     14      
     15      select * from m2m;
+```
 In [36]:
 Image(filename='Anaconda3\\output\\many_2_many.JPG')
 
@@ -597,6 +633,7 @@ The SAS Data Step using the equivalent Full Outer Join with (L=1 or R=1) for the
     NOTE: At least one BY group was repeated in multiple datasets while merging
     28      
     29      proc print data=m2m;
+```
 In [37]:
 Image(filename='Anaconda3\\output\\m2m_datastep_merge.JPG')
 
@@ -606,6 +643,7 @@ Image(filename='Anaconda3\\output\\m2m_datastep_merge.JPG')
 
 To illustrate the capabilities of panda group add the additional column in the 'left' DataFrame left['status'] as an additional categorical column.
 
+```
 In [38]:
 left = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', 'Benito, Gisela', 'Rudelich, Herbert', \
                               'Sirignano, Emily', 'Morrison, Michael', 'Morrison, Michael', 'Onieda, Jacqueline'],
@@ -635,13 +673,16 @@ The steps for replacing values with a group mean below are:
 
 Outer Join to contruct the 'df' DataFrame on the ['name'] key value column.
 
+```
 In [39]:
 df = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
 2. Drop duplicate rows using the 'df['name'] column values. 
+```
 In [40]:
 df = df.drop_duplicates('name')
 Display the 'df' DataFrame containing missing (NaN) values for the df['salary'] column.
 
+```
 In [41]:
 df
 
@@ -649,12 +690,16 @@ df
 
 Missing value replacement can be approached with a range a methods described here in detail. Create the 'gb1' Series.
 
+```
 In [42]:
 gb1 = df.groupby('gender')['salary'].mean()
 Display the Series df['salary'] values grouped by df['gender'] values.
 
+```
 In [43]:
 gb1
+```
+
 Out[43]:
 gender
 F    16500.000000
@@ -682,10 +727,12 @@ PROC SQL illustrating the aggregation method (mean) grouped by the gender column
     _N_=1 _ERROR_=0 gender=F mean_sal=16500
     _N_=2 _ERROR_=0 gender=M mean_sal=32133.333333
 3. Create the DataFrameGroupBy (grouper) object from the df['gender'] column.
+```
 In [44]:
 gb2 = df.groupby('gender')
 .count() attribute used to return the number of unique levels from the group.
 
+```
 In [45]:
 gb2.count()
 
@@ -697,22 +744,28 @@ Lambda x is a short-hand for defining a function using the local variable x. The
 
 More examples on handling and replacing missing data are located here.
 
+```
 In [46]:
 func = lambda x: x.fillna(x.mean())
 type(func)
+```
+
 Out[46]:
 function
 Apply (or call) the defined function using the groupby.transform() attribute creating the new DataFrame 'trans'. The .transform() attribute is applied to ints and floats to replace missing values with their respective column group mean.
 
+```
 In [47]:
 trans = gb2.transform(func)
  5. Extract the transformed trans['salary'] column as the new df['salary'] column
 We just need the transformed trans['salary'] values to replace the original df['salary'] column values. More details on DROP, KEEP, and RENAME columns is described here.
 
+```
 In [48]:
 df["salary"] = trans["salary"]
 Display the 'df' DataFrame with df['salary'] column values replaced with their group mean value.
 
+```
 In [49]:
 df
 
@@ -722,11 +775,13 @@ df
 
 The .first() attribute chained to a GroupBy for the df['status'] column as an analog to SAS' By Group processing using FIRST.variable and LAST.variable.
 
+```
 In [55]:
 df.groupby('status').first()
 ![](.\images_7\29.jpg)
 
 
+```
 In [56]:
 df.groupby('status').last()
 
@@ -744,6 +799,3 @@ SAS 9.2 SQL Procedure User's Guide located here.
 
 Combining SAS Data Sets: Methods: in the SAS Language Reference: Concepts Manual, Second Edition, found here.
 
-## Navigation
-
-Return to Chapter List
