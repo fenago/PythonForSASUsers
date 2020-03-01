@@ -206,7 +206,7 @@ Inspect the first 5 rows to determine if the read_csv() method is giving the exp
 In [13]:
 df_all.head()
 
-![](.\images_9\1.jpg)
+![](./images_9/1.jpg)
 
 We need to combine the year and period fields into a datetime timetamp . The .csv file in the cell above is read without any datetime parsing for the fields, 'yr' and 'period'. We could post-process these fields to construct the appropriate date timestamp values.
 
@@ -425,7 +425,7 @@ Inspect the first 5 records in the 'df_states' DataFrame.
 In [33]:
 df_states.head()
 
-![](.\images_9\2.jpg)
+![](./images_9/2.jpg)
 
 Return the number of rows and columns in the DataFrame.
 
@@ -467,7 +467,7 @@ Display the first 5 rows of the SAS data set df_states. In the SAS code example 
 In [35]:
 Image(filename='Anaconda3\\output\\df_states_output.JPG')
 
-![](.\images_9\3.jpg)
+![](./images_9/3.jpg)
 
 Inspect values for the categorical columns.
 
@@ -475,7 +475,7 @@ Inspect values for the categorical columns.
 In [36]:
 df_states.describe(include=['O'])
 
-![](.\images_9\4.jpg)
+![](./images_9/4.jpg)
 
 ## Returning Unique Levels of Categories
 
@@ -502,7 +502,7 @@ PROC SQL used to obtain unique values from the variable 'level'.
 In [38]:
 Image(filename='Anaconda3\\output\\level_unique_values.JPG')
 
-![](.\images_9\5.jpg)
+![](./images_9/5.jpg)
 
 Start by creating a list called 'lvls' using the .select_dtypes() attribute to include columns with dtype value 'O' selecting columns with string values.
 
@@ -586,7 +586,7 @@ PROC SQL for finding min and max for the variable 'index_nsa'.
 In [47]:
 Image(filename='Anaconda3\\output\\max_min_index_nsa.JPG')
 
-![](.\images_9\6.jpg)
+![](./images_9/6.jpg)
 
 Filter for 2016
 For 2016, return the rows with the largest and smallest value for 'index_nsa'.
@@ -689,7 +689,7 @@ The Data Step below is continued from the SAS Data Step example above used to re
 In [53]:
 Image(filename='Anaconda3\\output\\2016_min_max.JPG')
 
-![](.\images_9\7.jpg)
+![](./images_9/7.jpg)
 
 Answer to question #2
 2. Where are the highest and lowest values for 'traditional', 'purchase-only' homes in the U.S. in 2016? 

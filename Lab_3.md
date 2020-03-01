@@ -92,7 +92,7 @@ Image(filename='Anaconda3\\output\\sas data types.JPG')
 
 Out[2]:
 
-![](.\images_3\1.jpg)
+![](./images_3/1.jpg)
 
 ## Boolean
 Because of its utility in data cleansing and transformations we will cover this in detail. The Python boolean comparison operators are found here.
@@ -512,7 +512,7 @@ Python uses indexing methods on a number of different objects having similar beh
 
 At times, you may find it easier to refer to characters toward the end of the string. Python provides an 'end-to-beginning' indexer with a start position of -1 for the last character in the string and decrements to the beginning position.
 
-![](.\images_3\2.jpg)
+![](./images_3/2.jpg)
 
 String slicing with index at 0
 

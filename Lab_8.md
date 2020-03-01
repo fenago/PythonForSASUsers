@@ -55,7 +55,7 @@ In Python the datetime class be broken down into 5 categories:
 
 The first 4 will be examined briefly.
 
-![](.\images_8\.jpg)
+![](./images_8/.jpg)
 
 ```
 In [1]:

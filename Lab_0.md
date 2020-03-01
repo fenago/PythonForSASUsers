@@ -26,7 +26,7 @@ Image(filename='Anaconda3\\output\\frontispiece.JPG')
 
 Out[1]:
 
-![](.\images_0\1.jpg)
+![](./images_0/1.jpg)
 
 Chesler Park, Needles District in Canyonlands Nation Park, Utah
 
@@ -77,7 +77,7 @@ Image(filename='Anaconda3\\output\\product_format_os.JPG')
 
 Out[1]:
 
-![](.\images_0\2.jpg)
+![](./images_0/2.jpg)
 
 One might quibble with a couple of non-existent crossings being in the table. The number of cells is 504. But consider all of the formats not included, and the fact that most large enterprises have scores of department. By any measure, the scope of this issue is quite large.
 

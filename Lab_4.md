@@ -48,7 +48,7 @@ We begin by introducing the Series object as a component of the DataFrame object
 
 In other words, a DataFrame looks a great deal like a SAS data set (or relational table). The table below compares panda components to those found in SAS.
 
-![](.\images_4\1.jpg)
+![](./images_4/1.jpg)
 
 ## Panda Pre-requisites
 
@@ -296,7 +296,7 @@ Image(filename='Anaconda3\\output\\contents1.JPG')
 
 Out[11]:
 
-![](.\images_4\2.jpg)
+![](./images_4/2.jpg)
 
 ```
 In [12]:
@@ -305,7 +305,7 @@ Image(filename='Anaconda3\\output\\contents2.JPG')
 
 Out[12]:
 
-![](.\images_4\3.jpg)
+![](./images_4/3.jpg)
 
 ## Inspection
 
@@ -321,7 +321,7 @@ proc print data=uk_accidents (firstobs = 266756);
 In [13]:
 df.head()
 
-![](.\images_4\4.jpg)
+![](./images_4/4.jpg)
 
 
 OBS=n in SAS determines the number of observations used as input.
@@ -340,7 +340,7 @@ This example uses the slicing operator to request columns by labels. Slicers wor
 In [14]:
 df[['Sex_of_Driver', 'Time']].head(10)
 
-![](.\images_4\5.jpg)
+![](./images_4/5.jpg)
 
 Notice the DataFrame default index (incrementing from 0 to 9). This is analogous to the SAS automatic variable _n_. Later, we illustrate using other columns in the DataFrame as the index.
 
@@ -423,7 +423,7 @@ Contrast the Python program in the cell above for calculating the mean of the ar
 
 Returning to our DataFrame, we need an analysis of missing values for all the columns. Pandas provide four methods for the detection and replacement of missing values. They are:
 
-![](.\images_4\6.jpg)
+![](./images_4/6.jpg)
 
 We will look at each of these in detail below.
 
@@ -531,7 +531,7 @@ Only a portion of the SAS output is shown since separate output is produced for 
 In [21]:
 Image(filename='Anaconda3\\output\\freq.JPG')
 
-![](.\images_4\7.jpg)
+![](./images_4/7.jpg)
 
 Another method for detecting missing values is to search column-wise by using the axis=1 parameter to the chained attributes .isnull().any(). The operation is then performed along columns.
 
@@ -540,7 +540,7 @@ In [22]:
 null_data = df[df.isnull().any(axis=1)]
 null_data.head()
 
-![](.\images_4\8.jpg)
+![](./images_4/8.jpg)
 
 
 
@@ -579,14 +579,14 @@ df2 = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.],
                     index=(list('abcdef')))
 display("df2")
 
-![](.\images_4\9.jpg)
+![](./images_4/9.jpg)
 
 ```
 In [25]:
 df_tf = df2.isnull()
 display("df2", "df_tf")
 
-![](.\images_4\10.jpg)
+![](./images_4/10.jpg)
 
 ```
 In [26]:
@@ -616,7 +616,7 @@ In [27]:
 df4 = df2.dropna(axis='columns')
 display("df2", "df4")
 
-![](.\images_4\11.jpg)
+![](./images_4/11.jpg)
 
 Clearly this drops a fair amount of 'good' data. The thresh parameter allows you to specify a minimum of non-null values to be kept for the row or column. In this case, row 'd' is dropped because it contains only 3 non-null values.
 
@@ -625,7 +625,7 @@ In [28]:
 df5 = df2.dropna(thresh=5)
 display("df2", "df5")
 
-![](.\images_4\12.jpg)
+![](./images_4/12.jpg)
 
 Rather than dropping rows and columns, missing values can be imputed or replaced. The .fillna() method returns either a Series or a DataFrame with null values replaced. The example below replaces all NaN's with zero.
 
@@ -634,7 +634,7 @@ In [29]:
 df6 = df2.fillna(0)
 display("df2", "df6")
 
-![](.\images_4\13.jpg)
+![](./images_4/13.jpg)
 
 As you can see from the example in cell #28 above, the .fillna() method is applied to all DataFrame cells. We may not wish to have missing values in df['col2'] replaced with zeros since they are strings. The method is applied to a list of target columns using the .loc method. The details for .loc method are discussed in Chapter 05--Understanding Indexes .
 
@@ -643,7 +643,7 @@ In [30]:
 df7 = df2[['col3', 'col4', 'col5', 'col6']].fillna(0)
 display("df2", "df7")
 
-![](.\images_4\14.jpg)
+![](./images_4/14.jpg)
 
 An imputation method based on the mean value of df['col6'] is shown below. The .fillna() method finds and then replaces all occurences of NaN with this calculated value.
 
@@ -652,7 +652,7 @@ In [31]:
 df8 = df2[["col3", "col4", "col5"]].fillna(df2.col6.mean())
 display("df2", "df8")
 
-![](.\images_4\15.jpg)
+![](./images_4/15.jpg)
 
 The corresponding SAS program is shown below. The PROC SQL SELECT INTO clause stores the calculated mean for the variable "col6" into the macro variable &col6_mean. This is followed by a Data Step iterating the array 'x' for "col3 - col5" replacing missing values with &col6_mean.
 
@@ -704,7 +704,7 @@ In [32]:
 df9 = df2.fillna(method='ffill')
 display("df2", "df9")
 
-![](.\images_4\16.jpg)
+![](./images_4/16.jpg)
 
 Simalarly, the .fillna(bfill) is a 'backwards' fill method. NaN's are replaced by the adjecent cell traversing 'up' the columns. Cell #32 constrasts the DataFrame df2, created in cell #23 above with the DataFrame df10 created with the 'backward' fill method.
 
@@ -713,7 +713,7 @@ In [33]:
 df10 = df2.fillna(method='bfill')
 display("df2", "df10")
 
-![](.\images_4\17.jpg)
+![](./images_4/17.jpg)
 
 Cell #34 contrasts DataFrame df9 created in cell #32 using the 'forward' fill method with DataFrame df10 created in cell #33 with the 'backward' fill method.
 
@@ -721,7 +721,7 @@ Cell #34 contrasts DataFrame df9 created in cell #32 using the 'forward' fill me
 In [34]:
 display("df9", "df10")
 
-![](.\images_4\18.jpg)
+![](./images_4/18.jpg)
 
 Before dropping the missing rows, calculate the portion of records lost in the accidents DataFrame, df created above.
 
