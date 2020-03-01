@@ -1,4 +1,4 @@
-<img align="right" src="../logo-small.png">
+<img align="right" src="./logo-small.png">
 
 # Lab : 
 
@@ -12,8 +12,10 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab4_DataTypes`
 
+##### Run Notebook
+Click notebook `Chapter 03  -- Data Types and Formatting.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Chapter 03 -- Data Types and Formatting
 ## Topics Covered:
