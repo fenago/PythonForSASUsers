@@ -19,24 +19,15 @@ Click notebook `Chapter 04 -- Pandas, Part 1.ipynb` in jupterLab UI and run jupy
 
 
 ## Topics covered:
-
-Importing Packages
-
-Series
-
-DataFrames
-
-Read .csv files
-
-Inspection
-
-Handling Missing Data
-
-Missing Data Detection
-
-Missing Value Replacement
-
-Resources
+- Importing Packages
+- Series
+- DataFrames
+- Read .csv files
+- Inspection
+- Handling Missing Data
+- Missing Data Detection
+- Missing Value Replacement
+- Resources
 
 This chapter introduces the Pandas library (or package). panda is a package built using NumPy (pronounced 'numb pie').
 
@@ -71,6 +62,7 @@ import pandas as pd
 from numpy.random import randn
 from pandas import Series, DataFrame, Index
 from IPython.display import Image
+```
 
 ## Series
 
@@ -223,7 +215,7 @@ Notice the backslash (\) to normalize the Window's path name.
 
 ```
 In [8]:
-file_loc2 = "C:\Data\\uk_accidents.csv"
+file_loc2 = "data/uk_accidents.csv"
 df = pd.read_csv(file_loc2, low_memory=False)
 PROC IMPORT is used to read the same .csv file. This is one of several methods for SAS to read a .csv file. Here we have taken the defaults.
 
@@ -291,7 +283,7 @@ memory usage: 55.0+ MB
 
 ```
 In [11]:
-Image(filename='Anaconda3\\output\\contents1.JPG')
+Image(filename='output/contents1.JPG')
 ```
 
 Out[11]:
@@ -300,7 +292,7 @@ Out[11]:
 
 ```
 In [12]:
-Image(filename='Anaconda3\\output\\contents2.JPG')
+Image(filename='output/contents2.JPG')
 ```
 
 Out[12]:
@@ -529,7 +521,7 @@ Only a portion of the SAS output is shown since separate output is produced for 
 
 ```
 In [21]:
-Image(filename='Anaconda3\\output\\freq.JPG')
+Image(filename='output/freq.JPG')
 
 ![](./images_4/7.jpg)
 

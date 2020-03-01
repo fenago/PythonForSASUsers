@@ -131,7 +131,7 @@ Observations not matching in both input data sets are included and their values 
     NOTE: Data set "WORK.merge_both" has 9 observation(s) and 5 variable(s)
 ```
 In [3]:
-Image(filename='Anaconda3\\output\\default_match_merge.JPG')
+Image(filename='output/default_match_merge.JPG')
 
 ![](./images_7/1.jpg)
 
@@ -218,7 +218,7 @@ An INNER JOIN selects only those rows whose key values are found in both tables.
 
 ```
 In [6]:
-Image(filename='Anaconda3\\output\\inner_join.JPG')
+Image(filename='output/inner_join.JPG')
 
 ![](./images_7/3.jpg)
 
@@ -273,7 +273,7 @@ To produce the output above a second SELECT statement is used to display the sin
 
 ```
 In [9]:
-Image(filename='Anaconda3\\output\\right_outer.JPG')
+Image(filename='output/right_outer.JPG')
 
 ![](./images_7/5.jpg)
 
@@ -317,7 +317,7 @@ PROC SQL Left Outer Join example. See the SAS SQL Right Outer Join example above
     38        quit;
 ```
 In [12]:
-Image(filename='Anaconda3\\output\\left_outer.JPG')
+Image(filename='output/left_outer.JPG')
 
 ![](./images_7/7.jpg)
 
@@ -361,7 +361,7 @@ PROC SQL Full Outer Join exanple. This is the default behavior for the SORT/MERG
     15       select * from sas_merge;
 ```
 In [15]:
-Image(filename='Anaconda3\\output\\full_outer_join.JPG')
+Image(filename='output/full_outer_join.JPG')
 
 ![](./images_7/9.jpg)
 
@@ -424,7 +424,7 @@ Start with the SAS Data Step for no matched keys in either the 'left' or 'right'
     52      title1 "if (L=0 or R=0)";
 ```
 In [18]:
-Image(filename='Anaconda3\\output\\nomatch.JPG')
+Image(filename='output/nomatch.JPG')
 
 ![](./images_7/11.jpg)
 
@@ -481,7 +481,7 @@ Locate the key value rows in the 'right' data set which have no corresponding ma
     18
 ```
 In [23]:
-Image(filename='Anaconda3\\output\\nomatch_in_right.JPG')
+Image(filename='output/nomatch_in_right.JPG')
 
 ![](./images_7/15.jpg)
 
@@ -530,7 +530,7 @@ Locate the key value rows in the 'left' data set having no corresonding match in
     102
 ```
 In [28]:
-Image(filename='Anaconda3\\output\\nomatch_in_left.JPG')
+Image(filename='output/nomatch_in_left.JPG')
 
 ![](./images_7/19.jpg)
 
@@ -609,7 +609,7 @@ The PROC SQL illustrating a many-to-many Outer Join.
     15      select * from m2m;
 ```
 In [36]:
-Image(filename='Anaconda3\\output\\many_2_many.JPG')
+Image(filename='output/many_2_many.JPG')
 
 
 ![](./images_7/24.jpg)
@@ -635,7 +635,7 @@ The SAS Data Step using the equivalent Full Outer Join with (L=1 or R=1) for the
     29      proc print data=m2m;
 ```
 In [37]:
-Image(filename='Anaconda3\\output\\m2m_datastep_merge.JPG')
+Image(filename='output/m2m_datastep_merge.JPG')
 
 ![](./images_7/25.jpg)
 

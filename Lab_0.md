@@ -21,7 +21,7 @@ Click notebook `Chapter 00 -- Motivation.ipynb` in jupterLab UI and run jupyter 
 ```
 In [1]:
 from IPython.display import Image
-Image(filename='Anaconda3\\output\\frontispiece.JPG')
+Image(filename='output/frontispiece.JPG')
 ```
 
 Out[1]:
@@ -72,7 +72,7 @@ To give a feel for the scope of this challenge, I created a hypothetical crossin
 ```
 In [1]:
 from IPython.display import Image
-Image(filename='Anaconda3\\output\\product_format_os.JPG')
+Image(filename='output/product_format_os.JPG')
 ```
 
 Out[1]:
@@ -92,6 +92,3 @@ I would encourage the SAS user community to use the SASWare Ballot or any other 
 SAS is certainly a long-standing leader and a significant part of the data science community. If one simply considers the product from the number of years SAS has been utilized by the quantity of data it holds in .sas7bdat files alone, then SAS software has one of the world's largest collection of data assets already organized for analysis and modeling.
 
 A claim to openness is only as good as the actions used to benefit the entire community and not just a portion.
-
-### Where to send Feedback
-If you have feedback, which is always appreciated, or have ideas for additions, improvements, or amendments, you can contact me at tr.betancourt at comcast dot net.

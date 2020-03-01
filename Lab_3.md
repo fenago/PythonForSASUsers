@@ -56,9 +56,16 @@ z = x*y
 print('x is:', type(x))
 print('y is:', type(y))
 print('z is:', z, 'with type:', type(z))
+```
+
+**Output**
+
+```
 x is: <class 'int'>
 y is: <class 'float'>
 z is: 1.5 with type: <class 'float'>
+```
+
 In the program below, the SAS variables x, y, and z are numeric. This example creates a temporary data set called “types”, which is searched within the dictionary tables (sashelp.vcolumn) to find the ‘type’ associated with these variables.
 
     /******************************************************/
@@ -87,7 +94,7 @@ In the program below, the SAS variables x, y, and z are numeric. This example cr
 ```
 In [2]:
 from IPython.display import Image
-Image(filename='Anaconda3\\output\\sas data types.JPG')
+Image(filename='output/sas data types.JPG')
 ```
 
 Out[2]:
@@ -314,6 +321,8 @@ s6 = "World"
 print(s5, s6)
 print(s5+s6) 
 print('Type() for s5 is:', type(s5))
+```
+
 Hello World
 HelloWorld
 Type() for s5 is: <class 'str'>
@@ -342,6 +351,7 @@ len(s5) + len(s6)
 
 Out[14]:
 10
+
 The SAS analog to finding the length of the concatenate string literals.
 
     /******************************************************/

@@ -133,7 +133,7 @@ A SAS analog of the tickets Dataframe is rendered using PROC TABULATE. Unlike th
     29                   area=' ' * nd=' ' * sum=' ' * tickets=' ';
 ```
 In [7]:
-Image(filename='Anaconda3\\output\\tabulate.JPG')
+Image(filename='output/tabulate.JPG')
 
 ![](./images_6/2.jpg)
 

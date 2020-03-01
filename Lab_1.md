@@ -75,12 +75,14 @@ Python has a number of built-in functions and types that are always available wh
 
 Consider the program in the cell below. Don't worry about the syntax for now. a_list is a Python list object. The a_list list is copied to another list object using the assignment:
 
-b_list = a_list
+`b_list = a_list`
+
 It turns out that while a_list and b_list are equivalent, they both point to the same memory location. In other words, b_list refers to the object a_list and does not represent the object itself.
 
 The program statement:
 
-del a_list[0]
+`del a_list[0]`
+
 removes the first item from the a_list list object. When we print the list objects, you see how both have the first item removed. The effect is subtle, but not one you will likely encounter a great deal. But certainly a subtly to be aware of.
 
 ![](./images_1/3.jpg)
@@ -92,6 +94,7 @@ removes the first item from the a_list list object. When we print the list objec
 
 The Zen of Python, by Tim Peters
 
+```
 Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
@@ -111,6 +114,7 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
+```
 
 ### Ledgibility, Indentation, and Spelling Matter
 

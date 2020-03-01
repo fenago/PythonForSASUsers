@@ -162,7 +162,7 @@ Not surprisingly, the pandas GroupBy logic is analogous to SQL's group by syntax
     12       order by mean;
 ```
 In [9]:
-Image(filename='Anaconda3\\output\\income_groupby_grade.JPG')
+Image(filename='output/income_groupby_grade.JPG')
 
 ![](./images_10/1.jpg)
 
@@ -191,7 +191,7 @@ The analog SAS program using the MEAN, STD, and COUNT function to produce the sa
    11       order by mean;
 ```
 In [11]:
-Image(filename='Anaconda3\\output\\groupby_income_stats.JPG')
+Image(filename='output/groupby_income_stats.JPG')
 
 ![](./images_10/3.jpg)
 
@@ -233,7 +233,7 @@ The analog SAS program.
     26       quit;
 ```
 In [14]:
-Image(filename='Anaconda3\\output\\groupby_grade_count.JPG')
+Image(filename='output/groupby_grade_count.JPG')
 
 ![](./images_10/5.jpg)
 
@@ -258,7 +258,7 @@ Out[15]:
     38       quit;
 ```
 In [16]:
-Image(filename='Anaconda3\\output\\groupby_grade_G.JPG')
+Image(filename='output/groupby_grade_G.JPG')
 
 ![](./images_10/6.jpg)
 
@@ -294,7 +294,7 @@ The analog SAS PROC SQL example.
     51       quit;
 ```
 In [18]:
-Image(filename='Anaconda3\\output\\groupby_grade_income_descend.JPG')
+Image(filename='output/groupby_grade_income_descend.JPG')
 
 ![](./images_10/7.jpg)
 
@@ -400,7 +400,7 @@ The analog SAS program uses PROC SQL to find min and man for the 'dti' column, p
     45      quit;
 ```
 In [28]:
-Image(filename='Anaconda3\\output\\groupby_dti_cat_income.JPG')
+Image(filename='output/groupby_dti_cat_income.JPG')
 
 ![](./images_10/9.jpg)
 
@@ -494,7 +494,7 @@ However, the default results between pd.qcut() method and PROC RANK are differen
 
 ```
 In [35]:
-Image(filename='Anaconda3\\output\\default_income_deciles.JPG')
+Image(filename='output/default_income_deciles.JPG')
 
 ![](./images_10/11.jpg)
 
@@ -516,7 +516,7 @@ NOTE: Data set "WORK.r_df" has 42595 observation(s) and 23 variable(s)
 66      quit;
 ```
 In [36]:
-Image(filename='Anaconda3\\output\\deciles_ties_low.JPG')
+Image(filename='output/deciles_ties_low.JPG')
 
 ![](./images_10/12.jpg)
 
@@ -558,7 +558,7 @@ The analog SAS program uses PROC FREQ.
     17      tables dti_cat * r_income /nocol nocum norow nopercent;
 ```
 In [39]:
-Image(filename='Anaconda3\\output\\pd_crosstab.JPG')
+Image(filename='output/pd_crosstab.JPG')
 
 ![](./images_10/15.jpg)
 
@@ -699,7 +699,7 @@ The analog SAS program combines the creating of income deciles using PROC RANK a
     86      quit;
 ```
 In [50]:
-Image(filename='Anaconda3\\output\\income_zcore_table.JPG')
+Image(filename='output/income_zcore_table.JPG')
 
 ![](./images_10/17.jpg)
 

@@ -199,7 +199,7 @@ Start with a test read of the entire .csv file. The pd.read_csv method has the o
 
 ```
 In [12]:
-df_all = pd.read_csv("C:\Data\\HPI_master.csv")
+df_all = pd.read_csv("data/HPI_master.csv")
 Inspect the first 5 rows to determine if the read_csv() method is giving the expected results.
 
 ```
@@ -218,7 +218,7 @@ The nrows= argument value is set to 3080.
 
 ```
 In [14]:
-df_us = pd.read_csv("C:\Data\\HPI_master.csv",
+df_us = pd.read_csv("data/HPI_master.csv",
                  parse_dates={'date_idx': [6,7]},
                  nrows=3080)
 ```
@@ -393,7 +393,7 @@ Beginning with row 3082 the values for the field 'index_sa' are missing. Begin t
 
 ```
 In [29]:
-df_states = pd.read_csv("C:\Data\\HPI_master.csv",                 
+df_states = pd.read_csv("data/HPI_master.csv",                 
             skiprows=3082,
             usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8),
             names=('hpi_type', 'hpi_flavor', 'frequency', 'level', 'place_name', 'place_id', 'yr', 'period', 'index_nsa'),
@@ -465,7 +465,7 @@ Display the first 5 rows of the SAS data set df_states. In the SAS code example 
 
 ```
 In [35]:
-Image(filename='Anaconda3\\output\\df_states_output.JPG')
+Image(filename='output/df_states_output.JPG')
 
 ![](./images_9/3.jpg)
 
@@ -500,7 +500,7 @@ PROC SQL used to obtain unique values from the variable 'level'.
 
 ```
 In [38]:
-Image(filename='Anaconda3\\output\\level_unique_values.JPG')
+Image(filename='output/level_unique_values.JPG')
 
 ![](./images_9/5.jpg)
 
@@ -584,7 +584,7 @@ PROC SQL for finding min and max for the variable 'index_nsa'.
 43      quit;
 ```
 In [47]:
-Image(filename='Anaconda3\\output\\max_min_index_nsa.JPG')
+Image(filename='output/max_min_index_nsa.JPG')
 
 ![](./images_9/6.jpg)
 
@@ -687,7 +687,7 @@ The Data Step below is continued from the SAS Data Step example above used to re
     23      quit;
 ```
 In [53]:
-Image(filename='Anaconda3\\output\\2016_min_max.JPG')
+Image(filename='output/2016_min_max.JPG')
 
 ![](./images_9/7.jpg)
 
