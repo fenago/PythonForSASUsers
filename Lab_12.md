@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Additional Data Handling 
 
 #### Pre-reqs:
 - Google Chrome (Recommended)

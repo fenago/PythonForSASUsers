@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Date, Time, and Timedelta Objects
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -17,8 +17,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab9_Objects`
 
 ##### Run Notebook
 Click notebook `Chapter 08 -- Date, Time, and  Timedelta Objects.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 08 -- Date, Time, and Timedelta Objects
 
 ## Topics Covered:
 

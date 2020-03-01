@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Pandas, Part 1
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -17,8 +17,9 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab5_Pandas`
 ##### Run Notebook
 Click notebook `Chapter 04 -- Pandas, Part 1.ipynb` in jupterLab UI and run jupyter notebook.
 
-Chapter 04 -- Pandas, Part 1
-Topics covered:
+
+## Topics covered:
+
 Importing Packages
 
 Series

@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Pandas, Part2
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -14,11 +14,8 @@ All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste:
 
 You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab8_Pandas`
 
-
 ##### Run Notebook
 Click notebook `Chapter 07 -- Pandas, Part 2.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 07 -- Pandas, Part2
 
 ## Topics Covered
 

@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Data Structures
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -16,8 +16,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab3_DataStructur
 
 ##### Run Notebook
 Click notebook `Chapter 02 -- Data Structures.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 02 -- Data Structures
 
 ## Topics Covered:
 

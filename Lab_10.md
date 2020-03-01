@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Groupby
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -16,8 +16,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab11_Groupby`
 
 ##### Run Notebook
 Click notebook `Chapter 10 -- Groupby.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 10 -- Groupby
 
 ## Topics Covered:
 

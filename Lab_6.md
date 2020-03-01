@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Hierarchical Indexing
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -16,8 +16,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab7_Indexing`
 
 ##### Run Notebook
 Click notebook `Chapter 06 -- Hierarchical Indexing.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 06 -- Hierarchical Indexing
 
 ## Topics Covered
 

@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Data Interchange not working with SAS
 
 #### Pre-reqs:
 - Google Chrome (Recommended)

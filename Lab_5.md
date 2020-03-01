@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Understanding Indexes
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -16,8 +16,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab6_Indexes`
 
 ##### Run Notebook
 Click notebook `Chapter 05 -- Understanding Indexes.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 05 -- Understanding Indexes
 
 ## Topics Covered
 

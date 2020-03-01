@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Motivation
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -17,7 +17,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab1_Motivation`
 ##### Run Notebook
 Click notebook `Chapter 00 -- Motivation.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Chapter 00 -- Motivation
 ### Python for SAS Users
 In [1]:
 from IPython.display import Image

@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Introduction
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -17,7 +17,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab2_Introduction
 ##### Run Notebook
 Click notebook `Chapter 01 -- Introduction.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Chapter 01--Introduction
 ### Why Python?
 
 There are plenty of substantive open source software projects out there for data scientists, so why choose Python? After all, there is R. R is a robust and well-supported language written initially by statistician for statisticians.

@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Data Types and Formatting
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -17,7 +17,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab4_DataTypes`
 ##### Run Notebook
 Click notebook `Chapter 03  -- Data Types and Formatting.ipynb` in jupterLab UI and run jupyter notebook.
 
-## Chapter 03 -- Data Types and Formatting
 ## Topics Covered:
 
 Numerics

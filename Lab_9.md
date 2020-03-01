@@ -1,6 +1,6 @@
 <img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Panda Time Series and Date Handling
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -16,8 +16,6 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab10_TimeSeries`
 
 ##### Run Notebook
 Click notebook `Chapter 09 -- Panda Time Series and Date Handling.ipynb` in jupterLab UI and run jupyter notebook.
-
-## Chapter 09 -- Panda Time Series and Date Handling
 
 ## Topics Covered:
 
