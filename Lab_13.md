@@ -270,7 +270,7 @@ df_medals = pd.read_csv("http://winterolympicsmedals.com/medals.csv")
 In [21]:
 df_medals.head()
 
-![](.\images_13\1.jpg)
+![](./images_13/1.jpg)
 
 Call the sas.df2sd method to create the SAs dataset WORK.medals2
 

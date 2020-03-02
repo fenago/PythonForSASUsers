@@ -99,14 +99,14 @@ Inspect the first 5 rows of the 'df_states' DataFrame.
 In [4]:
 df_states.head()
 
-![](.\images_12\1.jpg)
+![](./images_12/1.jpg)
 
 Inspect the first 5 rows of the SAS data set df_states.
 
 In [5]:
 Image(filename='Anaconda3\\output\\df_states_output.JPG')
 
-![](.\images_12\2.jpg)
+![](./images_12/2.jpg)
 
 Exam the default sort by supplying the the sort key as the minimum argument to the .sort_values() attribute. The sort operation creates the new 'default_srt' DataFrame.
 
@@ -117,7 +117,7 @@ Display the first 4 rows of the sorted DataFrame 'default_srt'
 In [7]:
 default_srt.iloc[0:4]
 
-![](.\images_12\3.jpg)
+![](./images_12/3.jpg)
 
 By examing the first the first four rows of the sorted DataFrame, 'default_srt' we see the default sort sequence is ascending. Of course, by reading the doc for pandas.DataFrame.sort_values we could 'see' this as well.
 
@@ -137,7 +137,7 @@ Like panda the default SAS sort sequence is ascending. This is confirmed by the 
 In [8]:
 Image(filename='Anaconda3\\output\\default_first_four.JPG')
 
-![](.\images_12\4.jpg)
+![](./images_12/4.jpg)
 
 In contrast to the panda default sort the default SAS sort sequence places its missing values first in the data set as illustrated above.
 
@@ -146,7 +146,7 @@ Displaying the last 4 rows in the 'default_srt' DataFrame finds the 2 NaN's sort
 In [9]:
 default_srt.tail(4)
 
-![](.\images_12\5.jpg)
+![](./images_12/5.jpg)
 
 panda's default sort sequence places NaN's last in the sort sequence by default and can be used as an alternative to boolean operators and the .loc() method to detect missing values.
 
@@ -164,7 +164,7 @@ The SAS program to access the last four observations in the data set is:
 In [10]:
 Image(filename='Anaconda3\\output\\sort_last_four.JPG')
 
-![](.\images_12\6.jpg)
+![](./images_12/6.jpg)
 
 Alter the organization of the 'states_desc' DataFrame by supplying arguments and values to the sort_values() attribute. The example below sorts descending placeing missing values at the beginning of the DataFrame.
 
@@ -177,7 +177,7 @@ The first two rows in the DataFrame 'states_desc' contain the NaN's values for t
 In [12]:
 states_desc.iloc[0:4,]
 
-![](.\images_12\7.jpg)
+![](./images_12/7.jpg)
 
 SAS has missing 28 missing value indicators for numerics described here . However, if you want missing values to be 'first' in a data set using an ascending sort sequence, then the missing value indicator must be an actual numeric value larger than the largest non-missing value. In other words, by default, the SAS missing value indicator for numerics is always the smallest numeric value.
 
@@ -202,7 +202,7 @@ syntax creates the new SAS data set 'states_srt2'.
 In [13]:
 Image(filename='Anaconda3\\output\\sort_last4_descending.JPG')
 
-![](.\images_12\8.jpg)
+![](./images_12/8.jpg)
 
 The section below examines a number of common data management patterns for analysis.
 
@@ -429,7 +429,7 @@ Out[25]:
 In [26]:
 lc1.describe(include=['O'])
 
-![](.\images_12\9.jpg)
+![](./images_12/9.jpg)
 
 Both the lc1['rate'] and lc1['revol_util'] column values are formatted with Excel's percent format (%), making them string values. The .replace() method replaces the '%' with a white-space. The .astype attribute converts the string into a float. The resulting float is divided by 100.
 
@@ -534,12 +534,12 @@ The analog SAS program uses the SET statement to join the data sets 'lc0' and 'l
 In [35]:
 pd.crosstab(df.grade, df.own_rnt , margins=True)
 
-![](.\images_12\10.jpg)
+![](./images_12/10.jpg)
 
 In [36]:
 pd.crosstab([df.grade, df.own_rnt], df.purpose, margins=True)
 
-![](.\images_12\11.jpg)
+![](./images_12/11.jpg)
 
 ## Sampling
 
@@ -628,7 +628,7 @@ The df['inc_cat'] column containing income deciles used as the rows and values f
 In [48]:
 pd.crosstab(df.inc_cat, [df.ln_plcy, df.grade] , margins=True)
 
-![](.\images_12\12.jpg)
+![](./images_12/12.jpg)
 
 ## Save to Disk
 
