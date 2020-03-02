@@ -1,6 +1,6 @@
-<img align="right" src="../logo-small.png">
+<img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Introduction
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -12,10 +12,11 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab2_Introduction`
 
+##### Run Notebook
+Click notebook `Chapter 01 -- Introduction.ipynb` in jupterLab UI and run jupyter notebook.
 
-### Chapter 01--Introduction
 ### Why Python?
 
 There are plenty of substantive open source software projects out there for data scientists, so why choose Python? After all, there is R. R is a robust and well-supported language written initially by statistician for statisticians.
@@ -54,7 +55,7 @@ This approach is illustrated by the next 3 cells below. The analog SAS program i
 
 The list of numbers contained inside the square brackets [ ] make up the elements in a Python list. In Python, a list is a data structure that holds an arbitrary collection of items. is an integer used as the index for the for loop. holds the integer value from the arithmetic assignment of Finally, the method writes the output. The same program is written in SAS as shown below.
 
-![](.\images_1\1.jpg)
+![](./images_1/1.jpg)
 
 ### Python Terminology
 
@@ -68,29 +69,32 @@ My early experiences was that the object types I created were not always obvious
 
 Python has a number of built-in functions and types that are always available which are documented here. Later on, we will see how Python expands its capabilities through importing packages (libraries).
 
-![](.\images_1\2.jpg)
+![](./images_1/2.jpg)
 
 ### Object References
 
 Consider the program in the cell below. Don't worry about the syntax for now. a_list is a Python list object. The a_list list is copied to another list object using the assignment:
 
-b_list = a_list
+`b_list = a_list`
+
 It turns out that while a_list and b_list are equivalent, they both point to the same memory location. In other words, b_list refers to the object a_list and does not represent the object itself.
 
 The program statement:
 
-del a_list[0]
+`del a_list[0]`
+
 removes the first item from the a_list list object. When we print the list objects, you see how both have the first item removed. The effect is subtle, but not one you will likely encounter a great deal. But certainly a subtly to be aware of.
 
-![](.\images_1\3.jpg)
+![](./images_1/3.jpg)
 
 
 ### The Zen of Python, by Tim Peters
 
-![](.\images_1\4.jpg)
+![](./images_1/4.jpg)
 
 The Zen of Python, by Tim Peters
 
+```
 Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
@@ -110,6 +114,7 @@ Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
+```
 
 ### Ledgibility, Indentation, and Spelling Matter
 
@@ -125,22 +130,18 @@ Notice also there appear to be no symbols used to end a program statement. The e
 
 Coincidently, like SAS, Python will also honor a semi-colon as an end of statement terminator. However, you rarely see this. That's because multiple statements on the same physical line is considered an affront to program legibility.
 
-![](.\images_1\5.jpg)
+![](./images_1/5.jpg)
 
 ### Line continuation symbol
 
-Should you find you have a line of code that needs to extend past the physical line (i.e. wrap), then use the backslash (\). This causes the Python interpreter to ignore the physical end-of-line terminator on the current line and continuing scanning for the next end-of-line terminator.
+Should you find you have a line of code that needs to extend past the physical line (i.e. wrap), then use the backslash (\\). This causes the Python interpreter to ignore the physical end-of-line terminator on the current line and continuing scanning for the next end-of-line terminator.
 
-![](.\images_1\6.jpg)
+![](./images_1/6.jpg)
 
 ### Spelling
 
 Of course, the incorrect spelling of keywords is a source of error. Unlike SAS, in Python, object names are case sensetive.
 
-![](.\images_1\7.jpg)
+![](./images_1/7.jpg)
 
 Finally, a word about name choices. Names should be descriptive because more than likely you will be one who has to re-read and understand tomorrow the code you write today. As with any language, it is a good practice to avoid language keywords for object names.
-
-### Navigation
-
-Return to Chapter List

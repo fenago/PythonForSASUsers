@@ -1,6 +1,6 @@
-<img align="right" src="../logo-small.png">
+<img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Panda Readers
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -12,10 +12,10 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab12_Readers`
 
-
-## Chapter 11 -- Panda Readers
+##### Run Notebook
+Click notebook `Chapter 11 -- Panda Readers.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered
 
@@ -496,6 +496,3 @@ How to pull data from a microsoft sql database
 
 defining the create_engine() method from the SQLAlchemy doc.
 
-## Navigation
-
-Return to Chapter List

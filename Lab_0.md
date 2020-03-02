@@ -1,6 +1,6 @@
-<img align="right" src="../logo-small.png">
+<img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Motivation
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -12,16 +12,21 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab1_Motivation`
 
-### Chapter 00 -- Motivation
+##### Run Notebook
+Click notebook `Chapter 00 -- Motivation.ipynb` in jupterLab UI and run jupyter notebook.
+
 ### Python for SAS Users
+```
 In [1]:
 from IPython.display import Image
-Image(filename='Anaconda3\\output\\frontispiece.JPG')
+Image(filename='output/frontispiece.JPG')
+```
+
 Out[1]:
 
-![](.\images_0\1.jpg)
+![](./images_0/1.jpg)
 
 Chesler Park, Needles District in Canyonlands Nation Park, Utah
 
@@ -64,12 +69,15 @@ Hearing these comments and thinking back to my experiences while working for SAS
 
 To give a feel for the scope of this challenge, I created a hypothetical crossing of department by server by file formats easily encountered in a large enterprise today.
 
+```
 In [1]:
 from IPython.display import Image
-Image(filename='Anaconda3\\output\\product_format_os.JPG')
+Image(filename='output/product_format_os.JPG')
+```
+
 Out[1]:
 
-![](.\images_0\2.jpg)
+![](./images_0/2.jpg)
 
 One might quibble with a couple of non-existent crossings being in the table. The number of cells is 504. But consider all of the formats not included, and the fact that most large enterprises have scores of department. By any measure, the scope of this issue is quite large.
 
@@ -84,9 +92,3 @@ I would encourage the SAS user community to use the SASWare Ballot or any other 
 SAS is certainly a long-standing leader and a significant part of the data science community. If one simply considers the product from the number of years SAS has been utilized by the quantity of data it holds in .sas7bdat files alone, then SAS software has one of the world's largest collection of data assets already organized for analysis and modeling.
 
 A claim to openness is only as good as the actions used to benefit the entire community and not just a portion.
-
-### Where to send Feedback
-If you have feedback, which is always appreciated, or have ideas for additions, improvements, or amendments, you can contact me at tr.betancourt at comcast dot net.
-
-### Navigation
-Return to Chapter List

@@ -1,6 +1,6 @@
-<img align="right" src="../logo-small.png">
+<img align="right" src="./logo-small.png">
 
-# Lab : 
+# Lab : Groupby
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -12,10 +12,10 @@ Notebooks are ready to run. All packages have been installed. There is no requir
 
 All Notebooks are present in `work/PythonForSASUsers` folder. To copy and paste: use **Control-C** and to paste inside of a terminal, use **Control-V**
 
-You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab`
+You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab11_Groupby`
 
-
-## Chapter 10 -- Groupby
+##### Run Notebook
+Click notebook `Chapter 10 -- Groupby.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered:
 
@@ -39,6 +39,7 @@ Top/Bottom N processing
 
 Resources
 
+```
 In [1]:
 import numpy as np
 import pandas as pd
@@ -49,6 +50,7 @@ from IPython.display import Image
 
 For this notebook, display floats with a field width of 20 and two places left of the decimal.
 
+```
 In [2]:
 pd.options.display.float_format = '{:20,.2f}'.format
 
@@ -56,15 +58,20 @@ pd.options.display.float_format = '{:20,.2f}'.format
 
 The pd.read_pickle() function loads the Lending Club Data Frame created in Chapter 12, Additional Data Handling. The pd.read_pickle() method is documented here.
 
+```
 In [3]:
 loans = pd.read_pickle('lending_club.pkl')
 loans.shape
+```
+
 Out[3]:
 (42595, 24)
+```
 In [4]:
 loans.set_index('id', inplace=True)
 Display attribute information for the 'loans' DataFrame.
 
+```
 In [5]:
 loans.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -100,6 +107,7 @@ memory usage: 6.9+ MB
 
 Create the GroupBy object 'grp_grd' using the key column 'grade'. It does not compute anything until an operation is applied to the resulting groups. One of the simplest aggregation method applied is the len() function used to return the number of groups. The GroupBy: split-apply-combine doc for panda is located here.
 
+```
 In [6]:
 grp_grd = loans.groupby('grade')
 print(type(grp_grd))
@@ -108,8 +116,11 @@ print(len(grp_grd))
 7
 The GroupBy object has a number of aggregation methods which can be applied to individual group levels, for example .mean().
 
+```
 In [7]:
 grp_grd['income'].mean()
+```
+
 Out[7]:
 grade
 A              66,711.88
@@ -122,8 +133,11 @@ G              93,055.82
 Name: income, dtype: float64
 Even if we do not use the GroupBy object created above, we can still render the average income for each level of the column 'grade' by passing the DataFrame column name. In this case, 'income' grouped by grade to calculate the group mean.
 
+```
 In [8]:
 loans.groupby('grade')['income'].mean()
+```
+
 Out[8]:
 grade
 A              66,711.88
@@ -146,18 +160,20 @@ Not surprisingly, the pandas GroupBy logic is analogous to SQL's group by syntax
     10       from df
     11       group by grade
     12       order by mean;
+```
 In [9]:
-Image(filename='Anaconda3\\output\\income_groupby_grade.JPG')
+Image(filename='output/income_groupby_grade.JPG')
 
-![](.\images_9\1.jpg)
+![](./images_10/1.jpg)
 
 GroupBy with Aggregations
 We can use the .aggregate() attribute to apply multiple methods to the group levels.
 
+```
 In [10]:
 grp_grd['income'].aggregate(['mean', 'std', 'count'])
 
-![](.\images_9\2.jpg)
+![](./images_10/2.jpg)
 
 The analog SAS program using the MEAN, STD, and COUNT function to produce the same results.
 
@@ -173,22 +189,27 @@ The analog SAS program using the MEAN, STD, and COUNT function to produce the sa
    9       from df
    10       group by grade
    11       order by mean;
+```
 In [11]:
-Image(filename='Anaconda3\\output\\groupby_income_stats.JPG')
+Image(filename='output/groupby_income_stats.JPG')
 
-![](.\images_10\3.jpg)
+![](./images_10/3.jpg)
 
 We can requests multiple columns as part of the GroupBy operation. In this case, loans['income'] and loans['dti'] (debt-to-income ratio). The .describe() attribute is applied to each of the group levels. The .stack() .and unstack() attributes are discussed here .
 
+```
 In [12]:
 grp_grd['income', 'dti'].describe().unstack()
 
-![](.\images_10\4.jpg)
+![](./images_10/4.jpg)
 
 The GroupBy .size() attribute returns a count of the number of values for each level. Of course, this same information is available as the loans['count'] column from the operation executed in the cell above.
 
+```
 In [13]:
 grp_grd.size()
+```
+
 Out[13]:
 grade
 A    10202
@@ -210,15 +231,19 @@ The analog SAS program.
     24       from df
     25       group by grade;
     26       quit;
+```
 In [14]:
-Image(filename='Anaconda3\\output\\groupby_grade_count.JPG')
+Image(filename='output/groupby_grade_count.JPG')
 
-![](.\images_10\5.jpg)
+![](./images_10/5.jpg)
 
 The .get_group attribute returns information about a particular group level.
 
+```
 In [15]:
 grp_grd.get_group('G').mem_id.count()
+```
+
 Out[15]:
 512
     /******************************************************/
@@ -231,15 +256,19 @@ Out[15]:
     36       group by grade;
     37       
     38       quit;
+```
 In [16]:
-Image(filename='Anaconda3\\output\\groupby_grade_G.JPG')
+Image(filename='output/groupby_grade_G.JPG')
 
-![](.\images_10\6.jpg)
+![](./images_10/6.jpg)
 
 We can chain attributes together to produce the desired results. Details for sorting values in DataFrames are discussed in Sort and Sort Sequences in Chapter 12--Additional Data Handling.
 
+```
 In [17]:
 grp_grd.income.mean().sort_values(ascending=False)
+```
+
 Out[17]:
 grade
 G              93,055.82
@@ -263,10 +292,11 @@ The analog SAS PROC SQL example.
     49       order by 2 descending;
     50       
     51       quit;
+```
 In [18]:
-Image(filename='Anaconda3\\output\\groupby_grade_income_descend.JPG')
+Image(filename='output/groupby_grade_income_descend.JPG')
 
-![](.\images_10\7.jpg)
+![](./images_10/7.jpg)
 
 ## Understanding Binning
 
@@ -274,6 +304,7 @@ In this section, we want to create output displaying the statistics, N, mean, an
 
 Start by displaying the min and max values for the loans['dti'] column to determine 'bucket' sizes.
 
+```
 In [19]:
 print(loans.dti.min())
 print(loans.dti.max())
@@ -281,31 +312,43 @@ print(loans.dti.max())
 29.99
 Return the count of continous values in the column loans['dti'].
 
+```
 In [20]:
 loans.dti.count()
+```
+
 Out[20]:
 42595
 Use the pd.cut() method to bin continuous vales into discreet values, or categories. Additional examples for pd.cut() are found in the section "Binning Continuous Values" in Chapter 12, located here. pd.cut is analogous to user defined SAS formats.
 
+```
 In [21]:
 bins = [0.0, 10.0, 20.0, 30.0]
 names=['Low', 'Medium', 'High']
 Create the new column loans['dti_cat'] in the loans DataFrame.
 
+```
 In [22]:
 loans['dti_cat'] = pd.cut(loans['dti'], bins, labels=names)
 We expect the number of values for both the value count for loans['dti'] and categorical values in the loans['dti_cat'] column to be the same.
 
+```
 In [23]:
 loans.dti.count() == loans.dti_cat.count()
+```
+
 Out[23]:
 False
 By default, the pd.cut() method sets the right= argument to True. From the doc, "Indicates whether the bins include the rightmost edge or not. If right == True (the default), then the bins [1,2,3,4] indicate (1,2], (2,3], (3,4]".
 
+```
 In [24]:
 loans['dti_cat'] = pd.cut(loans['dti'], bins, right=False, labels=names)
+```
 In [25]:
 loans.dti.count() == loans.dti_cat.count()
+```
+
 Out[25]:
 True
 
@@ -313,10 +356,13 @@ True
 
 Define the function 'stats' which returns the desired statistics, mean, std (standard deviation), and count (N). The type() method returns the object's type.
 
+```
 In [26]:
 def stats(grp):
     return {'mean': grp.mean(), 'std': grp.std(), 'count':grp.count()}
 type(stats)
+```
+
 Out[26]:
 function
 
@@ -324,10 +370,11 @@ function
 
 Putting these together, the 'income' column is grouped-by the loans['dti_cat'] column displaying the rows labeled, 'Low', 'Medium', and 'High'. The .apply() attribute applies the 'stats' function to create the columns, 'count', 'mean', 'std'. The .unstack() attribute places the output in a 'tall and skinny' format.
 
+```
 In [27]:
 loans['income'].groupby(loans['dti_cat']).apply(stats).unstack()
 
-![](.\images_10\8.jpg)
+![](./images_10/8.jpg)
 
 The analog SAS program uses PROC SQL to find min and man for the 'dti' column, performs the aggregation funtions, and uses the CASE statement to define 'bins' for the new column 'dti_cat'.
 
@@ -351,23 +398,26 @@ The analog SAS program uses PROC SQL to find min and man for the 'dti' column, p
     43      from df
     44      group by calculated dti_cat;
     45      quit;
+```
 In [28]:
-Image(filename='Anaconda3\\output\\groupby_dti_cat_income.JPG')
+Image(filename='output/groupby_dti_cat_income.JPG')
 
-![](.\images_10\9.jpg)
+![](./images_10/9.jpg)
 
 For another example define the 'max_min' function for calculating a range and apply it income values grouped by loans['dti_cat'] levels nested inside loans['grade'] levels.
 
+```
 In [29]:
 def max_min(x):
         return x.max() - x.min()
 dti_grd_grp = loans.groupby(['grade', 'dti_cat'])
 dti_grd_grp.income.agg(max_min).unstack()
 
-![](.\images_10\10.jpg)
+![](./images_10/10.jpg)
 
 The range for the income values is large with extremes in both directions. Rather than 'bucketing' these values into arbitrary sizes, another approach is to place values into deciles.
 
+```
 In [30]:
 print(loans.income.min())
 print(loans.income.max())
@@ -375,12 +425,16 @@ print(loans.income.max())
 6000000.0
 Similar to the pd.cut() method is the pd.qcut() method for creating deciles which is documented here. The operation below creates the new column loans['inc_cat_dec'] for the 'loans' DataFrame.
 
+```
 In [31]:
 loans['inc_cat_dec'] = pd.qcut(loans['income'], q=10)
 Using the income deciles, return a count for each level in descending sorted order.
 
+```
 In [32]:
 pd.value_counts(loans['inc_cat_dec'].sort_values())
+```
+
 Out[32]:
 [1896, 30000]          5088
 (75600, 90000]         4436
@@ -395,9 +449,12 @@ Out[32]:
 Name: inc_cat_dec, dtype: int64
 The bin value ranges are a bit unwieldy. An alternative is to map the bin value ranges into category codes.
 
+```
 In [33]:
 loans['inc_cat_dec'] = pd.qcut(loans['income'].values, 10).codes
 pd.value_counts(loans['inc_cat_dec'].sort_values())
+```
+
 Out[33]:
 0    5088
 7    4436
@@ -410,8 +467,11 @@ Out[33]:
 8    4082
 1    3433
 Name: inc_cat_dec, dtype: int64
+```
 In [34]:
 loans.income.count() == loans.inc_cat_dec.count()
+```
+
 Out[34]:
 True
 With SAS, the traditional method for creating deciles is through PROC RANK as illustrated below.
@@ -432,10 +492,11 @@ With SAS, the traditional method for creating deciles is through PROC RANK as il
     107      quit;
 However, the default results between pd.qcut() method and PROC RANK are different.
 
+```
 In [35]:
-Image(filename='Anaconda3\\output\\default_income_deciles.JPG')
+Image(filename='output/default_income_deciles.JPG')
 
-![](.\images_10\11.jpg)
+![](./images_10/11.jpg)
 
 The difference are attributable to the method by which PROC RANK handles 'tied' values. PROC RANK provides the TIES= option and when set to LOW, the results are the same as the pd.qcut() method. You can read more about how PROC RANK treats tied values here.
 
@@ -453,26 +514,29 @@ NOTE: Data set "WORK.r_df" has 42595 observation(s) and 23 variable(s)
 64      group by r_income
 65      order by count descending;
 66      quit;
+```
 In [36]:
-Image(filename='Anaconda3\\output\\deciles_ties_low.JPG')
+Image(filename='output/deciles_ties_low.JPG')
 
-![](.\images_10\12.jpg)
+![](./images_10/12.jpg)
 
 Use the created column loans['inc_cat_dec'] for income deciles to display statistics provided by the 'stats' function created above to return count, mean, and standard deviation.
 
+```
 In [37]:
 loans['income'].groupby(loans['inc_cat_dec']).apply(stats).unstack()
 
-![](.\images_10\13.jpg)
+![](./images_10/13.jpg)
 
 pandas crosstabs is another method for accessing GroupBy processing using two factors, or categorical columns. In the example below, the values= argument is monthly payments loans['income'] column using the aggregation function count. Additional crosstab examples are found in the crosstabs section of Chapter, 12--Additional Data Handling.
 
+```
 In [38]:
 pd.crosstab([loans.dti_cat], [loans.inc_cat_dec], \
              values=loans.income, aggfunc='count', margins=True, colnames=['Income Deciles'], rownames=['Debt/Income Ratio'])
 
 
-![](.\images_10\14.jpg)
+![](./images_10/14.jpg)
 
 The analog SAS program uses PROC FREQ.
 
@@ -492,42 +556,54 @@ The analog SAS program uses PROC FREQ.
     15      
     16      proc freq data=tables order=formatted;
     17      tables dti_cat * r_income /nocol nocum norow nopercent;
+```
 In [39]:
-Image(filename='Anaconda3\\output\\pd_crosstab.JPG')
+Image(filename='output/pd_crosstab.JPG')
 
-![](.\images_10\15.jpg)
+![](./images_10/15.jpg)
 
 ## Applying Transformations to Groups
 
 A fairly common pattern is standardization and transformation of values. In the cell below, the new column loans['iz_all'] is added to the 'loans' DataFrame. It computes a zscore by subtracting the mean value for income from income and dividing by the standard deviation.
 
+```
 In [40]:
 loans['iz_all'] = (loans.income - loans.income.mean()) / loans.income.std()
+```
 In [41]:
 loans['iz_all'].isnull().sum()
+```
+
 Out[41]:
 0
 However, we want to calculate zscores by deciles rather than the overall mean for income. Start by creating the grouper for the loans['inc_cat'] column which is the deciles created with the pd.qcut() method above.
 
+```
 In [42]:
 grp_inc_cat = loans.groupby('inc_cat')
 Create the zcore function using lambda as an anonymous function.
 
+```
 In [43]:
 zscore = lambda x: (x - x.mean()) / x.std()
 type(zscore)
+```
+
 Out[43]:
 function
 Using the 'grp_inc_cat' grouper created above, call the .transform() attribute to apply the zscore function and assign the results to a new DataFrame called 't_loans'.
 
+```
 In [44]:
 t_loans = grp_inc_cat.transform(zscore)
 The zscore function is applied to all of the numeric columns in the 'loans' DataFrame, so extract the transformed t_loans['income'] column from the 't_loans' DataFrame and assign it as the column loans['iz_grp'] in the 'loans' DataFrame.
 
+```
 In [45]:
 loans['iz_grp'] = t_loans['income']
 Display the transformed income values.
 
+```
 In [46]:
 print(loans['iz_all'].sort_values(ascending=False).head(10), 
       loans['iz_grp'].sort_values(ascending=False).head(10))
@@ -556,21 +632,26 @@ Name: iz_all, dtype: float64 id
 Name: iz_grp, dtype: float64
 We would like to display the transformed income values side-by-side. Create the new DataFrame 'prt' by extracting the loans['iz_all'] column (income zscores computed with column mean) and the loans['iz_grp'] (income zscores computed with the group mean).
 
+```
 In [47]:
 prt = loans[['iz_all', 'iz_grp']]
 type(prt)
+```
+
 Out[47]:
 pandas.core.frame.DataFrame
 Provide descriptive column names.
 
+```
 In [48]:
 prt.columns = ['zscore w/ overall mean','zscore with group mean']
 Display the transformed income values.
 
+```
 In [49]:
 prt.sort_values('zscore w/ overall mean', ascending=False).head(10)
 
-![](.\images_10\16.jpg)
+![](./images_10/16.jpg)
 
 The analog SAS program combines the creating of income deciles using PROC RANK and PROC SQL to calculate income zscores based on overall mean and income decile group mean.
 
@@ -616,22 +697,27 @@ The analog SAS program combines the creating of income deciles using PROC RANK a
     84      select *
     85         from all(obs=10);
     86      quit;
+```
 In [50]:
-Image(filename='Anaconda3\\output\\income_zcore_table.JPG')
+Image(filename='output/income_zcore_table.JPG')
 
-![](.\images_10\17.jpg)
+![](./images_10/17.jpg)
 
 ## Top/Bottom N processing
 
 Start by defining a function with 3 argument values. First one is positional (df) followed by two named arguments (n=, and sort_col=). The function returns a Series of n= values in descending sort order.
 
+```
 In [51]:
 def topn(df, n=3, sort_col='income'):
     return pd.Series(df[sort_col]).sort_values(ascending=False).head(n)
 Call the 'topn' function.
 
+```
 In [52]:
 topn(loans, sort_col='dti', n=5)
+```
+
 Out[52]:
 id
 793919                  29.99
@@ -642,8 +728,11 @@ id
 Name: dti, dtype: float64
 The function can be applied to levels of a GroupBy object using the .apply() attribute.
 
+```
 In [53]:
 loans.groupby('grade').apply(topn)
+```
+
 Out[53]:
 grade  id    
 A      611872           1,900,000.00
@@ -670,8 +759,11 @@ G      989796             725,000.00
 Name: income, dtype: float64
 Not surprisingly, we did not need to create this function since the .nlargest() and .nsmallest() attributes performs the same operation.
 
+```
 In [54]:
 grp_grd['income'].nlargest(3)
+```
+
 Out[54]:
 grade  id    
 A      611872           1,900,000.00
@@ -698,8 +790,11 @@ G      989796             725,000.00
 Name: income, dtype: float64
 Return the 3 smallest income values for each debt-to-income loans['dti_cat'] column levels.
 
+```
 In [55]:
 grp_grd['income'].nsmallest(3)
+```
+
 Out[55]:
 grade  id     
 A      288342                3,300.00
@@ -735,6 +830,3 @@ GroupBy-fu: improvements in grouping and aggregating data in pandas, by Wes McKi
 
 MERGING vs. JOINING: Comparing the DATA Step with SQL, by Malachy J. Foley, University of North Carolina at Chapel Hill, located here.
 
-## Navigation
-
-Return to Chapter List
