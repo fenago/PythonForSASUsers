@@ -80,7 +80,7 @@ sas = saspy.SASsession()
 Using SAS Config named: default
 SAS Connection established. Subprocess id is 4942
 
-Example from: https://github.com/sassoftware/saspy/blob/master/saspy_example_github.ipynb
+Example from: https://github.com/sassoftware/saspy-examples/blob/master/SAS_contrib/saspy_example_github.ipynb
 
 
 ```
