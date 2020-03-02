@@ -19,6 +19,8 @@ Click notebook `Data_Interchange_not_working_with_sas.df2sd.ipynb` in jupterLab 
 
 ## Data Interchange Examples
 
+
+```
 In [1]:
 import feather
 import pandas as pd
@@ -71,6 +73,8 @@ jinja2: 2.9.6
 s3fs: None
 pandas_gbq: None
 pandas_datareader: None
+
+```
 In [2]:
 sas = saspy.SASsession()
 Using SAS Config named: default
@@ -78,41 +82,63 @@ SAS Connection established. Subprocess id is 4942
 
 Example from: https://github.com/sassoftware/saspy/blob/master/saspy_example_github.ipynb
 
+
+```
 In [3]:
 cars = sas.sasdata('cars', libref='sashelp')
+
+```
 In [4]:
 print(type(cars))
 <class 'saspy.sasbase.SASdata'>
 SAS dataset SASHELP.CARS converted to panda dataframe car_df
 
+
+```
 In [5]:
 car_df = cars.to_df()
+
+```
 In [6]:
 print(type(car_df))
 <class 'pandas.core.frame.DataFrame'>
 panda dataframe car_df converted to SAS dataset WORK.CARS
 
+
+```
 In [7]:
 car_df2 = sas.df2sd(car_df, 'cars')
+
+```
 In [8]:
 print(type(car_df2))
 <class 'saspy.sasbase.SASdata'>
 Read a dataframe from disk with the feather library created previously from a R dataframe
 
+
+```
 In [9]:
 path = '/home/sas/notebook/r_staff.feather'
 pd_staff = feather.read_dataframe(path)
+
+```
 In [10]:
 pd_staff.dtypes
-Out[10]:
+```
+
+Out10]:
 employee                  category
 salary                     float64
 startdate           datetime64[ns]
 stringsASFactors              bool
 dtype: object
+
+```
 In [11]:
 print(type(pd_staff))
 <class 'pandas.core.frame.DataFrame'>
+
+```
 In [12]:
 print(pd_staff)
              employee   salary  startdate  stringsASFactors
@@ -125,6 +151,8 @@ print(pd_staff)
 6   Jacqueline Onieda  36500.0 2015-01-02             False
 The dataframe pd_staff appears acceptable to Python, but is not acceptable to the sas.df2sd call
 
+
+```
 In [13]:
 sd_staff = sas.df2sd(pd_staff, 'staff')
 ---------------------------------------------------------------------------
@@ -163,19 +191,29 @@ NotImplementedError                       Traceback (most recent call last)
 NotImplementedError: 
 Copy the pd_staff dataframe with default deep=True
 
+
+```
 In [14]:
 copy_deep_true = pd_staff.copy()
 id(pd_staff)
-Out[14]:
+```
+
+Out14]:
 140465635419640
+
+```
 In [15]:
 print(type(copy_deep_true))
 id(copy_deep_true)
 <class 'pandas.core.frame.DataFrame'>
-Out[15]:
+```
+
+Out15]:
 140464967919432
 Call the sas.df2sd method. The copied dataframe is not acceptable to this call.
 
+
+```
 In [16]:
 cdt = sas.df2sd(copy_deep_true, 'staff_t')
 ---------------------------------------------------------------------------
@@ -214,19 +252,29 @@ NotImplementedError                       Traceback (most recent call last)
 NotImplementedError: 
 Copy pd_staff operation with deep=false parameter
 
+
+```
 In [17]:
 copy_deep_false = pd_staff.copy(deep=False)
 id(pd_staff)
-Out[17]:
+```
+
+Out17]:
 140465635419640
+
+```
 In [18]:
 print(type(copy_deep_false))
 id(copy_deep_false)
 <class 'pandas.core.frame.DataFrame'>
-Out[18]:
+```
+
+Out18]:
 140464967921000
 Call the sas.df2sd method. copy_deep_false dataframe is not acceptable.
 
+
+```
 In [19]:
 cdf = sas.df2sd(copy_deep_false, 'staff_f')
 ---------------------------------------------------------------------------
@@ -265,8 +313,12 @@ NotImplementedError                       Traceback (most recent call last)
 NotImplementedError: 
 Create the medals dataframe with the read.csv method
 
+
+```
 In [20]:
 df_medals = pd.read_csv("http://winterolympicsmedals.com/medals.csv")
+
+```
 In [21]:
 df_medals.head()
 
@@ -274,11 +326,17 @@ df_medals.head()
 
 Call the sas.df2sd method to create the SAs dataset WORK.medals2
 
+
+```
 In [22]:
 sd_medals = sas.df2sd(df_medals, 'medals2')
+
+```
 In [23]:
 sd_medals.contents()
-Out[23]:
+```
+
+Out23]:
 {'Attributes':          Member               Label1  \
  0  WORK.MEDALS2        Data Set Name   
  1  WORK.MEDALS2          Member Type   
@@ -354,9 +412,13 @@ Out[23]:
  5  WORK.MEDALS2    5           NOC  Char    3   55
  6  WORK.MEDALS2    3         Sport  Char   10   30
  7  WORK.MEDALS2    1          Year   Num    8    0}
+
+```
 In [24]:
 sas
-Out[24]:
+```
+
+Out24]:
 Access Method         = STDIO
 SAS Config name       = default
 WORK Path             = /home/sas/tmp/SAS_work41FB0000134E_localhost.localdomain/
@@ -367,4 +429,6 @@ Batch                 = False
 Results               = Pandas
 SAS Session Encoding  = LATIN1
 Python Encoding value = utf-8
+
+```
 In [ ]:

@@ -33,6 +33,8 @@ pd.read_sas() method
 
 Resources
 
+
+```
 In [2]:
 import pyodbc
 import sys
@@ -42,6 +44,8 @@ from sqlalchemy import create_engine, MetaData, Table, select
 from IPython.display import Image
 Return the Python and panda version being used since the database library drivers need to be properly aligned.
 
+
+```
 In [2]:
 print('Python version ' + sys.version)
 print('Pandas version ' + pd.__version__)
@@ -54,6 +58,8 @@ This notebook contains several examples of the pd.read_csv() method. Additional 
 
 The pd.read_csv() method accepts a range of file format types. In the example below, a URL is given as the input source. In the SAS example that follows, the FILENAME URL access method is utilized to the same effect.
 
+
+```
 In [ ]:
 fips = pd.read_csv('http://www2.census.gov/geo/docs/reference/codes/files/national_county.txt',
                               header=None,names=['state','state_fips','county_fips','county','fips_class_code'])
@@ -103,12 +109,18 @@ The string:
 
 was needed to inform SQLAlchemy the name of the specific database client library. This is found on the Driver's tab of the ODBC Data Source Adminstrator.
 
+
+```
 In [4]:
-Image(filename='Anaconda3\\output\\odbc.JPG')
-Out[4]:
+Image(filename='output/odbc.JPG')
+```
+
+Out4]:
 
 Next, create a tuple of parameter values to pass to the create_engine= assignment to identify the Python package used on the client-side as well as the database server name, target database, and target table.
 
+
+```
 In [3]:
 ServerName = "homeoffice2"
 Database = "AdventureWorksDW2012?driver=SQL+Server+Native+Client+11.0"
@@ -125,9 +137,13 @@ The read_sql_table() method reads a database table and optionally a subset of co
 
 For clarity, we build a list of columns we want to have returned along with a table name that are used as arguments in the next set of examples.
 
+
+```
 In [5]:
 col_names = ['FirstName', 'LastName', 'BirthDate', 'Gender', 'YearlyIncome', 'CustomerKey']
 tbl = 'DimCustomer'
+
+```
 In [6]:
 t0 = pd.read_sql_table(tbl, engine, columns=col_names)
 t0.info()
@@ -144,10 +160,14 @@ dtypes: datetime64[ns](1), float64(1), int64(1), object(3)
 memory usage: 866.5+ KB
 Designate an incoming column to be used as the DataFrame index with the index_col= argument.
 
+
+```
 In [7]:
 t1 = pd.read_sql_table(tbl, engine, columns=col_names, index_col='CustomerKey')
 t1.index
-Out[7]:
+```
+
+Out7]:
 Int64Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008,
             11009,
             ...
@@ -156,11 +176,15 @@ Int64Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008,
            dtype='int64', name='CustomerKey', length=18484)
 Coerce date strings into date objects. The example below is redundant since the query engine was smart enough to determine t0['BirthDate'] is a date column. This is shown by examining output from t0.info() call showing the column as type datetime64.
 
+
+```
 In [8]:
 t2 = pd.read_sql_table(tbl, engine, columns=col_names, index_col='CustomerKey', \
                        parse_dates={'BirthDate': {'format': '%Y-%m-%d'}})
 Review the incoming columns and their attributes.
 
+
+```
 In [9]:
 t2.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -175,9 +199,13 @@ dtypes: datetime64[ns](1), float64(1), object(3)
 memory usage: 866.4+ KB
 Review the customer index key values.
 
+
+```
 In [10]:
 t2.index
-Out[10]:
+```
+
+Out10]:
 Int64Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008,
             11009,
             ...
@@ -186,9 +214,13 @@ Int64Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008,
            dtype='int64', name='CustomerKey', length=18484)
 Display the first 5 rows for the the 'BirthDate' column. Also notice above, from the .info() method how the t2['BirthDate'] column was read as datetime timestamps.
 
+
+```
 In [51]:
 t2["BirthDate"].head(5)
-Out[51]:
+```
+
+Out51]:
 CustomerKey
 11000   1966-04-08
 11001   1965-05-14
@@ -244,11 +276,15 @@ The read_sql_query() method returns a DataFrame based on the evaluation of a que
 
 You must use the appropriate SQL dialect for the target database. This is analogous to SAS' SQL pass-thru.
 
+
+```
 In [11]:
 q1 = pd.read_sql_query('SELECT FirstName, LastName, Gender, BirthDate, YearlyIncome '
                  'FROM dbo.DimCustomer '
                  'WHERE YearlyIncome > 50000;'
                         , engine)
+
+```
 In [12]:
 q1.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -280,6 +316,8 @@ The SAS analog example for pd.read_sql_query in cell #12 above is shown below. S
     NOTE: Data set "WORK.q1" has 9858 observation(s) and 5 variable(s)
 ...or pass a DocStrings to the pd.read_sql_query() method.
 
+
+```
 In [13]:
 sql_str = '''SELECT
                     FirstName,
@@ -291,6 +329,8 @@ sql_str = '''SELECT
              WHERE YearlyIncome > 120000''' 
 
 q2 = pd.read_sql_query(sql_str, engine, index_col='CustomerKey')
+
+```
 In [15]:
 q2.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -304,16 +344,22 @@ dtypes: object(4)
 memory usage: 32.1+ KB
 You can execute a query without returning a dataframe with execute(). This is useful for queries that don’t return values, such as a DROP TABLE statement. You must use the SQL dialect appropriate for the target database.
 
+
+```
 In [21]:
 from pandas.io import sql
 sql.execute('DROP TABLE dbo.df2', engine)
-Out[21]:
+```
+
+Out21]:
 <sqlalchemy.engine.result.ResultProxy at 0x1f5e04d1710>
 
 ## DataFrame.to_sql
 
 Construct the DataFrame to load into SQL/Server.
 
+
+```
 In [23]:
 df = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.], 
                    ['warm', 'medium', 4, 5, 7, 9],
@@ -325,6 +371,8 @@ df = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.],
                    index=(list('abcdef')))
 The .DataFrame.to_sql method loads a target DBMS table with the rows and columns from a DataFrame. The syntax is documented here . The method has the chunksize= parameter where the default None writes all rows at once. The doc does not specify how the writes take place, either through SQL INSERT statements or uses a bulk copy interface.
 
+
+```
 In [29]:
 df.to_sql('dbo.DF2', engine, if_exists='replace',index=False)
 The analog SAS program to copy a SAS data set to the target DBMS is below. Note the PROC PWENCODE used to encode strings to prevent passwords from being stored in clear text. Also notice the LIBNAME option bulkload=yes. This causes the load operation to go through the RDBMS' bulk load interface.
@@ -353,8 +401,12 @@ The analog SAS program to copy a SAS data set to the target DBMS is below. Note 
 
 The pd.read_sas() method maps either a SAS data set (.sas7bdat file) or a SAS transport data set (.xpt file) directly into a DataFrame. The syntax details are located here. This is a SAS data set created by Base SAS software and not WPS.
 
+
+```
 In [3]:
-df4 = pd.read_sas("c:\\Data\\accident.sas7bdat", format='SAS7BDAT')
+df4 = pd.read_sas("data/accident.sas7bdat", format='SAS7BDAT')
+
+```
 In [5]:
 df4.info()
 <class 'pandas.core.frame.DataFrame'>
@@ -444,12 +496,14 @@ The following SAS program was used to create both a SAS data and a SAS transport
     NOTE: 1 member copied
 Using Version: 3.2.2 of the WPS Workbench for Windows to create its .wpd format as input to the pd.read_sas() method fails. That is because the binary file format chosen by WPS does not match those from SAS.
 
+
+```
 In [7]:
-df5 = pd.read_sas("c:\\Data\\company.wpd", format='SAS7BDAT')
+df5 = pd.read_sas("data/company.wpd", format='SAS7BDAT')
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 <ipython-input-7-860acca0c6b3> in <module>()
-----> 1 df5 = pd.read_sas("c:\\Data\\company.wpd", format='SAS7BDAT')
+----> 1 df5 = pd.read_sas("data/company.wpd", format='SAS7BDAT')
 
 C:\Users\randy\Anaconda3\lib\site-packages\pandas\io\sas\sasreader.py in read_sas(filepath_or_buffer, format, index, encoding, chunksize, iterator)
      52         reader = SAS7BDATReader(filepath_or_buffer, index=index,
@@ -475,8 +529,12 @@ C:\Users\randy\Anaconda3\lib\site-packages\pandas\io\sas\sas7bdat.py in _get_pro
 ValueError: magic number mismatch (not a SAS file?)
 Using Version: 3.2.2 of the WPS Workbench for Windows to create a SAS transport file (.xpt) as input to the pd.read_sas() method works.
 
+
+```
 In [9]:
-df6 = pd.read_sas("c:\\Data\\company.xpt", format='xport')
+df6 = pd.read_sas("data/company.xpt", format='xport')
+
+```
 In [10]:
 df6.info()
 <class 'pandas.core.frame.DataFrame'>

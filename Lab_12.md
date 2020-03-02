@@ -47,6 +47,8 @@ Save to Disk
 
 Resources
 
+
+```
 In [1]:
 import numpy as np
 import pandas as pd
@@ -57,6 +59,8 @@ from IPython.display import Image
 
 The example below is used in Time Series Walk-Through in Chapter 09 -- Panda Time Series and Date Handling. It uses the read_csv() method to construct the 'df_us' DataFrame begining its read on row 3,082.
 
+
+```
 In [2]:
 df_states = pd.read_csv("C:\Data\\HPI_master.csv",                 
             skiprows=3082,
@@ -90,12 +94,18 @@ The following SAS Data Step reads the same .csv file using FIRSTOBS= to begin re
                    index_nsa ;
 Verify the read using the .shape attribute.
 
+
+```
 In [3]:
 df_states.shape
-Out[3]:
+```
+
+Out3]:
 (96244, 9)
 Inspect the first 5 rows of the 'df_states' DataFrame.
 
+
+```
 In [4]:
 df_states.head()
 
@@ -103,17 +113,23 @@ df_states.head()
 
 Inspect the first 5 rows of the SAS data set df_states.
 
+
+```
 In [5]:
-Image(filename='Anaconda3\\output\\df_states_output.JPG')
+Image(filename='output/df_states_output.JPG')
 
 ![](./images_12/2.jpg)
 
 Exam the default sort by supplying the the sort key as the minimum argument to the .sort_values() attribute. The sort operation creates the new 'default_srt' DataFrame.
 
+
+```
 In [6]:
 default_srt = df_states.sort_values('index_nsa')
 Display the first 4 rows of the sorted DataFrame 'default_srt'
 
+
+```
 In [7]:
 default_srt.iloc[0:4]
 
@@ -134,8 +150,10 @@ NOTE: Data set "WORK.df_states" has 96244 observation(s) and 9 variable(s)
 87   proc print data=df_states (obs=4);
 Like panda the default SAS sort sequence is ascending. This is confirmed by the SAS doc located here .
 
+
+```
 In [8]:
-Image(filename='Anaconda3\\output\\default_first_four.JPG')
+Image(filename='output/default_first_four.JPG')
 
 ![](./images_12/4.jpg)
 
@@ -143,6 +161,8 @@ In contrast to the panda default sort the default SAS sort sequence places its m
 
 Displaying the last 4 rows in the 'default_srt' DataFrame finds the 2 NaN's sorted last since this is the default location panda places its missing values.
 
+
+```
 In [9]:
 default_srt.tail(4)
 
@@ -161,19 +181,25 @@ The SAS program to access the last four observations in the data set is:
 
     NOTE: 4 observations were read from "WORK.last4"
 
+
+```
 In [10]:
-Image(filename='Anaconda3\\output\\sort_last_four.JPG')
+Image(filename='output/sort_last_four.JPG')
 
 ![](./images_12/6.jpg)
 
 Alter the organization of the 'states_desc' DataFrame by supplying arguments and values to the sort_values() attribute. The example below sorts descending placeing missing values at the beginning of the DataFrame.
 
+
+```
 In [11]:
 states_desc = df_states.sort_values('index_nsa', ascending=False, na_position='first')
 Setting the na_position= argument to 'first' places NaN's at the beginning of the sort sequence. This is the same beavhior for SAS' sort sequence. Details describing SAS sort order for missing values is descried here .
 
 The first two rows in the DataFrame 'states_desc' contain the NaN's values for the 'index_nsa' column, while the next 2 rows contain the highest values.
 
+
+```
 In [12]:
 states_desc.iloc[0:4,]
 
@@ -199,25 +225,35 @@ syntax creates the new SAS data set 'states_srt2'.
     48         data first4;
     49           set states_srt2 (obs=4);
     50           by descending index_nsa;
+
+```
 In [13]:
-Image(filename='Anaconda3\\output\\sort_last4_descending.JPG')
+Image(filename='output/sort_last4_descending.JPG')
 
 ![](./images_12/8.jpg)
 
 The section below examines a number of common data management patterns for analysis.
 
 1. Read the Lending Club Loan Status file.
+
+```
 In [14]:
-lc = pd.read_csv("C:\\Data\\LC_Loan_Stats.csv",
+lc = pd.read_csv("data/LC_Loan_Stats.csv",
                  low_memory=False)     
 lc.shape
-Out[14]:
+```
+
+Out14]:
 (42633, 51)
 Check for missing values. Clearly, some columns are not useful.
 
+
+```
 In [15]:
 lc.isnull().sum()
-Out[15]:
+```
+
+Out15]:
 ID                                 2
 Member_ID                          3
 Loan_Amnt                          3
@@ -275,6 +311,8 @@ dtype: int64
 
 Keep some of the columns in the 'lc' DataFrame.
 
+
+```
 In [16]:
 lc = lc[['ID', 'Member_ID', 'Loan_Amnt', 'Term', 'Int_Rate', 'Installment', 'Grade', 'Sub_Grade', 'Emp_Length',
                      'Home_Ownership', 'Annual_Inc', 'Verification_Status', 'Loan_Status', 'Purpose', 'Zip_Code',
@@ -283,6 +321,8 @@ lc = lc[['ID', 'Member_ID', 'Loan_Amnt', 'Term', 'Int_Rate', 'Installment', 'Gra
 
 ## Rename Columns
 
+
+```
 In [17]:
 lc = lc.rename(columns = {
            'Member_ID'              :'mem_id',
@@ -296,14 +336,18 @@ lc = lc.rename(columns = {
     })
 Lower-case all the 'lc' DataFrame column names.
 
+
+```
 In [18]:
 lc.columns = map(str.lower, lc.columns)
 An investigation of the LC_Loan_Stats.csv file reveals it has 2 parts. The first part, rows 0 to 39786 contain data for those loans meeting their credit policies. Rows 39790 to the end contain data for those loans that are outside their normal lending policies.
 
 Create the 'lc1' DataFrame by reading a sub-set of columns and rows.
 
+
+```
 In [19]:
-lc1 = pd.read_csv("C:\\Data\\LC_Loan_Stats.csv", 
+lc1 = pd.read_csv("data/LC_Loan_Stats.csv", 
           low_memory=False,            
           usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 16, 17, 18, 19, 22, 24, 25),
           names=('id','mem_id', 'ln_amt', 'term','rate', 'm_pay', 'grade', 'sub_grd', 'emp_len',
@@ -313,7 +357,9 @@ lc1 = pd.read_csv("C:\\Data\\LC_Loan_Stats.csv",
           nrows=39786,
           header=None)
 lc1.shape
-Out[19]:
+```
+
+Out19]:
 (39786, 21)
 The analog SAS program for reading sub-sets of rows and columns from the 'LC_Loan_Stats.csv' file.
 
@@ -374,6 +420,8 @@ False marks all duplicate values as True. Create the new 'lc1_dups' DataFrame co
 
 Begin by setting the index to the lc1['id'] column. Next, create a Boolean mask locating the duplicate values for the lc1['id'] column. The keep='first' argument behaves similiar to SAS FIRST.variable in BY-Group processing. We want to ignore the first occurance of the duplicate 'index' column value and extract the remaining ones.
 
+
+```
 In [20]:
 lc1.set_index('id', inplace=True, drop=False)
 dup_mask = lc1.duplicated('id', keep='first')
@@ -382,10 +430,14 @@ dup_mask = lc1.duplicated('id', keep='first')
 
 Apply the Boolean mask using the .loc attribute to create the new 'lc1_dups' DataFrame. The .shape attribute shows there are 35 rows with duplicate 'id' values.
 
+
+```
 In [21]:
 lc1_dups = lc1.loc[dup_mask]
 lc1_dups.shape
-Out[21]:
+```
+
+Out21]:
 (35, 21)
 The SAS SORT option NODUPKEY checks for and eliminates observations with duplicate BY values. The DUPOUT= option names the target SAS data set to write the duplicates.
 
@@ -401,31 +453,47 @@ The SAS SORT option NODUPKEY checks for and eliminates observations with duplica
 
 ## Drop Duplicate Rows
 
+
+```
 In [22]:
 lc1.shape
-Out[22]:
+```
+
+Out22]:
 (39786, 21)
 Use the .drop_duplicates attribute to drop duplicate values.
 
+
+```
 In [23]:
 lc1.drop_duplicates(['id'], keep='first', inplace=True)
+
+```
 In [24]:
 lc1.shape
-Out[24]:
+```
+
+Out24]:
 (39751, 21)
 
 ## Add a New DataFrame Column
 
 Create the new column lc1['ln_plcy'] as a flag to indicate all rows read from row 2 to 39786 are loans granted within standard lending guidelines.
 
+
+```
 In [25]:
 lc1['ln_plcy'] = lc1['id'].map(lambda x: True)
 lc1.shape
-Out[25]:
+```
+
+Out25]:
 (39751, 22)
 
 ## Cast Strings to Floats
 
+
+```
 In [26]:
 lc1.describe(include=['O'])
 
@@ -433,15 +501,21 @@ lc1.describe(include=['O'])
 
 Both the lc1['rate'] and lc1['revol_util'] column values are formatted with Excel's percent format (%), making them string values. The .replace() method replaces the '%' with a white-space. The .astype attribute converts the string into a float. The resulting float is divided by 100.
 
+
+```
 In [27]:
 lc1['revol_util'] = lc1.revol_util.replace('%','',regex=True).astype('float')/100
 lc1['rate'] = lc1.rate.replace('%','',regex=True).astype('float')/100
 With the lc1['revol_util'] column values cast to floats use the .fillna() attribute to replace missing values with the calculated mean value from the lc1['revol_util'] column.
 
+
+```
 In [28]:
 lc1["revol_util"] = lc1[["revol_util"]].fillna(lc1.revol_util.mean())
 lc1.revol_util.isnull().sum()
-Out[28]:
+```
+
+Out28]:
 0
 The analog SAS program uses PROC SQL to insert the mean value for 'revol_util' into the SAS Macro variable 'mean_revol'. A WHERE statement is used to locate the NULL values for the variable 'revol_util' and if found then the UPDATE statement inserts the value from the SAS MACRO variable &mean_revol into the 'revol_util' column.
 
@@ -469,8 +543,10 @@ The CREATE TABLE statement starting at line 13 tests if there are missing values
 
 Create the 'lc0' DataFrame by reading the loan status file, supplying a tuple of integers for the usecols= argument and a tuple of names for the column labels.
 
+
+```
 In [29]:
-lc0 = pd.read_csv("C:\\Data\\LC_Loan_Stats.csv", 
+lc0 = pd.read_csv("data/LC_Loan_Stats.csv", 
           low_memory=False,            
           usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, 16, 17, 18, 19, 22, 24, 25),
           names=('id','mem_id', 'ln_amt', 'term','rate', 'm_pay', 'grade', 'sub_grd', 'emp_len',
@@ -479,19 +555,27 @@ lc0 = pd.read_csv("C:\\Data\\LC_Loan_Stats.csv",
           skiprows=39790,
           header=None)
 lc0.shape
-Out[29]:
+```
+
+Out29]:
 (2844, 21)
 Create the column lc0['ln_plcy'] with a value of False to indicate rows 39790 to the end of the file are loans made outside the standard credit lending policy. The assignment below uses the .map() attribute and calls the anonymous lambda function to create the new column lc0[''ln_plcy'].
 
+
+```
 In [30]:
 lc0['ln_plcy'] = lc0['id'].map(lambda x: False)
 Similiar to above, the lc0['rate'] and lc0['revol_util'] column values are formatted with Excel's percent format (%), making them string values. The .replace() method replaces the '%' with a white-space. The .astype() attribute converts the string into a float. The resulting float is divided by 100.
 
+
+```
 In [31]:
 lc0['revol_util'] = lc0.revol_util.replace('%','',regex=True).astype('float')/100
 lc0['rate'] = lc0.rate.replace('%','',regex=True).astype('float')/100
 Calculate the mean value for 'revol_util' and use the .fillna method to replace the missing values.
 
+
+```
 In [32]:
 lc0['revol_util'] = lc0[["revol_util"]].fillna(lc0.revol_util.mean())
 Return the number of missing values.
@@ -502,6 +586,8 @@ lc0.revol_util.isnull().sum()
 
 Chapter 7 -- Pandas, Part 2 covers joining operations by illustrating the pd.merge() method which follows SQL's relational algebraic statements. An alternative is the concat function described here.
 
+
+```
 In [33]:
 print(lc0.shape)
 print(lc1.shape)
@@ -509,11 +595,15 @@ print(lc1.shape)
 (39751, 22)
 Use the pd.concat() method to join the 'lc1' and 'lc0' DataFrames.
 
+
+```
 In [34]:
 frames = [lc1, lc0]
 df = pd.concat(frames)
 df.shape
-Out[34]:
+```
+
+Out34]:
 (42595, 22)
 The analog SAS program uses the SET statement to join the data sets 'lc0' and 'lc1' together. The variable names are identical in both data sets.
 
@@ -531,11 +621,15 @@ The analog SAS program uses the SET statement to join the data sets 'lc0' and 'l
 
 ## Crosstabs
 
+
+```
 In [35]:
 pd.crosstab(df.grade, df.own_rnt , margins=True)
 
 ![](./images_12/10.jpg)
 
+
+```
 In [36]:
 pd.crosstab([df.grade, df.own_rnt], df.purpose, margins=True)
 
@@ -543,8 +637,12 @@ pd.crosstab([df.grade, df.own_rnt], df.purpose, margins=True)
 
 ## Sampling
 
+
+```
 In [37]:
 samp = df.sample(n=300)
+
+```
 In [38]:
 import bokeh.charts
 import bokeh.charts.utils
@@ -555,6 +653,8 @@ import bokeh.plotting
 from bokeh.charts import Bar, Scatter, BoxPlot, Histogram
 bokeh.io.output_notebook()
 Loading BokehJS ...
+
+```
 In [39]:
 p = BoxPlot(samp, values='income', label='grade', color='firebrick',
                       title="Average Interest Rate by Credit Grade")
@@ -565,6 +665,8 @@ bokeh.io.show(p)
 
 Locate the minimum and maximum values. Scalars are returned. Returning a row using a minimum value is illustrated here and for maximum value here.
 
+
+```
 In [40]:
 print(df.dti.min())
 print(df.dti.max())
@@ -572,15 +674,21 @@ print(df.dti.max())
 29.99
 Create the list 'bins' containing integer values used to define bin levels. Construct the list 'names' to define the labels for the bins.
 
+
+```
 In [41]:
 bins = [0, 5, 10, 15, 20, 25, 30]
 names=['0-5%', '5-10%', '10-15%', '15-20%', '20-25%', '25-30%']
 df['dti_cat'] = pd.cut(df['dti'], bins, labels=names, include_lowest=True)
 Call pd.value_counts() method to return a count of values for each bin level.
 
+
+```
 In [42]:
 pd.value_counts(df['dti_cat'])
-Out[42]:
+```
+
+Out42]:
 10-15%    10502
 15-20%     9775
 5-10%      8563
@@ -590,14 +698,22 @@ Out[42]:
 Name: dti_cat, dtype: int64
 Return the count of missing values for the df['income'] column.
 
+
+```
 In [43]:
 df['income'].isnull().sum()
-Out[43]:
+```
+
+Out43]:
 4
 Call the .fillna() method to replace missing values for the df['income'] column with the calcuated column mean. Additional examples for detecting and replacing missing values are described here.
 
+
+```
 In [44]:
 df['income'] = df[["income"]].fillna(df.income.mean())
+
+```
 In [45]:
 print(df.income.max())
 print(df.income.min())
@@ -605,13 +721,19 @@ print(df.income.min())
 1896.0
 Call the pd.qcut() method for creating deciles for the df['income'] column and copy them into the new df['inc_cat'] column. A more detailed example of creating deciles is described in the section Understanding Binning in Chapter 10--GroupBy.
 
+
+```
 In [46]:
 df['inc_cat'] = pd.qcut(df['income'].values, 10).codes
 Return the count of values from the income decile values in the df['inc_cat'] column.
 
+
+```
 In [47]:
 pd.value_counts(df['inc_cat'])
-Out[47]:
+```
+
+Out47]:
 0    5088
 7    4436
 4    4309
@@ -625,6 +747,8 @@ Out[47]:
 Name: inc_cat, dtype: int64
 The df['inc_cat'] column containing income deciles used as the rows and values for df['grade'] nested inside values from the df['ln_plcy'] column as the header in a Crosstab.
 
+
+```
 In [48]:
 pd.crosstab(df.inc_cat, [df.ln_plcy, df.grade] , margins=True)
 
@@ -634,10 +758,14 @@ pd.crosstab(df.inc_cat, [df.ln_plcy, df.grade] , margins=True)
 
 The .to_pickle() method serializes the 'df' DataFrame in order to write to disk. The .to_pickle() method is documented here. The DataFrame is read in Chapter 10-- GroupBy.
 
+
+```
 In [49]:
 df.to_pickle('lending_club.pkl')
 We can also write the 'lc0' and 'lc1' DataFrames out as a .csv files.
 
+
+```
 In [50]:
 lc0.to_csv("C:\Data\\Loans_lc0.csv")
 lc1.to_csv("C:\Data\\Loans_lc1.csv")
