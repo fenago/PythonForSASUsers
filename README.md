@@ -34,9 +34,8 @@ Labs for this course are available at path shared below. Elev8ed Notebooks (powe
 		* <host-ip>:<port>/lab/workspaces/lab10_TimeSeries
 11. ##### Groupby
 		* <host-ip>:<port>/lab/workspaces/lab11_Groupby
-12. ##### Panda Readers
-		* <host-ip>:<port>/lab/workspaces/lab12_Readers
+12. ##### Data Interchange not working with SAS
+		* <host-ip>:<port>/lab/workspaces/lab12_Interchange
 13. ##### Additional Data Handling
 		* <host-ip>:<port>/lab/workspaces/lab13_DataHandling
-14. ##### Data Interchange not working with SAS
-		* <host-ip>:<port>/lab/workspaces/lab14_Interchange
+
