@@ -133,6 +133,8 @@ Observations not matching in both input data sets are included and their values 
 In [3]:
 Image(filename='output/default_match_merge.JPG')
 
+```
+
 ![](./images_7/1.jpg)
 
 Construct the DataFrames 'left' containing demographic information for employees and 'right' containing salary information. They are replicates of the SAS data sets 'left' and 'right' used with the SAS program above.
@@ -152,6 +154,8 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
 ```
 In [5]:
 display("left", "right")
+
+```
 
 ![](./images_7/2.jpg)
 
@@ -220,6 +224,8 @@ An INNER JOIN selects only those rows whose key values are found in both tables.
 In [6]:
 Image(filename='output/inner_join.JPG')
 
+```
+
 ![](./images_7/3.jpg)
 
 With the panda merge() method, how='inner' is the analog to the SAS example above.
@@ -234,6 +240,8 @@ both = pd.merge(left, right, on='name', how='inner', sort=True)
 ```
 In [8]:
 both
+
+```
 
 ![](./images_7/4.jpg)
 
@@ -275,6 +283,8 @@ To produce the output above a second SELECT statement is used to display the sin
 In [9]:
 Image(filename='output/right_outer.JPG')
 
+```
+
 ![](./images_7/5.jpg)
 
 For panda use the how='right' argument for a Right Outer Join. This returns only those key values found in the 'right' DataFrame with corresponding matches found the 'left' DataFrame.
@@ -285,6 +295,8 @@ r_outer = pd.merge(left, right, how='right', sort=True)
 ```
 In [11]:
 r_outer
+
+```
 
 ![](./images_7/6.jpg)
 
@@ -319,6 +331,8 @@ PROC SQL Left Outer Join example. See the SAS SQL Right Outer Join example above
 In [12]:
 Image(filename='output/left_outer.JPG')
 
+```
+
 ![](./images_7/7.jpg)
 
 For panda use the how='left' argument for a LEFT OUTER JOIN. This returns only those key values found in the 'left' DataFrame with corresponding matches found the 'right' DataFrame.
@@ -330,6 +344,8 @@ l_outer = pd.merge(left, right, how='left', sort=True)
 ```
 In [14]:
 l_outer
+
+```
 
 ![](./images_7/8.jpg)
 
@@ -363,6 +379,8 @@ PROC SQL Full Outer Join exanple. This is the default behavior for the SORT/MERG
 In [15]:
 Image(filename='output/full_outer_join.JPG')
 
+```
+
 ![](./images_7/9.jpg)
 
 ```
@@ -372,6 +390,8 @@ merge_both = pd.merge(left, right, on='name', how='outer', sort=True)
 ```
 In [17]:
 merge_both
+
+```
 
 ![](./images_7/10.jpg)
 
@@ -426,6 +446,8 @@ Start with the SAS Data Step for no matched keys in either the 'left' or 'right'
 In [18]:
 Image(filename='output/nomatch.JPG')
 
+```
+
 ![](./images_7/11.jpg)
 
 panda provisions the indicator= argument to the pd.merge() method. The indicator argument can be a column name which takes on 1 of 3 possible values:
@@ -447,6 +469,8 @@ The 'nomatch' DataFrame displays the nomatch['in= '] column values. These values
 In [20]:
 nomatch
 
+```
+
 ![](./images_7/12.jpg)
 
 Using boolean logic and the logical 'or' (|) comparison, select those rows with the value 'left_only' and 'right_only'.
@@ -455,6 +479,8 @@ Using boolean logic and the logical 'or' (|) comparison, select those rows with 
 In [21]:
 nomatch[(nomatch['in='] == 'left_only') | (nomatch['in='] == 'right_only')]
 
+```
+
 ![](./images_7/13.jpg)
 
 Brievity allows:
@@ -462,6 +488,8 @@ Brievity allows:
 ```
 In [22]:
 nomatch[nomatch["in="] != 'both']
+
+```
 
 ![](./images_7/14.jpg)
 
@@ -483,6 +511,8 @@ Locate the key value rows in the 'right' data set which have no corresponding ma
 In [23]:
 Image(filename='output/nomatch_in_right.JPG')
 
+```
+
 ![](./images_7/15.jpg)
 
 Locate the rows in the 'right' DataFrame which have no corresonding key value matches in the 'left' DataFrame.
@@ -496,6 +526,8 @@ Display 'nonatch_r' DataFrame as the result of an Outer Join.
 In [25]:
 nomatch_r
 
+```
+
 ![](./images_7/16.jpg)
 
 Use a boolean comparison to find key value rows contributed by the 'right' DataFrame. In other words, key values in the 'right' DataFrame not found in the 'left' DataFrame.
@@ -504,6 +536,8 @@ Use a boolean comparison to find key value rows contributed by the 'right' DataF
 In [26]:
 nomatch_r[nomatch_r['in='] == 'right_only']
 
+```
+
 ![](./images_7/17.jpg)
 
 The non-matching key value rows from the 'right' DataFrame can also be sub-setted from the 'nomatch' DataFrame created above with:
@@ -511,6 +545,8 @@ The non-matching key value rows from the 'right' DataFrame can also be sub-sette
 ```
 In [27]:
 nomatch[nomatch['in='] == 'right_only']
+
+```
 
 ![](./images_7/18.jpg)
 
@@ -532,6 +568,8 @@ Locate the key value rows in the 'left' data set having no corresonding match in
 In [28]:
 Image(filename='output/nomatch_in_left.JPG')
 
+```
+
 ![](./images_7/19.jpg)
 
 Locate the key value rows in the 'left' DataFrame which have no corresonding matches in the 'right' DataFrame.
@@ -545,6 +583,8 @@ Display 'nonatch_r' DataFrame as the result of an Outer Join.
 In [30]:
 nomatch_l
 
+```
+
 ![](./images_7/20.jpg)
 
 Use a boolean comparison to find key values rows contributed by the 'left' DataFrame only. In other words key values in the 'left' DataFrame not found in the 'right' DataFrame.
@@ -552,6 +592,8 @@ Use a boolean comparison to find key values rows contributed by the 'left' DataF
 ```
 In [31]:
 nomatch_l[nomatch_l['in='] == 'left_only']
+
+```
 
 ![](./images_7/21.jpg)
 
@@ -577,6 +619,8 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
 In [33]:
 display("left", "right")
 
+```
+
 ![](./images_7/22.jpg)
 
 Construct the 'm2m' DataFrame with an Outer Join using the 'left' and 'right' DataFrames on the ['name']' column.
@@ -589,6 +633,8 @@ Display the 'm2m' DataFrame.
 ```
 In [35]:
 m2m
+
+```
 
 ![](./images_7/23.jpg)
 
@@ -611,6 +657,8 @@ The PROC SQL illustrating a many-to-many Outer Join.
 In [36]:
 Image(filename='output/many_2_many.JPG')
 
+
+```
 
 ![](./images_7/24.jpg)
 
@@ -636,6 +684,8 @@ The SAS Data Step using the equivalent Full Outer Join with (L=1 or R=1) for the
 ```
 In [37]:
 Image(filename='output/m2m_datastep_merge.JPG')
+
+```
 
 ![](./images_7/25.jpg)
 
@@ -685,6 +735,8 @@ Display the 'df' DataFrame containing missing (NaN) values for the df['salary'] 
 ```
 In [41]:
 df
+
+```
 
 ![](./images_7/26.jpg)
 
@@ -736,6 +788,8 @@ gb2 = df.groupby('gender')
 In [45]:
 gb2.count()
 
+```
+
 ![](./images_7/27.jpg)
 
 4. Define the 'func' function.
@@ -769,6 +823,8 @@ Display the 'df' DataFrame with df['salary'] column values replaced with their g
 In [49]:
 df
 
+```
+
 ![](./images_7/28.jpg)
 
 ## FIRST.variable and LAST.variable
@@ -778,12 +834,16 @@ The .first() attribute chained to a GroupBy for the df['status'] column as an an
 ```
 In [55]:
 df.groupby('status').first()
+```
+
 ![](./images_7/29.jpg)
 
 
 ```
 In [56]:
 df.groupby('status').last()
+
+```
 
 ![](./images_7/30.jpg)
 

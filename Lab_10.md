@@ -164,6 +164,8 @@ Not surprisingly, the pandas GroupBy logic is analogous to SQL's group by syntax
 In [9]:
 Image(filename='output/income_groupby_grade.JPG')
 
+```
+
 ![](./images_10/1.jpg)
 
 GroupBy with Aggregations
@@ -172,6 +174,8 @@ We can use the .aggregate() attribute to apply multiple methods to the group lev
 ```
 In [10]:
 grp_grd['income'].aggregate(['mean', 'std', 'count'])
+
+```
 
 ![](./images_10/2.jpg)
 
@@ -193,6 +197,8 @@ The analog SAS program using the MEAN, STD, and COUNT function to produce the sa
 In [11]:
 Image(filename='output/groupby_income_stats.JPG')
 
+```
+
 ![](./images_10/3.jpg)
 
 We can requests multiple columns as part of the GroupBy operation. In this case, loans['income'] and loans['dti'] (debt-to-income ratio). The .describe() attribute is applied to each of the group levels. The .stack() .and unstack() attributes are discussed here .
@@ -200,6 +206,8 @@ We can requests multiple columns as part of the GroupBy operation. In this case,
 ```
 In [12]:
 grp_grd['income', 'dti'].describe().unstack()
+
+```
 
 ![](./images_10/4.jpg)
 
@@ -235,6 +243,8 @@ The analog SAS program.
 In [14]:
 Image(filename='output/groupby_grade_count.JPG')
 
+```
+
 ![](./images_10/5.jpg)
 
 The .get_group attribute returns information about a particular group level.
@@ -259,6 +269,8 @@ Out[15]:
 ```
 In [16]:
 Image(filename='output/groupby_grade_G.JPG')
+
+```
 
 ![](./images_10/6.jpg)
 
@@ -295,6 +307,8 @@ The analog SAS PROC SQL example.
 ```
 In [18]:
 Image(filename='output/groupby_grade_income_descend.JPG')
+
+```
 
 ![](./images_10/7.jpg)
 
@@ -374,6 +388,8 @@ Putting these together, the 'income' column is grouped-by the loans['dti_cat'] c
 In [27]:
 loans['income'].groupby(loans['dti_cat']).apply(stats).unstack()
 
+```
+
 ![](./images_10/8.jpg)
 
 The analog SAS program uses PROC SQL to find min and man for the 'dti' column, performs the aggregation funtions, and uses the CASE statement to define 'bins' for the new column 'dti_cat'.
@@ -402,6 +418,8 @@ The analog SAS program uses PROC SQL to find min and man for the 'dti' column, p
 In [28]:
 Image(filename='output/groupby_dti_cat_income.JPG')
 
+```
+
 ![](./images_10/9.jpg)
 
 For another example define the 'max_min' function for calculating a range and apply it income values grouped by loans['dti_cat'] levels nested inside loans['grade'] levels.
@@ -412,6 +430,8 @@ def max_min(x):
         return x.max() - x.min()
 dti_grd_grp = loans.groupby(['grade', 'dti_cat'])
 dti_grd_grp.income.agg(max_min).unstack()
+
+```
 
 ![](./images_10/10.jpg)
 
@@ -496,6 +516,8 @@ However, the default results between pd.qcut() method and PROC RANK are differen
 In [35]:
 Image(filename='output/default_income_deciles.JPG')
 
+```
+
 ![](./images_10/11.jpg)
 
 The difference are attributable to the method by which PROC RANK handles 'tied' values. PROC RANK provides the TIES= option and when set to LOW, the results are the same as the pd.qcut() method. You can read more about how PROC RANK treats tied values here.
@@ -518,6 +540,8 @@ NOTE: Data set "WORK.r_df" has 42595 observation(s) and 23 variable(s)
 In [36]:
 Image(filename='output/deciles_ties_low.JPG')
 
+```
+
 ![](./images_10/12.jpg)
 
 Use the created column loans['inc_cat_dec'] for income deciles to display statistics provided by the 'stats' function created above to return count, mean, and standard deviation.
@@ -525,6 +549,8 @@ Use the created column loans['inc_cat_dec'] for income deciles to display statis
 ```
 In [37]:
 loans['income'].groupby(loans['inc_cat_dec']).apply(stats).unstack()
+
+```
 
 ![](./images_10/13.jpg)
 
@@ -535,6 +561,8 @@ In [38]:
 pd.crosstab([loans.dti_cat], [loans.inc_cat_dec], \
              values=loans.income, aggfunc='count', margins=True, colnames=['Income Deciles'], rownames=['Debt/Income Ratio'])
 
+
+```
 
 ![](./images_10/14.jpg)
 
@@ -559,6 +587,8 @@ The analog SAS program uses PROC FREQ.
 ```
 In [39]:
 Image(filename='output/pd_crosstab.JPG')
+
+```
 
 ![](./images_10/15.jpg)
 
@@ -651,6 +681,8 @@ Display the transformed income values.
 In [49]:
 prt.sort_values('zscore w/ overall mean', ascending=False).head(10)
 
+```
+
 ![](./images_10/16.jpg)
 
 The analog SAS program combines the creating of income deciles using PROC RANK and PROC SQL to calculate income zscores based on overall mean and income decile group mean.
@@ -700,6 +732,8 @@ The analog SAS program combines the creating of income deciles using PROC RANK a
 ```
 In [50]:
 Image(filename='output/income_zcore_table.JPG')
+
+```
 
 ![](./images_10/17.jpg)
 

@@ -71,6 +71,8 @@ In the 'df' DataFrame created above we did not specify a row index or column nam
 In [3]:
 df
 
+```
+
 ![](./images_5/1.jpg)
 
 ## Indices
@@ -202,6 +204,8 @@ In the example below, you might expect three rows returned, rather than two. The
 In [7]:
 df.iloc[2:4]
 
+```
+
 ![](./images_5/2.jpg)
 
 The SAS analog example for cell #6 is below.
@@ -251,6 +255,8 @@ The .iloc indexer in cell #8 below returns rows 2 and 3 using (2:4) as the row s
 In [9]:
 df.iloc[2:4, 0:6]
 
+```
+
 ![](./images_5/3.jpg)
 
 The analog SAS program for returning the same sub-set is below. FIRSTOBS=3 OBS=4 is the equivalent row selector and keep = id -- col5 is the equivalent column selector.
@@ -270,6 +276,8 @@ The .iloc idexer illustrating multi-row and multi-column requests. Note the doub
 ```
 In [10]:
 df.iloc[[1,3,5], [2, 4, 6]]
+
+```
 
 ![](./images_5/4.jpg)
 
@@ -304,6 +312,8 @@ The print() method for a DataFrame returns the output without the cell outlines,
 ```
 In [12]:
 df2
+
+```
 
 ![](./images_5/5.jpg)
 
@@ -362,6 +372,8 @@ Return rows in the range of 'b' to 'f' inclusive. 'b':'f' denotes a row range. T
 In [18]:
 df2.loc['b':'f' ,]
 
+```
+
 ![](./images_5/6.jpg)
 
 Return the rows between range of 'd' to 'f' inclusive. 'col6' and 'col2' is a request for columns by label.
@@ -369,6 +381,8 @@ Return the rows between range of 'd' to 'f' inclusive. 'col6' and 'col2' is a re
 ```
 In [19]:
 df2.loc['d':'f',['col6','col2']]
+
+```
 
 ![](./images_5/7.jpg)
 
@@ -424,6 +438,8 @@ Request arbitrary rows. Notice the double square braces ([])
 In [24]:
 df2.loc[['03/15/16', '07/04/16']]
 
+```
+
 ![](./images_5/8.jpg)
 
 Request a range of rows.
@@ -431,6 +447,8 @@ Request a range of rows.
 ```
 In [25]:
 df2.loc['04/30/16':'07/04/16',['col2','col1']]
+
+```
 
 ![](./images_5/9.jpg)
 
@@ -585,6 +603,8 @@ With the 'ds2['date'] column values converted to a datetime values, re-do the st
 In [32]:
 df2.loc['02/01/16':'07/31/16']
 
+```
+
 ![](./images_5/10.jpg)
 
 The SAS example below illustrates a similiar set of steps:
@@ -639,6 +659,8 @@ to the .loc indexer to retrieve those rows with a boolean value of True. Also re
 In [34]:
 df2.loc[df2['col2'] != 'fast', 'col1':'col2']
 
+```
+
 ![](./images_5/11.jpg)
 
 You can combine any number of boolean operation together. Boolean value comparison operators are documented here.
@@ -646,6 +668,8 @@ You can combine any number of boolean operation together. Boolean value comparis
 ```
 In [35]:
 df2.loc[(df2.col3 >=  9) & (df2.col1 == 'cool'), ]
+
+```
 
 ![](./images_5/12.jpg)
 
@@ -655,6 +679,8 @@ The .isin() method returns a boolean vector similar to the behavior described in
 In [36]:
 df2.loc[df2.col6.isin([6, 9, 13])]
 
+```
+
 ![](./images_5/13.jpg)
 
 So far, the .loc indexers have resulted in an output stream. All of the indexers can be used to sub-set a DataFrame using assignment syntax shown in the cell #33 below.
@@ -663,6 +689,8 @@ So far, the .loc indexers have resulted in an output stream. All of the indexers
 In [37]:
 df3 = df2.loc[df2.col6.isin([6, 9, 13])]
 df3
+
+```
 
 ![](./images_5/14.jpg)
 
@@ -768,6 +796,8 @@ df4 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3., 17, '08/01/16'],
 In [44]:
 df4
 
+```
+
 ![](./images_5/15.jpg)
 
 Set the index to column df4['id'].
@@ -780,6 +810,8 @@ The .ix indexer allows slicing by labels and integer poitions along the index. A
 ```
 In [46]:
 df4.ix['b':'e', 6:8]
+
+```
 
 ![](./images_5/16.jpg)
 
@@ -802,6 +834,8 @@ df5 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3.],
                     index = [6, 8, 2, 3, 4, 5,]);
 df5
 
+```
+
 ![](./images_5/17.jpg)
 
 The .iloc indexer returns the first two rows since it looks at positions.
@@ -809,6 +843,8 @@ The .iloc indexer returns the first two rows since it looks at positions.
 ```
 In [48]:
 df5.iloc[:2]
+
+```
 
 ![](./images_5/18.jpg)
 
@@ -818,6 +854,8 @@ The .loc indexer returns 3 rows since it looks at the labels.
 In [49]:
 df5.loc[:2]
 
+```
+
 ![](./images_5/19.jpg)
 
 The .ix indexer returns the same number of rows as the .loc indexer since its behavior is to first use labels before looking by position. Looking by position with an integer-based index can lead to unexpected results. This illustrated in cell #49 below.
@@ -825,6 +863,8 @@ The .ix indexer returns the same number of rows as the .loc indexer since its be
 ```
 In [50]:
 df5.ix[:2]
+
+```
 
 ![](./images_5/20.jpg)
 
@@ -834,6 +874,8 @@ For the next two examples, review the DataFrame df5 index structure in the cell 
 In [51]:
 df5.index
 
+```
+
 ![](./images_5/21.jpg)
 
 The .iloc example in the cell below returns the first row. That's because it is looking by position.
@@ -841,6 +883,8 @@ The .iloc example in the cell below returns the first row. That's because it is 
 ```
 In [52]:
 df5.iloc[:1]
+
+```
 
 ![](./images_5/22.jpg)
 
@@ -968,6 +1012,8 @@ df5 = pd.DataFrame([['b', 'cold','slow', np.nan, 2., 6., 3., '01/01/16'],
                     columns=['id', 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'date']);
 df5
 
+```
+
 ![](./images_5/23.jpg)
 
 Set the index for DataFrame df5 to the df5['id'] column.
@@ -989,6 +1035,8 @@ We can use the .loc indexer to request the rows in the range of 'b' through 'd'.
 ```
 In [57]:
 df5.loc['b':'d', :]
+
+```
 
 ![](./images_5/24.jpg)
 

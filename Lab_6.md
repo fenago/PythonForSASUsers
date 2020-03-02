@@ -88,6 +88,8 @@ Similiarly, the indexing for columns contains multiple levels, with the name 'ar
 In [5]:
 tickets
 
+```
+
 ![](./images_6/1.jpg)
 
 ```
@@ -135,6 +137,8 @@ A SAS analog of the tickets Dataframe is rendered using PROC TABULATE. Unlike th
 In [7]:
 Image(filename='output/tabulate.JPG')
 
+```
+
 ![](./images_6/2.jpg)
 
 ## Multi-Indexed Selection
@@ -146,6 +150,8 @@ Select all rows by the 'rural' level.
 ```
 In [8]:
 tickets['rural']
+
+```
 
 ![](./images_6/3.jpg)
 
@@ -185,6 +191,8 @@ The DataFrame xs() method uses the level argument to select data for rows and co
 In [10]:
 tickets.xs(('1'), level='month')
 
+```
+
 ![](./images_6/4.jpg)
 
 Likewise, you can request just the rows for 2013.
@@ -192,6 +200,8 @@ Likewise, you can request just the rows for 2013.
 ```
 In [11]:
 tickets.xs((2013), level='year')
+
+```
 
 ![](./images_6/5.jpg)
 
@@ -201,6 +211,8 @@ Selections can use multiple keys. In this case, 2013 and month '1'.
 In [12]:
 tickets.xs((2013, '1'), level=('year', 'month'))
 
+```
+
 ![](./images_6/6.jpg)
 
 The .xs method also works for columns with the optional axis=1 (for columns) argument. In this case, the column 'night' in each of the 3 areas is selected.
@@ -208,6 +220,8 @@ The .xs method also works for columns with the optional axis=1 (for columns) arg
 ```
 In [13]:
 tickets.xs(('night'), level='when', axis=1)
+
+```
 
 ![](./images_6/7.jpg)
 
@@ -220,6 +234,8 @@ The colon (:) to the left of the comma (,) selects all rows. The selection to th
 In [14]:
 tickets.loc[:,['city', 'suburbs']]
 
+```
+
 ![](./images_6/8.jpg)
 
 Below is a an example of partial slicing.
@@ -227,6 +243,8 @@ Below is a an example of partial slicing.
 ```
 In [15]:
 tickets.loc[2013:2014, ['city', 'suburbs']]
+
+```
 
 ![](./images_6/9.jpg)
 
@@ -236,6 +254,8 @@ The example below illustrates slicing with a range of values by providing tuples
 In [16]:
 tickets.loc[(2013, '2') : (2014, '3'), ('rural', 'day') : ('suburbs', 'day')]
 
+```
+
 ![](./images_6/10.jpg)
 
 The example below illustrates the .loc() indexer using multiple keys for row and column slices.
@@ -244,11 +264,15 @@ The example below illustrates the .loc() indexer using multiple keys for row and
 In [17]:
 tickets.loc[(2013, '3'): (2014, '1')]
 
+```
+
 ![](./images_6/11.jpg)
 
 ```
 In [18]:
 tickets.loc[(2013, '3'): (2014, '1'), "city"]
+
+```
 
 ![](./images_6/12.jpg)
 
@@ -264,6 +288,8 @@ idx = pd.IndexSlice
 mask = tickets[('city','night')]>25
 tickets.loc[idx[mask,:,]]
 
+```
+
 ![](./images_6/13.jpg)
 
 The example in the cell below applies the boolean 'mask2' to all values in the DataFrame
@@ -273,6 +299,8 @@ In [20]:
 mask2 = tickets[('rural', 'day')]>15
 tickets.loc[idx[mask2, 'city':'rurual']]
 
+```
+
 ![](./images_6/14.jpg)
 
 The example below applies boolean 'mask2' and also scopes the column request.
@@ -280,6 +308,8 @@ The example below applies boolean 'mask2' and also scopes the column request.
 ```
 In [21]:
 tickets.loc[idx[mask2, 'rural']]
+
+```
 
 ![](./images_6/15.jpg)
 
@@ -295,6 +325,8 @@ The .unstack() attribute used without any arguments in this case pivots the 'mon
 In [22]:
 df_u = tickets.unstack()
 df_u
+
+```
 
 ![](./images_6/16.jpg)
 
@@ -313,6 +345,8 @@ The .stack() attribute performs the reverse operation of the .unstack() attribut
 In [24]:
 df_s = tickets.stack()
 df_s
+
+```
 
 ![](./images_6/17.jpg)
 
@@ -335,6 +369,8 @@ Display the first 12 rows.
 ```
 In [27]:
 df_like_sas.head(12)
+
+```
 
 ![](./images_6/18.jpg)
 

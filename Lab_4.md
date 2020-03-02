@@ -288,6 +288,8 @@ Image(filename='output/contents1.JPG')
 
 Out[11]:
 
+```
+
 ![](./images_4/2.jpg)
 
 ```
@@ -296,6 +298,8 @@ Image(filename='output/contents2.JPG')
 ```
 
 Out[12]:
+
+```
 
 ![](./images_4/3.jpg)
 
@@ -312,6 +316,8 @@ proc print data=uk_accidents (firstobs = 266756);
 ```
 In [13]:
 df.head()
+
+```
 
 ![](./images_4/4.jpg)
 
@@ -331,6 +337,8 @@ This example uses the slicing operator to request columns by labels. Slicers wor
 ```
 In [14]:
 df[['Sex_of_Driver', 'Time']].head(10)
+
+```
 
 ![](./images_4/5.jpg)
 
@@ -497,6 +505,7 @@ Casualty_Severity                0
 Car_Passenger                    0
 Date                             0
 dtype: int64
+
 To identify missing values the SAS example below uses PROC Format to bin missing and non-missing values. Missing values are represented by default as (.) for numeric and blank (' ') for character variables. Therefore, a user-defined format is needed for both types.
 
 PROC FREQ is used with the automatic variables _CHARACTER_ and _NUMERIC_ to produce a frequency listing for each variable type.
@@ -523,6 +532,8 @@ Only a portion of the SAS output is shown since separate output is produced for 
 In [21]:
 Image(filename='output/freq.JPG')
 
+```
+
 ![](./images_4/7.jpg)
 
 Another method for detecting missing values is to search column-wise by using the axis=1 parameter to the chained attributes .isnull().any(). The operation is then performed along columns.
@@ -531,6 +542,8 @@ Another method for detecting missing values is to search column-wise by using th
 In [22]:
 null_data = df[df.isnull().any(axis=1)]
 null_data.head()
+
+```
 
 ![](./images_4/8.jpg)
 
@@ -571,12 +584,16 @@ df2 = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.],
                     index=(list('abcdef')))
 display("df2")
 
+```
+
 ![](./images_4/9.jpg)
 
 ```
 In [25]:
 df_tf = df2.isnull()
 display("df2", "df_tf")
+
+```
 
 ![](./images_4/10.jpg)
 
@@ -608,6 +625,8 @@ In [27]:
 df4 = df2.dropna(axis='columns')
 display("df2", "df4")
 
+```
+
 ![](./images_4/11.jpg)
 
 Clearly this drops a fair amount of 'good' data. The thresh parameter allows you to specify a minimum of non-null values to be kept for the row or column. In this case, row 'd' is dropped because it contains only 3 non-null values.
@@ -616,6 +635,8 @@ Clearly this drops a fair amount of 'good' data. The thresh parameter allows you
 In [28]:
 df5 = df2.dropna(thresh=5)
 display("df2", "df5")
+
+```
 
 ![](./images_4/12.jpg)
 
@@ -626,6 +647,8 @@ In [29]:
 df6 = df2.fillna(0)
 display("df2", "df6")
 
+```
+
 ![](./images_4/13.jpg)
 
 As you can see from the example in cell #28 above, the .fillna() method is applied to all DataFrame cells. We may not wish to have missing values in df['col2'] replaced with zeros since they are strings. The method is applied to a list of target columns using the .loc method. The details for .loc method are discussed in Chapter 05--Understanding Indexes .
@@ -635,6 +658,8 @@ In [30]:
 df7 = df2[['col3', 'col4', 'col5', 'col6']].fillna(0)
 display("df2", "df7")
 
+```
+
 ![](./images_4/14.jpg)
 
 An imputation method based on the mean value of df['col6'] is shown below. The .fillna() method finds and then replaces all occurences of NaN with this calculated value.
@@ -643,6 +668,8 @@ An imputation method based on the mean value of df['col6'] is shown below. The .
 In [31]:
 df8 = df2[["col3", "col4", "col5"]].fillna(df2.col6.mean())
 display("df2", "df8")
+
+```
 
 ![](./images_4/15.jpg)
 
@@ -696,6 +723,8 @@ In [32]:
 df9 = df2.fillna(method='ffill')
 display("df2", "df9")
 
+```
+
 ![](./images_4/16.jpg)
 
 Simalarly, the .fillna(bfill) is a 'backwards' fill method. NaN's are replaced by the adjecent cell traversing 'up' the columns. Cell #32 constrasts the DataFrame df2, created in cell #23 above with the DataFrame df10 created with the 'backward' fill method.
@@ -705,6 +734,8 @@ In [33]:
 df10 = df2.fillna(method='bfill')
 display("df2", "df10")
 
+```
+
 ![](./images_4/17.jpg)
 
 Cell #34 contrasts DataFrame df9 created in cell #32 using the 'forward' fill method with DataFrame df10 created in cell #33 with the 'backward' fill method.
@@ -712,6 +743,8 @@ Cell #34 contrasts DataFrame df9 created in cell #32 using the 'forward' fill me
 ```
 In [34]:
 display("df9", "df10")
+
+```
 
 ![](./images_4/18.jpg)
 

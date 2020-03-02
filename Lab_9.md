@@ -206,6 +206,8 @@ Inspect the first 5 rows to determine if the read_csv() method is giving the exp
 In [13]:
 df_all.head()
 
+```
+
 ![](./images_9/1.jpg)
 
 We need to combine the year and period fields into a datetime timetamp . The .csv file in the cell above is read without any datetime parsing for the fields, 'yr' and 'period'. We could post-process these fields to construct the appropriate date timestamp values.
@@ -425,6 +427,8 @@ Inspect the first 5 records in the 'df_states' DataFrame.
 In [33]:
 df_states.head()
 
+```
+
 ![](./images_9/2.jpg)
 
 Return the number of rows and columns in the DataFrame.
@@ -467,6 +471,8 @@ Display the first 5 rows of the SAS data set df_states. In the SAS code example 
 In [35]:
 Image(filename='output/df_states_output.JPG')
 
+```
+
 ![](./images_9/3.jpg)
 
 Inspect values for the categorical columns.
@@ -474,6 +480,8 @@ Inspect values for the categorical columns.
 ```
 In [36]:
 df_states.describe(include=['O'])
+
+```
 
 ![](./images_9/4.jpg)
 
@@ -501,6 +509,8 @@ PROC SQL used to obtain unique values from the variable 'level'.
 ```
 In [38]:
 Image(filename='output/level_unique_values.JPG')
+
+```
 
 ![](./images_9/5.jpg)
 
@@ -585,6 +595,8 @@ PROC SQL for finding min and max for the variable 'index_nsa'.
 ```
 In [47]:
 Image(filename='output/max_min_index_nsa.JPG')
+
+```
 
 ![](./images_9/6.jpg)
 
@@ -688,6 +700,8 @@ The Data Step below is continued from the SAS Data Step example above used to re
 ```
 In [53]:
 Image(filename='output/2016_min_max.JPG')
+
+```
 
 ![](./images_9/7.jpg)
 
