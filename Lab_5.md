@@ -18,26 +18,15 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab6_Indexes`
 Click notebook `Chapter 05 -- Understanding Indexes.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered
-
-Indicies
-
-.iloc indexer
-
-Setting and Reseting Indicies
-
-.loc indexer
-
-Mixing .loc indexer with Boolean Operations
-
-Altering DataFrame values using the .loc indexer
-
-Conditionally Apply Values Based on Another Column Value
-
-.ix indexer
-
-Indexing Issues
-
-Resources
+- Indicies
+- .iloc indexer
+- Setting and Reseting Indicies
+- .loc indexer
+- Mixing .loc indexer with Boolean Operations
+- Altering DataFrame values using the .loc indexer
+- Conditionally Apply Values Based on Another Column Value
+- .ix indexer
+- Indexing Issues
 
 SAS users tend to think of indexing SAS data sets as a means to improve query performance. Another use case for using SAS indices is in performing non-sequential reads for table look-ups.
 
@@ -477,8 +466,7 @@ Converting string literals to datetime values is covered in the section, String 
 ```
 In [26]:
 df2.loc['01/01/16':'07/31/16']
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
+--------------------------------------------------------------------------- ValueError                                Traceback (most recent call last)
 C:\Users\randy\Anaconda3\lib\site-packages\pandas\indexes\base.py in get_slice_bound(self, label, side, kind)
    2909             try:
 -> 2910                 return self._searchsorted_monotonic(label, side)
@@ -893,8 +881,7 @@ The .ix example in the cell below raises a KeyError since 1 is not found in the 
 ```
 In [53]:
 df5.ix[:1]
----------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
+--------------------------------------------------------------------------- ValueError                                Traceback (most recent call last)
 C:\Users\randy\Anaconda3\lib\site-packages\pandas\indexes\base.py in get_slice_bound(self, label, side, kind)
    2909             try:
 -> 2910                 return self._searchsorted_monotonic(label, side)
@@ -1050,8 +1037,7 @@ If we should want the row label range of 'b' to 'c' with all the columns we rais
 ```
 In [58]:
 df5.loc['b':'c', :]
----------------------------------------------------------------------------
-KeyError                                  Traceback (most recent call last)
+--------------------------------------------------------------------------- KeyError                                  Traceback (most recent call last)
 <ipython-input-58-64fc99b408b0> in <module>()
 ----> 1 df5.loc['b':'c', :]
 

@@ -18,28 +18,21 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab4_DataTypes`
 Click notebook `Chapter 03  -- Data Types and Formatting.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered:
-
-Numerics
-
-Boolean
-
-Strings
-
-Numerical Precision
-
-String Slicing
-
-String Formatting
-
-Resources
+- Numerics
+- Boolean
+- Strings
+- Numerical Precision
+- String Slicing
+- String Formatting
 
 Generally, SAS programmers have not had to concern themselves with data types since the model for SAS is simple. Data types are either numeric (8.) or character ($). SAS informats (both SAS-supplied and user-defined) provide the mappings for reading data types. Similarly, SAS formats provide the mappings needed to write various data types. Internally, SAS uses floating point representation, with all of the details handled under the covers.
 
 Python has three distinct numeric types. They are:
 
-     Integers
-     Floating point numbers
-     Complex numbers
+- **Integers**
+- **Floating point numbers**
+- **Complex numbers**
+
 Python Numeric types and their supported operations are described here. Neither SAS nor Python have requirements to declare data types. They are inferred by usage context. In addition, Python has a Boolean type which is a sub-type of integer. Complex numbers are not discussed here.
 
 ## Numerics

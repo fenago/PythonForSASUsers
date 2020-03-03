@@ -19,33 +19,19 @@ Click notebook `Chapter 12 -- Additional Data Handling .ipynb` in jupterLab UI a
 
 ## Topics Covered:
 
-Sort and Sort Sequences
-
-Drop/Keep Columns
-
-Rename Columns
-
-Find Duplicate Values
-
-Extract Duplicate Rows to a new DataFrame
-
-Drop Duplicate Rows
-
-Add a New DataFrame Column
-
-Cast Strings to Float
-
-Concatenating DataFrames (Join)
-
-Crosstabs
-
-Sampling
-
-Binning Continuous Values
-
-Save to Disk
-
-Resources
+-Sort and Sort Sequences
+-Drop/Keep Columns
+-Rename Columns
+-Find Duplicate Values
+-Extract Duplicate Rows to a new DataFrame
+-Drop Duplicate Rows
+-Add a New DataFrame Column
+-Cast Strings to Float
+-Concatenating DataFrames (Join)
+-Crosstabs
+-Sampling
+-Binning Continuous Values
+-Save to Disk
 
 
 ```
@@ -54,6 +40,7 @@ import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame, Index
 from IPython.display import Image
+```
 
 ## Sort and Sort Sequences
 
@@ -67,6 +54,7 @@ df_states = pd.read_csv("C:\Data\\HPI_master.csv",
             usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8),
             names=('hpi_type', 'hpi_flavor', 'frequency', 'level', 'place_name', 'place_id', 'yr', 'period', 'index_nsa'),
             header=None)
+```
 The following SAS Data Step reads the same .csv file using FIRSTOBS= to begin reading from an arbitary row position.
 
     /********************************/

@@ -19,20 +19,12 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab9_Objects`
 Click notebook `Chapter 08 -- Date, Time, and  Timedelta Objects.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered:
-
-String Literal Mapped to datetime timestamp
-
-date objects
-
-strftime() and strptime() methods
-
-dateutil.parser
-
-time objects
-
-timedelta objects
-
-Resources
+- String Literal Mapped to datetime timestamp
+- date objects
+- strftime() and strptime() methods
+- dateutil.parser
+- time objects
+- timedelta objects
 
 Chapter 3, Data Types and Formatting briefly introduces Python date and datetimes.
 

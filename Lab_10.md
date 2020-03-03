@@ -18,26 +18,15 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab11_Groupby`
 Click notebook `Chapter 10 -- Groupby.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered:
-
-Setting Display Options
-
-Read 'pickled' DataFrame
-
-Create GroupBy Object
-
-GroupBy with Aggregations
-
-Understanding Binning
-
-Defining Functions
-
-Applying Functions to Groups
-
-Applying Transformations to Groups
-
-Top/Bottom N processing
-
-Resources
+- Setting Display Options
+- Read 'pickled' DataFrame
+- Create GroupBy Object
+- GroupBy with Aggregations
+- Understanding Binning
+- Defining Functions
+- Applying Functions to Groups
+- Applying Transformations to Groups
+- Top/Bottom N processing
 
 ```
 In [1]:

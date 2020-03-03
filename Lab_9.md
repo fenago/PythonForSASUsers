@@ -18,22 +18,13 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab10_TimeSeries`
 Click notebook `Chapter 09 -- Panda Time Series and Date Handling.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered:
-
-Creating and manipulating a fixed-frequency of dates and time spans
-
-Time Series Walk-Through
-
-Returning Unique Levels of Categories
-
-Return a Row using a Minimum Value
-
-Return a Row using a Maximum Value
-
-Convert time series from one frequency to another
-
-Plotting with bokeh
-
-Resources
+- Creating and manipulating a fixed-frequency of dates and time spans
+- Time Series Walk-Through
+- Returning Unique Levels of Categories
+- Return a Row using a Minimum Value
+- Return a Row using a Maximum Value
+- Convert time series from one frequency to another
+- Plotting with bokeh
 
 Chapter 8, Understanding Date Time and TimeDelta objects provided a short introduction to Python's built-in datetime capabilities. In this chapter we illustrate pandas time series and date handling.
 

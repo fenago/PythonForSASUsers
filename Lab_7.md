@@ -18,32 +18,18 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab8_Pandas`
 Click notebook `Chapter 07 -- Pandas, Part 2.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered
-
-SAS Sort Merge with by-group
-
-Inner Join
-
-Right Outer Join
-
-Left Outer Join
-
-Full Outer Join
-
-Outer Join no Matched Keys
-
-Outer Join no Matched Keys in Right
-
-Outer Join no Matched Keys in Left
-
-Many-to-Many Join
-
-Group by: split-apply-combine Introduction
-
-Replace Missing Values with Group Means
-
-FIRST.variable and LAST.variable Processing
-
-Resources
+- SAS Sort Merge with by-group
+- Inner Join
+- Right Outer Join
+- Left Outer Join
+- Full Outer Join
+- Outer Join no Matched Keys
+- Outer Join no Matched Keys in Right
+- Outer Join no Matched Keys in Left
+- Many-to-Many Join
+- Group by: split-apply-combine Introduction
+- Replace Missing Values with Group Means
+- FIRST.variable and LAST.variable Processing
 
 The usual pre-amble to get packages loaded into the namespace.
 

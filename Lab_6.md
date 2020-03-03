@@ -18,20 +18,12 @@ You can access jupyter lab at `<host-ip>:<port>/lab/workspaces/lab7_Indexing`
 Click notebook `Chapter 06 -- Hierarchical Indexing.ipynb` in jupterLab UI and run jupyter notebook.
 
 ## Topics Covered
-
-MultiIndexing
-
-Multi-Indexed Selection
-
-xs() method for cross sections
-
-Advanced Indexing with .loc indexer
-
-Using Boolean operators with .loc indexer
-
-stack() and unstack() methods
-
-Resources
+- MultiIndexing
+- Multi-Indexed Selection
+- xs() method for cross sections
+- Advanced Indexing with .loc indexer
+- Using Boolean operators with .loc indexer
+- stack() and unstack() methods
 
 ```
 In [1]:
