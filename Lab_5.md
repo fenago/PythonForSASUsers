@@ -44,6 +44,8 @@ import numpy as np
 import pandas as pd
 from numpy.random import randn
 from pandas import Series, DataFrame, Index
+```
+
 Consider the creation of the DataFrame df in the cell below.
 
 ```
@@ -54,6 +56,8 @@ df = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3.],
                     ['d', 'cool', None, np.nan, np.nan, 17, 89],
                     ['e', 'cool', 'medium', 16, 44, 21, 13],
                     ['f', 'cold', 'slow', np.nan, 29, 33, 17]])
+```
+
 In the 'df' DataFrame created above we did not specify a row index or column names resulting in the RangeIndex object used for row labels. Default column labels are created as well using another RangeIndex object.
 
 ```
@@ -295,6 +299,7 @@ df2 = pd.DataFrame([['a', 'cold','slow', np.nan, 2., 6., 3., '08/01/16'],
 Executing just the name for the DataFrame is the equivalent of:
 
 print(df2)
+```
 
 The print() method for a DataFrame returns the output without the cell outlines, however.
 
@@ -319,6 +324,8 @@ This is useful if you have multiple occasions setting and resetting the index. O
 ```
 In [13]:
 df2.set_index('id', inplace=True, drop=False)
+```
+
 The .set_index attribute execution is silent when the inplace=argument value is utilized. Validate the index using the .index attribute.
 
 ```
@@ -328,16 +335,21 @@ df2.index
 
 Out[14]:
 Index(['a', 'b', 'c', 'd', 'e', 'f'], dtype='object', name='id')
+
 To reset the index, use the reset_index() method.
 
 ```
 In [15]:
 df2 = df2.reset_index(drop=True)
+```
+
 In order to have the remainder of the examples for the .loc indexer to work, we set the index again.
 
 ```
 In [16]:
 df2.set_index('id', inplace=True, drop=False)
+```
+
 Return the row labeled 'e'.
 
 ```
@@ -466,6 +478,8 @@ Converting string literals to datetime values is covered in the section, String 
 ```
 In [26]:
 df2.loc['01/01/16':'07/31/16']
+```
+
 --------------------------------------------------------------------------- ValueError                                Traceback (most recent call last)
 C:\Users\randy\Anaconda3\lib\site-packages\pandas\indexes\base.py in get_slice_bound(self, label, side, kind)
    2909             try:
@@ -550,6 +564,7 @@ pandas\hashtable.pyx in pandas.hashtable.PyObjectHashTable.get_item (pandas\hash
 pandas\hashtable.pyx in pandas.hashtable.PyObjectHashTable.get_item (pandas\hashtable.c:12322)()
 
 KeyError: '07/31/16'
+
 Reset the index for the DataFrame 'df2' to the default RangeIndex object.
 
 ```
@@ -628,6 +643,8 @@ A Series is returned with the True/False values not equal to 'fast' for fd2['col
 In [33]:
 print(df2['col2'] != 'fast')
 print(type(df2['col2'] != 'fast'))
+```
+
 date
 2016-08-01     True
 2016-03-15     True
@@ -636,7 +653,8 @@ date
 2016-07-04     True
 2016-01-01     True
 Name: col2, dtype: bool
-<class 'pandas.core.series.Series'>
+`<class 'pandas.core.series.Series'>`
+
 Passing the boolean Series:
 
 df2['col2'] != 'fast' 
@@ -690,8 +708,11 @@ To return a DataFrame of the same shape as the original, use the where() method.
 In [38]:
 print('Shape for df2 is', df2.shape)
 print('Shape for df3 is', df3.shape)
+```
+
 Shape for df2 is (6, 7)
 Shape for df3 is (3, 7)
+
 The example SAS program below uses the WHERE IN (list) syntax to subset a data set analogous to the example in cell #32 above.
 
     /******************************************************/
@@ -709,6 +730,8 @@ Notice how the SAS variable count and DataFrame column count differ by 1. That i
 ```
 In [39]:
 df3.reset_index(inplace=True)
+```
+
 print('Shape for df3 is', df3.shape)
 Shape for df3 is (3, 8)
 
@@ -793,6 +816,8 @@ Set the index to column df4['id'].
 ```
 In [45]:
 df4.set_index('id', inplace=True)
+```
+
 The .ix indexer allows slicing by labels and integer poitions along the index. And look closely at the results since the request for columns is based on the integer-position of the column. The column requestor of 6 is not a column label, but its position.
 
 ```
@@ -1034,9 +1059,12 @@ This issue is described in sparse prose here.
 If we should want the row label range of 'b' to 'c' with all the columns we raise the error:
 
 "Cannot get right slice bound for non-unique label: 'c'"
+
 ```
 In [58]:
 df5.loc['b':'c', :]
+```
+
 --------------------------------------------------------------------------- KeyError                                  Traceback (most recent call last)
 <ipython-input-58-64fc99b408b0> in <module>()
 ----> 1 df5.loc['b':'c', :]
@@ -1111,17 +1139,5 @@ df.index.is_monotonic_increasing
 
 Out[60]:
 True
+
 While not spelled out in any documentation I found, the moral of the story is when using indices with non-unique values, be wary.
-
-## Resources
-
-Indexing and Selecting Data pandas 0.19.0 doucmentation
-
-Selecting DataFrame rows and columns using iloc, loc, and ix in Pandas by Shane Lynn
-
-Indexing, Slicing and Subsetting DataFrames in Python by Chris Friedline.
-
-Non-monotonic indexes require exact matches pandas 0.19.0 documentation
-
-Useful pandas Snippets by Becky Swegler, Computers are for People.
-

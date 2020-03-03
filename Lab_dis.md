@@ -115,7 +115,7 @@ In [4]:
 Image(filename='output/odbc.JPG')
 ```
 
-Out4]:
+Out[4]:
 
 Next, create a tuple of parameter values to pass to the create_engine= assignment to identify the Python package used on the client-side as well as the database server name, target database, and target table.
 
@@ -205,7 +205,7 @@ In [10]:
 t2.index
 ```
 
-Out10]:
+Out[10]:
 Int64Index([11000, 11001, 11002, 11003, 11004, 11005, 11006, 11007, 11008,
             11009,
             ...
@@ -220,7 +220,7 @@ In [51]:
 t2["BirthDate"].head(5)
 ```
 
-Out51]:
+Out[51]:
 CustomerKey
 11000   1966-04-08
 11001   1965-05-14
@@ -351,7 +351,7 @@ from pandas.io import sql
 sql.execute('DROP TABLE dbo.df2', engine)
 ```
 
-Out21]:
+Out[21]:
 <sqlalchemy.engine.result.ResultProxy at 0x1f5e04d1710>
 
 ## DataFrame.to_sql
@@ -369,12 +369,14 @@ df = pd.DataFrame([['cold','slow', np.nan, 2., 6., 3.],
                    ['cold', 'slow', np.nan, 29, 33, 17]],
                    columns=['col1', 'col2', 'col3', 'col4', 'col5', 'col6'],
                    index=(list('abcdef')))
+
 The .DataFrame.to_sql method loads a target DBMS table with the rows and columns from a DataFrame. The syntax is documented here . The method has the chunksize= parameter where the default None writes all rows at once. The doc does not specify how the writes take place, either through SQL INSERT statements or uses a bulk copy interface.
 
 
 ```
 In [29]:
 df.to_sql('dbo.DF2', engine, if_exists='replace',index=False)
+
 The analog SAS program to copy a SAS data set to the target DBMS is below. Note the PROC PWENCODE used to encode strings to prevent passwords from being stored in clear text. Also notice the LIBNAME option bulkload=yes. This causes the load operation to go through the RDBMS' bulk load interface.
 
     /******************************************************/
@@ -545,12 +547,3 @@ AGE       8 non-null float64
 GENDER    9 non-null object
 dtypes: float64(1), object(2)
 memory usage: 296.0+ bytes
-
-## Resources
-
-SQL Queries , from the pandas.org doc.
-
-How to pull data from a microsoft sql database
-
-defining the create_engine() method from the SQLAlchemy doc.
-

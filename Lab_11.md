@@ -126,7 +126,7 @@ In [10]:
 pd_staff.dtypes
 ```
 
-Out10]:
+Out[10]:
 employee                  category
 salary                     float64
 startdate           datetime64[ns]
@@ -198,7 +198,7 @@ copy_deep_true = pd_staff.copy()
 id(pd_staff)
 ```
 
-Out14]:
+Out[14]:
 140465635419640
 
 ```
@@ -208,7 +208,7 @@ id(copy_deep_true)
 <class 'pandas.core.frame.DataFrame'>
 ```
 
-Out15]:
+Out[15]:
 140464967919432
 Call the sas.df2sd method. The copied dataframe is not acceptable to this call.
 
@@ -259,7 +259,7 @@ copy_deep_false = pd_staff.copy(deep=False)
 id(pd_staff)
 ```
 
-Out17]:
+Out[17]:
 140465635419640
 
 ```
@@ -269,7 +269,7 @@ id(copy_deep_false)
 <class 'pandas.core.frame.DataFrame'>
 ```
 
-Out18]:
+Out[18]:
 140464967921000
 Call the sas.df2sd method. copy_deep_false dataframe is not acceptable.
 
@@ -338,7 +338,7 @@ In [23]:
 sd_medals.contents()
 ```
 
-Out23]:
+Out[23]:
 {'Attributes':          Member               Label1  \
  0  WORK.MEDALS2        Data Set Name   
  1  WORK.MEDALS2          Member Type   
@@ -420,7 +420,7 @@ In [24]:
 sas
 ```
 
-Out24]:
+Out[24]:
 Access Method         = STDIO
 SAS Config name       = default
 WORK Path             = /home/sas/tmp/SAS_work41FB0000134E_localhost.localdomain/

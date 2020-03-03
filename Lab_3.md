@@ -107,14 +107,19 @@ SAS does have implied boolean test operators. An example is the END=
 In [3]:
 print(type(True))
 print(bool(True))
+
 <class 'bool'>
 True
+```
+
 Empty sets return False, Non-empty sets return True
 
 ```
 In [4]:
 print(bool(''))                  
 print(bool('Arbitrary String'))
+```
+
 False
 True
 Boolean values for 0 and 1
@@ -123,6 +128,8 @@ Boolean values for 0 and 1
 In [5]:
 print(bool(0))
 print (bool(1))
+```
+
 False
 True
 Inequality comparison
@@ -265,10 +272,13 @@ for i in list:
       total += i
 print('Boolean expression one == total evaluates to:', one == total)    
 print('Boolean expression one == round(total) evaluates to:', one == round(total))
+```
+
 print('Total is:', total, 'and type is:', type(total))
 Boolean expression one == total evaluates to: False
 Boolean expression one == round(total) evaluates to: True
-Total is: 0.9999999999999999 and type is: <class 'float'>
+Total is: 0.9999999999999999 and type is: `<class 'float'>`
+
 For a detailed explanation as to why, details are found here. The explanation applies to both Python and SAS.
 
 SAS produces the same results as the Python example above. Without the ROUND function the comparison of the product (.1 * 10) and the integer value 1 evaluates 'False'. Applying the ROUND function to the accumulator variable 'total' evaluates the comparison 'True'.
@@ -319,6 +329,7 @@ print('Type() for s5 is:', type(s5))
 Hello World
 HelloWorld
 Type() for s5 is: <class 'str'>
+
 SAS analog example for string literal assignment and concatentation.
 
     /******************************************************/
@@ -489,6 +500,8 @@ The count method()
 In [18]:
 print('Occurances of the letter "c":', s7.count('c'))
 Occurances of the letter "c": 6
+```
+
 A contrast between SAS and Python is how Python preserves the line terminations for the string literals or DocStrings. SAS removes the line termination characters such that a PUT statement renders a single line wrapped to the width of the SAS log.
 
     /******************************************************/
@@ -573,7 +586,10 @@ The partition() method uses a separator, in our example, a whitespace and return
 In [23]:
 if s7.startswith('Bea'):
     print(s7.partition(' ')[0])
+```
+
 Beautiful
+
 The SAS analog example uses the SUBSTR and the SCAN function, documented here.
 
     /******************************************************/
@@ -601,6 +617,8 @@ Backslashes (\) are used as string literal escape characters. The Python interpr
 In [24]:
 q = 'Python\'s capabilities'
 print(q)
+```
+
 Python's capabilities
 
 ## String Formatting
@@ -813,8 +831,10 @@ from datetime import datetime, date, time
 now = datetime.now()
 print(now)
 print(type(now))
+```
+
 2016-12-02 13:57:34.310391
-<class 'datetime.datetime'>
+`<class 'datetime.datetime'>`
 Extrating dates and times
 
 ```
@@ -828,6 +848,8 @@ print('Day:', now.strftime("%d"))
 print()
 print('concat1:', now.strftime("%A, %B %d, %Y A.D."))
 print('current datetime:', now.strftime("%c"))
+```
+
 Default output: 2016-12-02 13:57:34.376403
 Year: 2016
 Month: December
@@ -880,6 +902,7 @@ current datetime: Fri Dec  2 13:57:34 2016
 
     concat1: Sunday,  October 09, 2016 A.D
     current datetime: Sun Oct 9 19:54:20 2016
+
 Create a date string.
 
 ```
@@ -887,8 +910,11 @@ In [39]:
 dt_str = '{:%Y-%m-%d %H:%M}'.format(datetime(2016, 10, 9, 8, 7))
 print('dt_str is:', dt_str)
 print('dt_str is', type(dt_str))
+```
+
 dt_str is: 2016-10-09 08:07
 dt_str is <class 'str'>
+
 The SAS example below reads a date-string literal with the informat datetime15. and uses the PUT function to associate it with the datetime15. format. This does not create a SAS datetime value.
 
     /******************************************************/
@@ -910,18 +936,4 @@ The SAS example below reads a date-string literal with the informat datetime15. 
    RULE:     ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+-    
 
    14        09Oct2016:08:07
-
-## Resources
-
-4. Built-in Types from Python 3.6 Documentation, The Python Standard Library.
-
-Pre-Processing Text Data from Duke University's "Computational Statistics in Python"
-
-Strings, Part 3 from Hands-on Python Tutorial by Andrew N. Harrington, Computer Science Department, Loyola University Chicago
-
-PyFormat Using % and .format() for great good! Curated by Ulrich Petri & Horst Gutmann
-
-SAS Variables in the SAS 9.2 Language Reference: Concepts, Second Edition
-
-Missing Values cited above.
 

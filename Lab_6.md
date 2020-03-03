@@ -31,6 +31,8 @@ import pandas as pd
 import numpy as np
 from pandas import Series, DataFrame, Index
 from IPython.display import Image
+```
+
 Simply put, a MultiIndex (also referred to as a hierarchical index) allows multiple index levels within a single index. Higher dimensional data can be represented in a one-dimensional Series or a two-dimensional DataFrame. Start with the creation of a synthetic DataFrame whose values are used to represent the number of traffic violations issued in cell #3 below.
 
 pandas provide constructor methods allowing components to be defined separately. The construction of the index and columns below is self-explanatory.
@@ -52,6 +54,8 @@ data = np.round(np.random.randn(12, 6),2)
 data = abs(np.floor_divide(data[:] * 100, 5))
 
 tickets = pd.DataFrame(data, index=index, columns=columns).sort_index().sort_index(axis=1)
+```
+
 ```
 In [3]:
 index
@@ -125,6 +129,7 @@ A SAS analog of the tickets Dataframe is rendered using PROC TABULATE. Unlike th
     27          class area nd year month;
     28             table year * month ,
     29                   area=' ' * nd=' ' * sum=' ' * tickets=' ';
+
 ```
 In [7]:
 Image(filename='output/tabulate.JPG')
@@ -331,6 +336,7 @@ Out[23]:
 MultiIndex(levels=[['city', 'rural', 'suburbs'], ['day', 'night'], ['1', '2', '3']],
            labels=[[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1], [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]],
            names=['area', 'when', 'month'])
+
 The .stack() attribute performs the reverse operation of the .unstack() attribute. The .stack() attribute takes the inner most index level of the columns level and pivots them to the inner-most index level of the rows. In this case the new DataFrame is called df_s.
 
 ```
@@ -347,6 +353,8 @@ DataFrames containing MultiIndexes can 'stack' and 'unstack' multiple levels at 
 ```
 In [25]:
 df_like_sas = pd.DataFrame(tickets.stack(level=['when', 'area']))
+```
+
 We can 'stack' the original tickets DataFrame by the levels 'when' and 'area' from the column MultiIndex to create a new DataFrame shaped similiarly to the SAS data set tickets.
 
 ```
@@ -356,6 +364,7 @@ df_like_sas.shape
 
 Out[26]:
 (72, 1)
+
 Display the first 12 rows.
 
 ```
@@ -365,14 +374,3 @@ df_like_sas.head(12)
 ```
 
 ![](./images_6/18.jpg)
-
-## Resources
-
-Python Data Science Handbook , Essential Tools for Working With Data, by Jake VanderPlas.
-
-Reshaping by pivoting DataFrame objects , from the pandas 0.19.0 documentation.
-
-Reshaping by stacking and unstacking from the pandas 0.19.0 documentation.
-
-MultiIndex / Advanced Indexing from the pandas 0.19.0 documentation.
-

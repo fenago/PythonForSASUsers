@@ -43,11 +43,10 @@ Many time series have fixed interval or frequency, for example, home sales on a 
 Recall, you can always return an object's type with the type method:
 
 type()
+
 In Python the datetime class be broken down into 5 categories:
 
 The first 4 will be examined briefly.
-
-```
 
 ![](./images_8/.jpg)
 
@@ -57,6 +56,7 @@ from datetime import date, time, datetime, timedelta
 import numpy as np
 import pandas as pd
 from pandas import Series, DataFrame, Index
+```
 
 ## String Literal Mapped to datetime timestamp
 
@@ -65,7 +65,7 @@ A timestamp is time value that represents a count of the number of seconds from 
 ```
 In [2]:
 pdt = pd.Timestamp('2016-10-24')
-```
+
 In [3]:
 type(pdt)
 ```
@@ -92,6 +92,8 @@ In [4]:
 ind_day = date(1776, 7, 4)
 print(ind_day)
 print(type(ind_day))
+```
+
 1776-07-04
 <class 'datetime.date'>
 Return today's date. The SAS analog is the today() function.
@@ -103,6 +105,7 @@ date.today()
 
 Out[5]:
 datetime.date(2016, 11, 13)
+
 The .year, .month, and .day attribute for datetime objects returns year, month, and day respectively. These attributes return integers.
 
 SAS has the analog functions, year(), month(), day(), used to return the respective portions of a SAS datetime value. These functions return numeric values.
@@ -112,9 +115,12 @@ In [6]:
 print('Year:', date.today().year)
 print('Month:', date.today().month) 
 print('Day:', date.today().day)
+```
+
 Year: 2016
 Month: 11
 Day: 13
+
 The analog SAS program for the examples in cells #3 to #6 is below.
 
     /******************************************************/
@@ -145,12 +151,17 @@ The .year, .month, and .day attributes also work with arbitrary dates as well.
 ```
 In [7]:
 print('Year:', ind_day.year, 'Month:', ind_day.month, 'and day:', ind_day.day)
+```
+
 Year: 1776 Month: 7 and day: 4
+
 The weekday() method returns an integer representing day of the week where Monday is 0 and Sunday is 6. The SAS analog is the WEEKDAY() function that returns numeric where 1 is Sunday and Saturday is 7.
 
 ```
 In [8]:
 print(date.weekday(ind_day))
+```
+
 3
 
 ## strftime() and strptime() methods
@@ -171,18 +182,18 @@ In [9]:
 print('Day:', ind_day.strftime('%A'))
 print('The convential method to display the date is:', ind_day.strftime('%c'))
 print('Another way to display the date is:', ind_day.strftime('%A %B %d, %Y'))
+```
+
 Day: Thursday
 The convential method to display the date is: Thu Jul  4 00:00:00 1776
 Another way to display the date is: Thursday July 04, 1776
+
 The SAS example below illustrate these commonly used SAS formats:
 
-date11.
-
-ddmmyy10.
-
-weekdate17.
-
-yymmdd10.
+- **date11.**
+- **ddmmyy10.**
+- **weekdate17.**
+- **yymmdd10.**
 
 The strftime() method apply format directives to datetime objects. As illustrated above, these directives can be combined to form the desired output. This includes any arbitrary characters such as comma, slash, or white-space needed to form the output.
 
@@ -193,10 +204,13 @@ print('Last day is:', last_day.strftime("%d-%b-%Y"))        # date11. format
 print('Last day is:', last_day.strftime("%d/%m/%Y"))        # ddmmyy10. format
 print('Last day is:', last_day.strftime("%a, %b %d, %Y"))   # weekdate17. format
 print('Last day is:', last_day.strftime("%Y-%m-%d"))        # yymmdd10. format
+```
+
 Last day is: 31-Dec-2016
 Last day is: 31/12/2016
 Last day is: Sat, Dec 31, 2016
 Last day is: 2016-12-31
+
 The SAS program below illustrates formats to map datetime values into string representation similiar to the strftime() method.
 
     /******************************************************/
@@ -228,9 +242,12 @@ first_date = datetime.strptime(str_date, "%d/%m/%Y" )
 print(first_date)
 print('type for str_date is:', type(str_date))
 print('type for first_date is:', type(first_date))
+```
+
 2016-01-01 00:00:00
 type for str_date is: <class 'str'>
 type for first_date is: <class 'datetime.datetime'>
+
 The SAS program below illustrates informats to map string representations of datetime into a SAS datetime value similiar to the strptime() method.
 
     /******************************************************/
@@ -253,7 +270,7 @@ It can be tedious to constantly write the directives used to control the strptim
 ```
 In [12]:
 from dateutil.parser import parse
-```
+
 In [13]:
 strt_yr = parse('2016/01/01')
 strt_yr
@@ -271,8 +288,11 @@ if d == date(2015, 12, 31):
     d2 = d.replace(day=25) == date(2015, 12, 25)
 print(d)
 print(d2)
+```
+
 2015-12-31
 True
+
 ```
 In [15]:
 today = date.today()
@@ -286,9 +306,12 @@ print('Next birthday is:', birth_day)
 days_until = abs(birth_day - today)
 print(days_until)
 print(type(days_until))
+```
+
 Next birthday is: 2017-01-24
 72 days, 0:00:00
 <class 'datetime.timedelta'>
+
 The example above in cell #11 is another illustration of date arithmetic. The if condition determine whether the birthday has occured this year (in this case, True) and if True, uses the date.replace() method to increment to the next year. The syntax:
 
 days_until = abs(birth_day - today)
@@ -354,14 +377,17 @@ datetime.now()
 
 Out[17]:
 datetime.datetime(2016, 11, 13, 16, 9, 29, 148013)
+
 ```
 In [18]:
 print(datetime.now().hour)
 print(datetime.now().minute) 
 print(datetime.now().second)
+```
 16
 9
 29
+
 The .hour, .minute, and .second attribute for datetime objects returns hour, minutes, and seconds respectively. These attributes return integers.
 
 SAS has the analog functions, hour(), minute(), second(), used to return the respective portions of a SAS datetime value. These functions return numeric values.
@@ -395,6 +421,8 @@ The .hour, .minute, and .second attribute also work with arbitrary times.
 ```
 In [19]:
 print('Hour:', go_time.hour, 'Minutes:', go_time.minute, 'and seconds:', go_time.second)
+```
+
 Hour: 12 Minutes: 34 and seconds: 56
 
 ## timedelta objects
@@ -405,13 +433,9 @@ The details for the timedelta object are found here
 
 The SAS analog are the various date interval functions such as:
 
-INTNX
-
-INTGET
-
-INTFIT
-
-and others that are similiar.
+- INTNX
+- INTGET
+- INTFIT
 
 The results of an operation with a timedelta object returns a datetime object. The datetime method now() returns today's date similiar to the SAS function TODAY().
 
@@ -421,8 +445,12 @@ today = date.today()
 moment = datetime.now().time()
 now = datetime.combine(today, moment)
 ```
+
+```
 In [21]:
 print(today, moment, now)
+```
+
 2016-11-13 16:09:29.487036 2016-11-13 16:09:29.487036
 What is 1000 days from now
 
@@ -433,6 +461,7 @@ today+timedelta(days=1000)
 
 Out[22]:
 datetime.date(2019, 8, 10)
+
 ```
 In [23]:
 future = date(2020, 1, 1)
@@ -442,6 +471,7 @@ days_until
 
 Out[23]:
 datetime.timedelta(1144)
+
 The SAS equivalent for timedelta object examples is below.
 
     /******************************************************/
@@ -470,14 +500,3 @@ The SAS equivalent for timedelta object examples is below.
     Yesterday was: 10/23/2016
    1,000 days from now is: 07/21/2019
    days_until=1164
-
-## Resources
-
-Chapter 10, Time Series, "Python for Data Analysis, by Wes McKinney, located here
-
-strftime and strptime behavior
-
-About Date and Time Intervals SAS 9.2 Language Reference: Concepts, Second Edition
-
-Land Surface Hydrology Group Computing Seminar, by Joe Hamman, University of Washington, located here .
-

@@ -94,6 +94,7 @@ In [6]:
 start = datetime(2016, 1, 1)
 end = datetime(2016, 12, 31)
 b_rng = pd.bdate_range(start,end)
+
 The Series implicitly creates a DatetimeIndex object.
 
 ```
@@ -391,11 +392,13 @@ df_states = pd.read_csv("data/HPI_master.csv",
             usecols=(0, 1, 2, 3, 4, 5, 6, 7, 8),
             names=('hpi_type', 'hpi_flavor', 'frequency', 'level', 'place_name', 'place_id', 'yr', 'period', 'index_nsa'),
             header=None)
+
 The columns 'yr' and 'period' are read as string values and need to be converted to datetime values. The operation below creates the new column 'date_str' by:
 
 1. Concatenating 'yr' with 'Q' with 'period' to form a date string 
 2. The date string is passed to the pd.to_datetime function creating the dateime column 'date_idx'
 1. String concatenation operation to form YYYYq.
+
 ```
 In [30]:
 df_states["date_str"] = df_states['yr'].map(str) + 'Q' + df_states['period'].map(str)
@@ -431,6 +434,7 @@ df_states.shape
 
 Out[34]:
 (96244, 11)
+
 The following SAS Data Step reads the same .csv file using FIRSTOBS= to begin reading from the arbitary row position 3082.
 
     /********************************/
@@ -583,6 +587,7 @@ PROC SQL for finding min and max for the variable 'index_nsa'.
 41         where hpi_type ='traditional' and  hpi_flavor = 'purchase-only' and
 42          level = 'State';
 43      quit;
+
 ```
 In [47]:
 Image(filename='output/max_min_index_nsa.JPG')
@@ -688,6 +693,7 @@ The Data Step below is continued from the SAS Data Step example above used to re
     21               level = 'State' and
     22               date_idx between '01Jan2016'd and '31Dec2016'd;
     23      quit;
+
 ```
 In [53]:
 Image(filename='output/2016_min_max.JPG')
@@ -760,6 +766,7 @@ In order to align the monthly date values found in the 'df_us' DataFrame, with t
 In [57]:
 df_us_qtr = df_us.resample('QS').mean()
 3. Create a column in the 'df_us' labeled 'place_name' with the value "U.S. Aggregate".
+
 ```
 In [58]:
 df_us_qtr['place_name'] = 'U.S. Aggregate'
@@ -835,16 +842,3 @@ p = bokeh.charts.Line(plt_lo_us, x='date_idx', y='index_nsa', color='place_name'
                       title="Comparison of lowest & U.S. Aggregate home values")
 
 bokeh.io.show(p)
-
-## Resources
-
-pandas Time Series and Date functionality doc located here.
-
-pandas datetime Indexing doc located here.
-
-pandas cookbook for timeseries.
-
-Chapter 10, Time Series, "Python for Data Analysis, by Wes McKinney, located here.
-
-SAS 9.4 Language Reference: Concepts, 5th ed., Dates, Times, and Intervals
-

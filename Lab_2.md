@@ -24,7 +24,6 @@ Click notebook `Chapter 02 -- Data Structures.ipynb` in jupterLab UI and run jup
 - dictionary
 - sequences
 - set
-- Resources
 
 This chapter briefly touches on Python's data structures. As the name suggests, data structures are containers for data and other objects. We introduce these objects since they form the building-blocks for other structures discussed in subsequent chapters.
 
@@ -381,12 +380,3 @@ months2.issuperset(months1)
 
 Out[30]:
 True
-
-## Resources:
-
-Python for Data Analysis The landscape of tutorials describing a range of resources across the web. While a bit dated, it is useful for getting started and becoming familiar with the wide variety of packages built on top of Python.
-
-A Byte of Python ...is a free book on programming using the Python language. It serves as a tutorial or guide to the Python language for a beginner audience. If all you know about computers is how to save text files, then this is the book for you.
-
-Python Numpy Tutorial An overview of Nympy by Justin Johnson.
-

@@ -40,6 +40,8 @@ import pandas as pd
 from numpy.random import randn
 from pandas import Series, DataFrame, Index
 from IPython.display import Image
+```
+
 The display method() defined below is from the Python Data Science Handbook, by Jake VanderPlas, available here . It is used to render DataFrames side-by-side for comparisons.
 
 ```
@@ -59,6 +61,7 @@ class display(object):
     def __repr__(self):
         return '\n\n'.join(a + '\n' + repr(eval(a))
                            for a in self.args)
+```
 
 ## SAS Sort Merge with by-group
 
@@ -137,6 +140,8 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
                       'id':           ['929-75-0218', '446-93-2122', \
                                        '228-88-9649', '029-46-9261', '442-21-8075', '321-82-5771'], 
                       'salary':      [27500, 33900, 28000, 35000, 5000, 80000]})
+```
+
 ```
 In [5]:
 display("left", "right")
@@ -224,6 +229,8 @@ Use the how='inner' argument for an INNER JOIN. This retrieves the intersection 
 In [7]:
 both = pd.merge(left, right, on='name', how='inner', sort=True)
 ```
+
+```
 In [8]:
 both
 
@@ -233,10 +240,12 @@ both
 
 The SAS Data Step eqivalent of an Inner Join.
 
+```
 data both;
 merge left(in=l)
       right(in=r);
 by name;
+```
 
 if (l=1 and r=1) then output both;
 
@@ -261,6 +270,8 @@ PROC SQL Right Outer Join example.
     48        select *
     49        from r_outer;
     50        quit;
+
+
 The COALESCE function coerces the 'name' variable into a single column. The 'name' column is renamed 'old_name' to provide a join key and is then dropped.
 
 To produce the output above a second SELECT statement is used to display the single 'name' column in the output.
@@ -278,7 +289,7 @@ For panda use the how='right' argument for a Right Outer Join. This returns only
 ```
 In [10]:
 r_outer = pd.merge(left, right, how='right', sort=True)
-```
+
 In [11]:
 r_outer
 
@@ -313,6 +324,7 @@ PROC SQL Left Outer Join example. See the SAS SQL Right Outer Join example above
     36        on left.name = right.name;
     37       
     38        quit;
+
 ```
 In [12]:
 Image(filename='output/left_outer.JPG')
@@ -327,7 +339,6 @@ For panda use the how='left' argument for a LEFT OUTER JOIN. This returns only t
 In [13]:
 l_outer = pd.merge(left, right, how='left', sort=True)
 
-```
 In [14]:
 l_outer
 
@@ -361,6 +372,7 @@ PROC SQL Full Outer Join exanple. This is the default behavior for the SORT/MERG
     13           on left.old_name = right.old_name;
     14       
     15       select * from sas_merge;
+
 ```
 In [15]:
 Image(filename='output/full_outer_join.JPG')
@@ -373,7 +385,6 @@ Image(filename='output/full_outer_join.JPG')
 In [16]:
 merge_both = pd.merge(left, right, on='name', how='outer', sort=True)
 
-```
 In [17]:
 merge_both
 
@@ -428,6 +439,7 @@ Start with the SAS Data Step for no matched keys in either the 'left' or 'right'
     50      if (l=0 or r=0);
     51      
     52      title1 "if (L=0 or R=0)";
+
 ```
 In [18]:
 Image(filename='output/nomatch.JPG')
@@ -449,6 +461,8 @@ Construct the 'nomatch' DataFrame with an Outer Join using the ['name'] column a
 ```
 In [19]:
 nomatch = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
+```
+
 The 'nomatch' DataFrame displays the nomatch['in= '] column values. These values are tested with boolean comparisons for the WHERE processing.
 
 ```
@@ -506,6 +520,8 @@ Locate the rows in the 'right' DataFrame which have no corresonding key value ma
 ```
 In [24]:
 nomatch_r = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
+```
+
 Display 'nonatch_r' DataFrame as the result of an Outer Join.
 
 ```
@@ -602,6 +618,8 @@ right = pd.DataFrame({'name': ['Gunter, Thomas', 'Harbinger, Nicholas', \
                                        '222-33-4444', '222-33-4444'], 
                       'salary':      [27500, 33900, 28000, 35000, 5000, 80000, 75000, 75000]})
 ```
+
+```
 In [33]:
 display("left", "right")
 
@@ -614,6 +632,8 @@ Construct the 'm2m' DataFrame with an Outer Join using the 'left' and 'right' Da
 ```
 In [34]:
 m2m = pd.merge(left, right, on='name', how='outer', sort=True, indicator='in=')
+```
+
 Display the 'm2m' DataFrame.
 
 ```
@@ -639,11 +659,10 @@ The PROC SQL illustrating a many-to-many Outer Join.
     13          on left.old_name = right.old_name;
     14      
     15      select * from m2m;
+
 ```
 In [36]:
 Image(filename='output/many_2_many.JPG')
-
-
 ```
 
 ![](./images_7/24.jpg)
@@ -667,6 +686,7 @@ The SAS Data Step using the equivalent Full Outer Join with (L=1 or R=1) for the
     NOTE: At least one BY group was repeated in multiple datasets while merging
     28      
     29      proc print data=m2m;
+
 ```
 In [37]:
 Image(filename='output/m2m_datastep_merge.JPG')
@@ -764,16 +784,19 @@ PROC SQL illustrating the aggregation method (mean) grouped by the gender column
 
     _N_=1 _ERROR_=0 gender=F mean_sal=16500
     _N_=2 _ERROR_=0 gender=M mean_sal=32133.333333
+
 3. Create the DataFrameGroupBy (grouper) object from the df['gender'] column.
+
 ```
 In [44]:
 gb2 = df.groupby('gender')
+```
+
 .count() attribute used to return the number of unique levels from the group.
 
 ```
 In [45]:
 gb2.count()
-
 ```
 
 ![](./images_7/27.jpg)
@@ -792,17 +815,22 @@ type(func)
 
 Out[46]:
 function
+
 Apply (or call) the defined function using the groupby.transform() attribute creating the new DataFrame 'trans'. The .transform() attribute is applied to ints and floats to replace missing values with their respective column group mean.
 
 ```
 In [47]:
 trans = gb2.transform(func)
+```
+
  5. Extract the transformed trans['salary'] column as the new df['salary'] column
 We just need the transformed trans['salary'] values to replace the original df['salary'] column values. More details on DROP, KEEP, and RENAME columns is described here.
 
 ```
 In [48]:
 df["salary"] = trans["salary"]
+```
+
 Display the 'df' DataFrame with df['salary'] column values replaced with their group mean value.
 
 ```
@@ -832,16 +860,3 @@ df.groupby('status').last()
 ```
 
 ![](./images_7/30.jpg)
-
-## Resources
-
-MERGING vs. JOINING: Comparing the DATA Step with SQL, by Malachy J. Foley, University of North Carolina at Chapel Hill, located here.
-
-pandas.DataFrame.merge() method documumented here.
-
-pandas Group By: split-apply-combine located here.
-
-SAS 9.2 SQL Procedure User's Guide located here.
-
-Combining SAS Data Sets: Methods: in the SAS Language Reference: Concepts Manual, Second Edition, found here.
-

@@ -27,7 +27,6 @@ Click notebook `Chapter 04 -- Pandas, Part 1.ipynb` in jupterLab UI and run jupy
 - Handling Missing Data
 - Missing Data Detection
 - Missing Value Replacement
-- Resources
 
 This chapter introduces the Pandas library (or package). panda is a package built using NumPy (pronounced 'numb pie').
 
@@ -74,12 +73,15 @@ Start by creating a Series of random values.
 In [2]:
 s1 = Series(randn(10))
 print(s1.head(5))
+```
+
 0    1.470961
 1    0.724744
 2   -1.601498
 3    0.201619
 4   -1.106859
 dtype: float64
+
 Notice the index start position begins with 0. Most SAS automatic variables like _n_ use 1 as the index start position. Iteration of the SAS DO loop 0 to 9 in conjunction with an ARRAY produces an array subscript out of range error.
 
 In the SAS example below the DO loop is used to iterate over the array elements locating the target elements.
@@ -112,6 +114,8 @@ A Series can have a list of index labels.
 In [3]:
 s2 = Series(randn(10), index=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
 print(s2.head(5))
+```
+
 a    1.057676
 b    0.154904
 c   -1.358674
@@ -123,7 +127,10 @@ The Series is indexed by integer value with the start position at 0.
 ```
 In [4]:
 print(s2[0])
+```
+
 1.05767568654
+
 The SAS example uses a DO loop as the index subscript into the array.
 
     /******************************************************/
@@ -239,6 +246,8 @@ The size, shape, and ndim attributes report respectively, number of cells, rows/
 ```
 In [9]:
 print(df.size, df.shape, df.ndim)
+```
+
 7202952 (266776, 27) 2
 
 ## Read Verification
@@ -248,6 +257,8 @@ After reading a file, you often want to understand its content and structure. Th
 ```
 In [10]:
 df.info()
+```
+
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 266776 entries, 0 to 266775
 Data columns (total 27 columns):
@@ -313,6 +324,7 @@ df.tail(20)
 SAS uses the FIRSTOBS and OBS options with procedures to determine input observations. The SAS code to print the last 20 observations of the uk_accidents data set is:
 
 proc print data=uk_accidents (firstobs = 266756);
+
 ```
 In [13]:
 df.head()
@@ -405,6 +417,7 @@ s1.mean()
 
 Out[18]:
 nan
+
 Contrast the Python program in the cell above for calculating the mean of the array elements with the SAS example below. SAS excludes the missing value and utilizes the remaining array elements to calculate a mean.
 
     /******************************************************/
@@ -436,6 +449,8 @@ In [19]:
 for col_name in df.columns:
     print (col_name, end="---->")
     print (sum(df[col_name].isnull()))
+```
+
 Accident_Severity---->0
 Number_of_Vehicles---->0
 Number_of_Casualties---->0
@@ -570,6 +585,8 @@ class display(object):
     def __repr__(self):
         return '\n\n'.join(a + '\n' + repr(eval(a))
                            for a in self.args)
+```
+
 To illustrate the .fillna() method, consider the following to create a DataFrame.
 
 ```
@@ -716,6 +733,7 @@ SAS/Stat has PROC MI for imputation of missing values with a range of methods de
     31         do i = 1 to 3;
     32            if x(i) = . then x(i) = &col6_mean;
     33         end;
+
 The .fillna(method='ffill') is a 'forward' fill method. NaN's are replaced by the adjacent cell above traversing 'down' the columns. Cell #32 below constrasts the DataFrame df2, created in cell #24 above with the DataFrame df9 created with the 'forward' fill method.
 
 ```
@@ -754,8 +772,11 @@ Before dropping the missing rows, calculate the portion of records lost in the a
 In [35]:
 print("{} records in the DataFrame will be dropped.".format(df.Time.isnull().sum()))
 print('The portion of records dropped is {0:6.3%}'.format(df.Time.isnull().sum() / (len(df) - df.Time.isnull().sum())))
+```
+
 24 records in the DataFrame will be dropped.
 The portion of records dropped is 0.009%
+
 The .dropna() method is silent except in the case of errors. We can verify the DataFrame's shape after the method is applied.
 
 ```
@@ -763,24 +784,8 @@ In [36]:
 print(df.shape)
 df = df.dropna()
 print(df.shape)
+```
+
 (266776, 27)
 (266752, 27)
-
-## Resources
-
-10 Minutes to pandas from pandas.pydata.org.
-
-Tutorials , and just below this link is the link for the pandas Cookbook, from the pandas 0.19.0 documentation at pandas.pydata.org.
-
-pandas Home page for Python Data Analysis Library.
-
-Python Data Science Handbook , Essential Tools for Working With Data, by Jake VanderPlas.
-
-pandas: Data Handling and Analysis in Python from 2013 BYU MCL Bootcamp documentation.
-
-Intro to pandas data structures by Greg Reda. This is a three-part series using the Movie Lens data set nicely to illustrate pandas.
-
-Cheat Sheet: The pandas DataFrame Object by Mark Graph and located at the University of Idaho's web-site.
-
-Working with missing data pandas 0.19.0 documentation.
 
